@@ -7,6 +7,7 @@ export const myTheme = {
   grayLight: "#F1F1F1",
   grayLighter: "#FAFAFA",
   grayText: "#B5B5B5",
+  overlayZIndex: 5,
 } as const;
 
 type MyTheme = typeof myTheme;

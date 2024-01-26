@@ -1,6 +1,7 @@
 import { FC } from "react";
 import arrowRightIcon from "../../../assets/shared/desktop/icon-arrow-right.svg";
 import { styled, css } from "styled-components";
+import { media } from "../../../styles/media";
 
 type ProductProps = {
   imgSrc: string;
