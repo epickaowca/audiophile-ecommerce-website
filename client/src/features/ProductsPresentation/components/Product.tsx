@@ -1,7 +1,6 @@
 import { FC } from "react";
 import arrowRightIcon from "../../../assets/shared/desktop/icon-arrow-right.svg";
 import { styled, css } from "styled-components";
-import { media } from "../../../styles/media";
 
 type ProductProps = {
   imgSrc: string;
@@ -13,7 +12,7 @@ export const Product: FC<ProductProps> = ({ imgSrc, productName, url }) => {
   return (
     <Anchor href={url}>
       <img src={imgSrc} alt={productName} />
-      <h4 title="hoidw">{productName}</h4>
+      <h4>{productName}</h4>
       <span>
         SHOP <img src={arrowRightIcon} alt="arrowRightIcon" />
       </span>
@@ -21,12 +20,12 @@ export const Product: FC<ProductProps> = ({ imgSrc, productName, url }) => {
   );
 };
 
-const Anchor = styled.a(({ theme }) => {
+const Anchor = styled.a(({ theme: { grayLight, orangeMedium, grayText } }) => {
   return css`
     width: 100%;
     height: 165px;
     max-width: 327px;
-    background-color: ${theme.grayLight};
+    background-color: ${grayLight};
     text-align: center;
     text-decoration: none;
     border-radius: 8px;
@@ -34,7 +33,7 @@ const Anchor = styled.a(({ theme }) => {
     padding-top: 100px;
 
     &:hover > span {
-      color: ${theme.orangeMedium};
+      color: ${orangeMedium};
     }
 
     & > img {
@@ -51,7 +50,7 @@ const Anchor = styled.a(({ theme }) => {
       text-transform: uppercase;
     }
     & > span {
-      color: ${theme.grayText};
+      color: ${grayText};
       font-size: 0.9rem;
       & > img {
         margin-left: 5px;

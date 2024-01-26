@@ -8,7 +8,7 @@ import { wrapperStyles } from "../../styles/wrapperStyles";
 
 export const ProductsPresentation: FC = () => {
   return (
-    <Wrapper>
+    <StyledProductsPresentation>
       <Product
         imgSrc={headphonesImg}
         productName="headphones"
@@ -16,11 +16,11 @@ export const ProductsPresentation: FC = () => {
       />
       <Product imgSrc={speakersImg} productName="speakers" url="#speakers" />
       <Product imgSrc={earphonesImg} productName="earphones" url="#earphones" />
-    </Wrapper>
+    </StyledProductsPresentation>
   );
 };
 
-const Wrapper = styled.div(() => {
+export const StyledProductsPresentation = styled.div(({ theme: { media } }) => {
   return css`
     ${wrapperStyles};
     margin-top: 50px;
@@ -28,5 +28,13 @@ const Wrapper = styled.div(() => {
     flex-direction: column;
     align-items: center;
     gap: 70px;
+    @media ${media.tablet} {
+      justify-content: center;
+      flex-direction: row;
+      gap: 15px;
+    }
+    @media ${media.desktop} {
+      gap: 45px;
+    }
   `;
 });

@@ -1,4 +1,8 @@
 import { createGlobalStyle, css } from "styled-components";
+const breakpoints = {
+  tablet: "768px",
+  desktop: "1024px",
+};
 
 export const myTheme = {
   orangeMedium: "#D87D4A",
@@ -8,6 +12,10 @@ export const myTheme = {
   grayLighter: "#FAFAFA",
   grayText: "#B5B5B5",
   overlayZIndex: 5,
+  media: {
+    tablet: `(min-width: ${breakpoints.tablet})`,
+    desktop: `(min-width: ${breakpoints.desktop})`,
+  },
 } as const;
 
 type MyTheme = typeof myTheme;

@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, useState } from "react";
 import { Navigation } from "./components/Navigation";
 import { styled, css } from "styled-components";
 import cartIcon from "../../assets/shared/desktop/icon-cart.svg";
@@ -7,19 +7,26 @@ import { wrapperStyles } from "../../styles/wrapperStyles";
 import { Overlay } from "../Overlay";
 
 export const Header: FC = () => {
+  const [isNavOpen, setIsNavOpen] = useState(false);
   return (
     <StyledHeader>
       <Wrapper>
         <div className="left-side">
-          <img src={hamburgerIcon} alt="hamburgerIcon" />
+          <img
+            onClick={() => setIsNavOpen((prev) => !prev)}
+            src={hamburgerIcon}
+            alt="hamburgerIcon"
+          />
           <h2>audiophile</h2>
         </div>
-        <Navigation />
+        <Navigation isNavOpen={isNavOpen} />
         <div className="cart">
           <img src={cartIcon} alt="cartIcon" />
         </div>
       </Wrapper>
-      <Overlay />
+      {isNavOpen && (
+        <Overlay displayOnDesktop={false} onClick={() => setIsNavOpen(false)} />
+      )}
     </StyledHeader>
   );
 };
@@ -34,7 +41,7 @@ const StyledHeader = styled.header(({ theme }) => {
   `;
 });
 
-const Wrapper = styled.div(() => {
+const Wrapper = styled.div(({ theme }) => {
   return css`
     ${wrapperStyles}
     display: flex;
@@ -47,6 +54,12 @@ const Wrapper = styled.div(() => {
       align-items: center;
       justify-content: space-between;
       flex-grow: 1;
+      & > img {
+        cursor: pointer;
+        @media ${theme.media.desktop} {
+          display: none;
+        }
+      }
       & > h2 {
         color: white;
       }
