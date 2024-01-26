@@ -1,8 +1,8 @@
 import { FC, useState } from "react";
 import { Navigation } from "./components/Navigation";
 import { styled, css } from "styled-components";
-import cartIcon from "../../assets/shared/desktop/icon-cart.svg";
-import hamburgerIcon from "../../assets/shared/tablet/icon-hamburger.svg";
+import cartIcon from "./assets/icon-cart.svg";
+import hamburgerIcon from "./assets/icon-hamburger.svg";
 import { wrapperStyles } from "../../styles/wrapperStyles";
 import { Overlay } from "../Overlay";
 

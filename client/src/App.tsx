@@ -1,8 +1,8 @@
 import { FC } from "react";
-import { Header } from "./features/Header";
+import { Home } from "./pages/Home";
 
 const App: FC = () => {
-  return <Header />;
+  return <Home />;
 };
 
 export default App;

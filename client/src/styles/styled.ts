@@ -10,7 +10,7 @@ export const myTheme = {
   grayDark: "#101010",
   grayLight: "#F1F1F1",
   grayLighter: "#FAFAFA",
-  grayText: "#B5B5B5",
+  grayText: "#C0C0C0",
   overlayZIndex: 5,
   media: {
     tablet: `(min-width: ${breakpoints.tablet})`,

@@ -1,6 +1,6 @@
 import { FC } from "react";
-import arrowRightIcon from "../../../assets/shared/desktop/icon-arrow-right.svg";
 import { styled, css } from "styled-components";
+import { Button, StyledButton } from "../../Button";
 
 type ProductProps = {
   imgSrc: string;
@@ -13,14 +13,12 @@ export const Product: FC<ProductProps> = ({ imgSrc, productName, url }) => {
     <Anchor href={url}>
       <img src={imgSrc} alt={productName} />
       <h4>{productName}</h4>
-      <span>
-        SHOP <img src={arrowRightIcon} alt="arrowRightIcon" />
-      </span>
+      <Button text="SHOP" variant="noBackground" />
     </Anchor>
   );
 };
 
-const Anchor = styled.a(({ theme: { grayLight, orangeMedium, grayText } }) => {
+const Anchor = styled.a(({ theme: { grayLight, orangeMedium } }) => {
   return css`
     width: 100%;
     height: 165px;
@@ -49,12 +47,9 @@ const Anchor = styled.a(({ theme: { grayLight, orangeMedium, grayText } }) => {
       margin-bottom: 10px;
       text-transform: uppercase;
     }
-    & > span {
-      color: ${grayText};
-      font-size: 0.9rem;
-      & > img {
-        margin-left: 5px;
-      }
+
+    & > ${StyledButton} {
+      margin: auto;
     }
   `;
 });

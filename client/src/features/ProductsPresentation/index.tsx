@@ -1,8 +1,8 @@
 import { FC } from "react";
 import { Product } from "./components/Product";
-import speakersImg from "../../assets/shared/desktop/image-category-thumbnail-speakers.png";
-import earphonesImg from "../../assets/shared/desktop/image-category-thumbnail-earphones.png";
-import headphonesImg from "../../assets/shared/desktop/image-category-thumbnail-headphones.png";
+import speakersImg from "./assets/image-category-thumbnail-speakers.png";
+import earphonesImg from "./assets/image-category-thumbnail-earphones.png";
+import headphonesImg from "./assets/image-category-thumbnail-headphones.png";
 import { styled, css } from "styled-components";
 import { wrapperStyles } from "../../styles/wrapperStyles";
 
