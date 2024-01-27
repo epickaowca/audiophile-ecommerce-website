@@ -2,21 +2,28 @@ import { FC } from "react";
 import arrowRightIcon from "./assets/icon-arrow-right.svg";
 import { styled, css } from "styled-components";
 import { myTheme } from "../../styles/styled";
+import { Link } from "react-router-dom";
 
 type ButtonProps = {
   text: string;
   variant: "primary" | "secondary" | "noBackground";
+  href?: string;
+  onClick?: () => void;
 };
 
-export const Button: FC<ButtonProps> = ({ text, variant }) => {
-  return (
-    <StyledButton $variant={variant}>
+export const Button: FC<ButtonProps> = ({ text, variant, href, onClick }) => {
+  const clickHandler = () => {
+    onClick && onClick();
+  };
+  const buttonComponent = (
+    <StyledButton onClick={clickHandler} $variant={variant}>
       {text}
       {variant === "noBackground" && (
         <img src={arrowRightIcon} alt="arrowRightIcon" />
       )}
     </StyledButton>
   );
+  return href ? <Link to={href}>{buttonComponent}</Link> : buttonComponent;
 };
 
 export const StyledButton = styled.button<{ $variant: ButtonProps["variant"] }>(
@@ -28,8 +35,8 @@ export const StyledButton = styled.button<{ $variant: ButtonProps["variant"] }>(
       border: ${$variant === "secondary" ? "1px solid #000000" : "none"};
       color: ${styledBtnColor[$variant]};
       font-weight: bold;
-      padding: 10px 15px;
-      font-size: 0.9rem;
+      padding: 17px 25px;
+      font-size: 0.85rem;
       display: flex;
       align-items: center;
       letter-spacing: 1.5px;

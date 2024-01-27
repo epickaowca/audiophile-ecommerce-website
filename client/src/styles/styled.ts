@@ -10,7 +10,8 @@ export const myTheme = {
   grayDark: "#101010",
   grayLight: "#F1F1F1",
   grayLighter: "#FAFAFA",
-  grayText: "#C0C0C0",
+  grayText: "#7D7D7D",
+  grayTextLight: "#C5C5C5",
   overlayZIndex: 5,
   media: {
     tablet: `(min-width: ${breakpoints.tablet})`,
@@ -41,6 +42,10 @@ export const GlobalStyle = createGlobalStyle(
       min-height: 100vh;
       font-family: "Manrope", sans-serif;
       /* background-color: ${theme.lightGray}; */
+    }
+
+    #root {
+      position: relative;
     }
 
     button {

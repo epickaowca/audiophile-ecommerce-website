@@ -1,16 +1,18 @@
 import { FC } from "react";
 import { styled, css } from "styled-components";
 import { Button, StyledButton } from "../../Button";
+import { Link } from "react-router-dom";
+import { ProductCategories } from "../../../data/constants";
 
 type ProductProps = {
   imgSrc: string;
-  productName: string;
+  productName: ProductCategories;
   url: string;
 };
 
 export const Product: FC<ProductProps> = ({ imgSrc, productName, url }) => {
   return (
-    <Anchor href={url}>
+    <Anchor as={Link} to={url}>
       <img src={imgSrc} alt={productName} />
       <h4>{productName}</h4>
       <Button text="SHOP" variant="noBackground" />
