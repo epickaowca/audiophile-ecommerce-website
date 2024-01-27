@@ -55,7 +55,6 @@ export const ProductDescription: FC<ProductDescriptionProps> = ({
 const Wrapper = styled.div<{ $darkTheme?: boolean; $priceCase?: boolean }>(
   ({ theme, $darkTheme, $priceCase }) => {
     return css`
-      margin-top: 50px;
       display: flex;
       flex-direction: column;
       text-align: ${$priceCase ? "left" : "center"};
@@ -87,7 +86,7 @@ const Wrapper = styled.div<{ $darkTheme?: boolean; $priceCase?: boolean }>(
           letter-spacing: 1px;
           margin-right: -1px;
           &:first-child {
-            margin-bottom: px;
+            margin-bottom: 10px;
           }
           text-transform: uppercase;
         }

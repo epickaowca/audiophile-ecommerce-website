@@ -5,11 +5,16 @@ import cartIcon from "./assets/icon-cart.svg";
 import hamburgerIcon from "./assets/icon-hamburger.svg";
 import { wrapperStyles } from "../../styles/wrapperStyles";
 import { Overlay } from "../Overlay";
+import logo from "./assets/logo.svg";
 
-export const Header: FC = () => {
+type HeaderProps = {
+  transparentBg?: boolean;
+};
+
+export const Header: FC<HeaderProps> = ({ transparentBg }) => {
   const [isNavOpen, setIsNavOpen] = useState(false);
   return (
-    <StyledHeader>
+    <StyledHeader $transparentBg={transparentBg}>
       <Wrapper>
         <div className="left-side">
           <img
@@ -17,7 +22,7 @@ export const Header: FC = () => {
             src={hamburgerIcon}
             alt="hamburgerIcon"
           />
-          <h2>audiophile</h2>
+          <img src={logo} alt="logo" />
         </div>
         <Navigation isNavOpen={isNavOpen} />
         <div className="cart">
@@ -31,15 +36,17 @@ export const Header: FC = () => {
   );
 };
 
-const StyledHeader = styled.header(({ theme }) => {
-  return css`
-    display: block;
-    position: relative;
-    z-index: ${theme.overlayZIndex + 1};
-    background-color: #000;
-    height: 91px;
-  `;
-});
+const StyledHeader = styled.header<{ $transparentBg?: boolean }>(
+  ({ theme, $transparentBg }) => {
+    return css`
+      display: block;
+      position: relative;
+      z-index: ${theme.overlayZIndex + 1};
+      background-color: ${$transparentBg ? "transparent" : "#000000"};
+      height: 91px;
+    `;
+  }
+);
 
 const Wrapper = styled.div(({ theme }) => {
   return css`
@@ -59,9 +66,6 @@ const Wrapper = styled.div(({ theme }) => {
         @media ${theme.media.desktop} {
           display: none;
         }
-      }
-      & > h2 {
-        color: white;
       }
     }
 

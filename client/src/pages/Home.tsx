@@ -4,38 +4,15 @@ import { Header } from "../features/Header";
 import { styled } from "styled-components";
 // import { QuantitySelector } from "../features/QuantitySelector";
 import { ProductDescription } from "../features/ProductDescription";
+import { MainHeroSection } from "../features/MainHeroSection";
 
 export const Home: FC = () => {
-  const [quantity, setQuantity] = useState(1);
+  // const [quantity, setQuantity] = useState(1);
 
   return (
     <Wrapper>
-      <Header />
-      <ProductDescription
-        isNew={true}
-        productName="XX99 Mark II"
-        productCategory="headphones"
-        description="The new XX99 Mark II headphones is the pinnacle of pristine audio. It redefines your premium headphone experience by reproducing the balanced depth and precision of studio-quality sound."
-      />
-      <Div>
-        <ProductDescription
-          darkTheme={true}
-          isNew={true}
-          productName="XX99 Mark II"
-          productCategory="headphones"
-          description="The new XX99 Mark II headphones is the pinnacle of pristine audio. It redefines your premium headphone experience by reproducing the balanced depth and precision of studio-quality sound."
-        />
-      </Div>
-
-      <Div2>
-        <ProductDescription
-          price={2042}
-          isNew={true}
-          productName="XX99 Mark II"
-          productCategory="headphones"
-          description="The new XX99 Mark II headphones is the pinnacle of pristine audio. It redefines your premium headphone experience by reproducing the balanced depth and precision of studio-quality sound."
-        />
-      </Div2>
+      <Header transparentBg={true} />
+      <MainHeroSection />
     </Wrapper>
   );
 };

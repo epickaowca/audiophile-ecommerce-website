@@ -46,6 +46,8 @@ export const GlobalStyle = createGlobalStyle(
 
     #root {
       position: relative;
+      overflow-x: hidden;
+      min-height: 100vh;
     }
 
     button {
