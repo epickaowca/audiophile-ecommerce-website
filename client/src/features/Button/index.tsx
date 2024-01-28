@@ -40,6 +40,7 @@ export const StyledButton = styled.button<{ $variant: ButtonProps["variant"] }>(
       display: flex;
       align-items: center;
       letter-spacing: 1.5px;
+      cursor: pointer;
       &:hover {
         color: ${$variant === "noBackground" ? orangeMedium : "#ffffff"};
         background-color: ${styledBtnBgColorHover[$variant]};

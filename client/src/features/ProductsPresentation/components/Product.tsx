@@ -31,6 +31,7 @@ const Anchor = styled.a(({ theme: { grayLight, orangeMedium } }) => {
     border-radius: 8px;
     position: relative;
     padding-top: 100px;
+    padding-bottom: 80px;
 
     &:hover > span {
       color: ${orangeMedium};

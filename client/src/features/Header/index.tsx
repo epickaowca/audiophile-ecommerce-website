@@ -14,15 +14,16 @@ type HeaderProps = {
 export const Header: FC<HeaderProps> = ({ transparentBg }) => {
   const [isNavOpen, setIsNavOpen] = useState(false);
   return (
-    <StyledHeader $transparentBg={transparentBg}>
+    <StyledHeader $transparentBg={transparentBg} $isNavOpen={isNavOpen}>
       <Wrapper>
         <div className="left-side">
           <img
+            className="menu"
             onClick={() => setIsNavOpen((prev) => !prev)}
             src={hamburgerIcon}
             alt="hamburgerIcon"
           />
-          <img src={logo} alt="logo" />
+          <img className="logo" src={logo} alt="logo" />
         </div>
         <Navigation isNavOpen={isNavOpen} />
         <div className="cart">
@@ -36,17 +37,22 @@ export const Header: FC<HeaderProps> = ({ transparentBg }) => {
   );
 };
 
-const StyledHeader = styled.header<{ $transparentBg?: boolean }>(
-  ({ theme, $transparentBg }) => {
-    return css`
-      display: block;
-      position: relative;
-      z-index: ${theme.overlayZIndex + 1};
-      background-color: ${$transparentBg ? "transparent" : "#000000"};
-      height: 91px;
-    `;
-  }
-);
+export const headerHeight = "91px";
+
+const StyledHeader = styled.header<{
+  $transparentBg?: boolean;
+  $isNavOpen?: boolean;
+}>(({ theme, $transparentBg, $isNavOpen }) => {
+  return css`
+    display: block;
+    position: relative;
+    z-index: ${theme.overlayZIndex + 1};
+    background-color: ${$transparentBg && !$isNavOpen
+      ? "transparent"
+      : "#000000"};
+    height: ${headerHeight};
+  `;
+});
 
 const Wrapper = styled.div(({ theme }) => {
   return css`
@@ -61,17 +67,28 @@ const Wrapper = styled.div(({ theme }) => {
       align-items: center;
       justify-content: space-between;
       flex-grow: 1;
-      & > img {
+      & > .menu {
         cursor: pointer;
-        @media ${theme.media.desktop} {
-          display: none;
-        }
       }
     }
 
     & > .cart {
       flex-grow: 1;
       text-align: right;
+    }
+
+    @media ${theme.media.tablet} {
+      & > .left-side {
+        justify-content: flex-start;
+        gap: 40px;
+      }
+    }
+    @media ${theme.media.desktop} {
+      & > .left-side {
+        & > .menu {
+          display: none;
+        }
+      }
     }
   `;
 });

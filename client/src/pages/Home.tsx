@@ -5,15 +5,17 @@ import { styled } from "styled-components";
 // import { QuantitySelector } from "../features/QuantitySelector";
 import { ProductDescription } from "../features/ProductDescription";
 import { MainHeroSection } from "../features/MainHeroSection";
+import { ProductsPresentation } from "../features/ProductsPresentation";
 
 export const Home: FC = () => {
   // const [quantity, setQuantity] = useState(1);
 
   return (
-    <Wrapper>
+    <>
       <Header transparentBg={true} />
       <MainHeroSection />
-    </Wrapper>
+      <ProductsPresentation />
+    </>
   );
 };
 

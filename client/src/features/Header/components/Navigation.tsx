@@ -35,7 +35,7 @@ const Nav = styled.nav<{ $isNavOpen: boolean }>(
   ({
     $isNavOpen,
     theme: {
-      media: { desktop },
+      media: { desktop, tablet },
     },
   }) => {
     return css`
@@ -51,6 +51,17 @@ const Nav = styled.nav<{ $isNavOpen: boolean }>(
       border-bottom-right-radius: 10px;
       & > ul {
         display: none;
+      }
+      & > ${StyledProductsPresentation} {
+        margin: 0px;
+        margin-top: 50px;
+      }
+
+      @media ${tablet} {
+        & > ${StyledProductsPresentation} {
+          margin: auto;
+          margin-top: 50px;
+        }
       }
 
       @media ${desktop} {

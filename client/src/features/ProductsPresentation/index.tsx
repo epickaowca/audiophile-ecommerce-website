@@ -23,12 +23,16 @@ export const ProductsPresentation: FC = () => {
 export const StyledProductsPresentation = styled.div(({ theme: { media } }) => {
   return css`
     ${wrapperStyles};
-    margin-top: 50px;
+    margin-top: 90px;
+    margin-bottom: 50px;
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 70px;
+
     @media ${media.tablet} {
+      margin-top: 140px;
+      margin-bottom: 90px;
       justify-content: center;
       flex-direction: row;
       gap: 15px;

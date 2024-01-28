@@ -1,7 +1,7 @@
 import { createGlobalStyle, css } from "styled-components";
 const breakpoints = {
-  tablet: "768px",
-  desktop: "1024px",
+  tablet: 768,
+  desktop: 1024,
 };
 
 export const myTheme = {
@@ -14,8 +14,8 @@ export const myTheme = {
   grayTextLight: "#C5C5C5",
   overlayZIndex: 5,
   media: {
-    tablet: `(min-width: ${breakpoints.tablet})`,
-    desktop: `(min-width: ${breakpoints.desktop})`,
+    tablet: `(min-width: ${breakpoints.tablet}px)`,
+    desktop: `(min-width: ${breakpoints.desktop}px)`,
   },
 } as const;
 
@@ -41,13 +41,14 @@ export const GlobalStyle = createGlobalStyle(
       padding: 0;
       min-height: 100vh;
       font-family: "Manrope", sans-serif;
-      /* background-color: ${theme.lightGray}; */
+      overflow-x: hidden;
     }
 
     #root {
+      /* overflow-y: hidden; */
+      /* overflow-x: hidden; */
+      /* min-height: 100vh; */
       position: relative;
-      overflow-x: hidden;
-      min-height: 100vh;
     }
 
     button {
