@@ -39,15 +39,12 @@ export const GlobalStyle = createGlobalStyle(
     body {
       margin: 0;
       padding: 0;
-      min-height: 100vh;
+      min-height: 6000px;
       font-family: "Manrope", sans-serif;
       overflow-x: hidden;
     }
 
     #root {
-      /* overflow-y: hidden; */
-      /* overflow-x: hidden; */
-      /* min-height: 100vh; */
       position: relative;
     }
 

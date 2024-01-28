@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, useRef } from "react";
 import {
   ProductDescription,
   StyledProductDescription,
@@ -7,21 +7,44 @@ import { styled, css } from "styled-components";
 import heroImageDesktop from "./assets/image-hero-desktop.jpg";
 import heroImageTablet from "./assets/image-hero-tablet.jpg";
 import heroImageMobile from "./assets/image-hero-mobile.jpg";
+import heroImageMobileThumbnail from "./assets/micro/image-hero-mobile.jpg";
+import heroImageTabletThumbnail from "./assets/micro/image-hero-tablet.jpg";
+import heroImageDesktopThumbnail from "./assets/micro/image-hero-desktop.png";
 import { myTheme } from "../../styles/styled";
 import { wrapperStyles } from "../../styles/wrapperStyles";
 import { headerHeight } from "../Header";
+import { BlurImageLoad, StyledBlurImageLoad } from "../BlurImageLoad";
+import { useImageLoaded } from "../../hooks/useImageLoaded";
 
 export const MainHeroSection: FC = () => {
+  const imgRef = useRef<HTMLImageElement>(null);
+  const { isImageLoaded } = useImageLoaded(imgRef);
+
   return (
     <Wrapper>
       <div className="bg"></div>
       <div className="mask"></div>
       <div className="img-wrapper">
-        <picture>
-          <source media={myTheme.media.desktop} srcSet={heroImageDesktop} />
-          <source media={myTheme.media.tablet} srcSet={heroImageTablet} />
-          <img src={heroImageMobile} alt="hero-image" />
-        </picture>
+        <BlurImageLoad
+          isImageLoaded={isImageLoaded}
+          withoutAnimation={true}
+          image={{
+            mobile: heroImageMobileThumbnail,
+            tablet: heroImageTabletThumbnail,
+            desktop: heroImageDesktopThumbnail,
+          }}
+        >
+          <picture>
+            <source media={myTheme.media.desktop} srcSet={heroImageDesktop} />
+            <source media={myTheme.media.tablet} srcSet={heroImageTablet} />
+            <img
+              loading="lazy"
+              ref={imgRef}
+              src={heroImageMobile}
+              alt="hero-image"
+            />
+          </picture>
+        </BlurImageLoad>
       </div>
 
       <ProductDescription
@@ -55,41 +78,46 @@ const Wrapper = styled.div(({ theme }) => {
       left: calc(50% - var(--position-offset));
       top: calc(var(--top-with-offset) + 50%);
       transform: translate(-50%, -50%);
-      width: calc(100% + var(--position-offset));
+      width: calc(100% + calc(var(--position-offset) * 2));
       max-width: 1440px;
       height: 100%;
       min-width: 375px;
       display: flex;
       align-items: center;
       overflow: hidden;
-      & > picture {
+
+      & > ${StyledBlurImageLoad} {
         width: 100%;
-        & > img {
+        min-height: calc(var(--wrapper-height) + var(--position-offset));
+
+        & > picture {
           width: 100%;
-          height: 100%;
-          min-height: calc(var(--wrapper-height) + var(--position-offset));
+          & > img {
+            width: 100%;
+            height: 100%;
+            min-height: calc(var(--wrapper-height) + var(--position-offset));
+          }
         }
       }
     }
 
-    & > .mask {
+    & > .mask,
+    .bg {
       position: absolute;
       left: 0;
       top: var(--top-with-offset);
-      background-color: rgba(0, 0, 0, 0.4);
-      z-index: -1;
       width: 100%;
       height: 100%;
     }
 
+    & > .mask {
+      z-index: -1;
+      background-color: rgba(0, 0, 0, 0.4);
+    }
+
     & > .bg {
-      position: absolute;
-      left: 0;
-      top: var(--top-with-offset);
-      background-color: #191919;
       z-index: -2;
-      width: 100%;
-      height: 100%;
+      background-color: #191919;
     }
 
     @media ${theme.media.tablet} {
