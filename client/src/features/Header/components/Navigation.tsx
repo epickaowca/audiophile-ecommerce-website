@@ -1,32 +1,48 @@
 import { FC } from "react";
 import {
-  ProductsPresentation,
-  StyledProductsPresentation,
-} from "../../ProductsPresentation/index";
+  ProductCategories,
+  StyledProductCategories,
+} from "../../ProductCategories";
 import { styled, css } from "styled-components";
 
 type NavigationProps = {
   isNavOpen: boolean;
 };
 
+export const navId = "main-menu";
+
 export const Navigation: FC<NavigationProps> = ({ isNavOpen }) => {
   return (
-    <Nav $isNavOpen={isNavOpen}>
-      <ul>
+    <Nav id={navId} role="navigation" $isNavOpen={isNavOpen}>
+      <ul role="menubar" className="desktop_nav">
         <li>
-          <a href="#home">Home</a>
+          <a role="menuitem" href="#home">
+            Home
+          </a>
         </li>
         <li>
-          <a href="#headphones">Headphones</a>
+          <a role="menuitem" href="#headphones">
+            Headphones
+          </a>
         </li>
         <li>
-          <a href="#speakers">Speakers</a>
+          <a role="menuitem" href="#speakers">
+            Speakers
+          </a>
         </li>
         <li>
-          <a href="#earphones">Earphones</a>
+          <a role="menuitem" href="#earphones">
+            Earphones
+          </a>
         </li>
       </ul>
-      <ProductsPresentation />
+
+      {isNavOpen && (
+        <ProductCategories
+          autoFocusFirstCategory={true}
+          navigationCase={true}
+        />
+      )}
     </Nav>
   );
 };
@@ -49,16 +65,16 @@ const Nav = styled.nav<{ $isNavOpen: boolean }>(
       padding-bottom: 45px;
       border-bottom-left-radius: 10px;
       border-bottom-right-radius: 10px;
-      & > ul {
+      & > .desktop_nav {
         display: none;
       }
-      & > ${StyledProductsPresentation} {
-        margin: 0px;
+      & > ${StyledProductCategories} {
+        margin: auto;
         margin-top: 50px;
       }
 
       @media ${tablet} {
-        & > ${StyledProductsPresentation} {
+        & > ${StyledProductCategories} {
           margin: auto;
           margin-top: 50px;
         }
@@ -70,10 +86,10 @@ const Nav = styled.nav<{ $isNavOpen: boolean }>(
         top: 0;
         padding: 0;
         background-color: transparent;
-        & > ${StyledProductsPresentation} {
+        & > ${StyledProductCategories} {
           display: none;
         }
-        & > ul {
+        & > .desktop_nav {
           display: flex;
           justify-content: center;
           align-items: center;

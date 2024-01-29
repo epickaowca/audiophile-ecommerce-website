@@ -5,7 +5,7 @@ import { styled } from "styled-components";
 // import { QuantitySelector } from "../features/QuantitySelector";
 import { ProductDescription } from "../features/ProductDescription";
 import { MainHeroSection } from "../features/MainHeroSection";
-import { ProductsPresentation } from "../features/ProductsPresentation";
+import { ProductCategories } from "../features/ProductCategories";
 
 export const Home: FC = () => {
   // const [quantity, setQuantity] = useState(1);
@@ -14,7 +14,7 @@ export const Home: FC = () => {
     <>
       <Header transparentBg={true} />
       <MainHeroSection />
-      <ProductsPresentation />
+      <ProductCategories />
     </>
   );
 };

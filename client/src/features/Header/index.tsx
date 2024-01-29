@@ -1,5 +1,5 @@
-import { FC, useState } from "react";
-import { Navigation } from "./components/Navigation";
+import { FC, useState, useEffect } from "react";
+import { Navigation, navId } from "./components/Navigation";
 import { styled, css } from "styled-components";
 import cartIcon from "./assets/icon-cart.svg";
 import hamburgerIcon from "./assets/icon-hamburger.svg";
@@ -13,21 +13,31 @@ type HeaderProps = {
 
 export const Header: FC<HeaderProps> = ({ transparentBg }) => {
   const [isNavOpen, setIsNavOpen] = useState(false);
+
   return (
     <StyledHeader $transparentBg={transparentBg} $isNavOpen={isNavOpen}>
       <Wrapper>
         <div className="left-side">
-          <img
+          <button
             className="menu"
-            onClick={() => setIsNavOpen((prev) => !prev)}
-            src={hamburgerIcon}
-            alt="hamburgerIcon"
-          />
+            type="button"
+            aria-label="Menu"
+            aria-expanded={isNavOpen}
+            aria-controls={navId}
+          >
+            <img
+              onClick={() => setIsNavOpen((prev) => !prev)}
+              src={hamburgerIcon}
+              alt="hamburgerIcon"
+            />
+          </button>
           <img className="logo" src={logo} alt="logo" />
         </div>
         <Navigation isNavOpen={isNavOpen} />
         <div className="cart">
-          <img src={cartIcon} alt="cartIcon" />
+          <button aria-label="Cart">
+            <img src={cartIcon} alt="cartIcon" />
+          </button>
         </div>
       </Wrapper>
       {isNavOpen && (
@@ -51,6 +61,10 @@ const StyledHeader = styled.header<{
       ? "transparent"
       : "#000000"};
     height: ${headerHeight};
+
+    @media ${theme.media.desktop} {
+      background-color: ${$transparentBg ? "transparent" : "#000000"};
+    }
   `;
 });
 
@@ -59,8 +73,8 @@ const Wrapper = styled.div(({ theme }) => {
     ${wrapperStyles}
     display: flex;
     align-items: center;
-    height: 100%;
     justify-content: space-between;
+    height: 100%;
 
     & > .left-side {
       display: flex;
@@ -68,6 +82,8 @@ const Wrapper = styled.div(({ theme }) => {
       justify-content: space-between;
       flex-grow: 1;
       & > .menu {
+        background-color: transparent;
+        border: none;
         cursor: pointer;
       }
     }
@@ -75,6 +91,10 @@ const Wrapper = styled.div(({ theme }) => {
     & > .cart {
       flex-grow: 1;
       text-align: right;
+      & > button {
+        background: transparent;
+        border: none;
+      }
     }
 
     @media ${theme.media.tablet} {

@@ -46,7 +46,12 @@ export const ProductDescription: FC<ProductDescriptionProps> = ({
           </div>
         </>
       ) : (
-        <Button text="SEE PRODUCT" variant="primary" onClick={() => {}} />
+        <Button
+          href="#hi"
+          text="SEE PRODUCT"
+          variant="primary"
+          onClick={() => {}}
+        />
       )}
     </StyledProductDescription>
   );
