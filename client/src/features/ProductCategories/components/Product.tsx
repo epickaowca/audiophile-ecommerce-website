@@ -30,7 +30,7 @@ export const Product: FC<ProductProps> = ({
     <Anchor href={url} ref={anchorRef} {...role}>
       <img className="product-img" src={imgSrc} alt={productName} />
       <h4 className="product-name">{productName}</h4>
-      <Button asDiv={true} text="SHOP" variant="noBackground" />
+      <Button as="div" text="SHOP" variant="noBackground" />
     </Anchor>
   );
 

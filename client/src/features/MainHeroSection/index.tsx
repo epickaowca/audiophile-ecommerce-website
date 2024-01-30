@@ -48,6 +48,8 @@ export const MainHeroSection: FC = () => {
       </div>
 
       <ProductDescription
+        buttonHref="#XX99 Mark II"
+        buttonAriaLabel="SEE XX99 Mark II"
         darkTheme={true}
         isNew={true}
         productName="XX99 Mark II"

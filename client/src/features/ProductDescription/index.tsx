@@ -8,9 +8,11 @@ type ProductDescriptionProps = {
   isNew?: boolean;
   price?: number;
   darkTheme?: boolean;
+  buttonHref?: string;
   productName: string;
   productCategory: ProductCategory;
   description: string;
+  buttonAriaLabel?: string;
 };
 
 export const ProductDescription: FC<ProductDescriptionProps> = ({
@@ -20,8 +22,14 @@ export const ProductDescription: FC<ProductDescriptionProps> = ({
   darkTheme,
   isNew,
   price,
+  buttonAriaLabel,
+  buttonHref,
 }) => {
   const [quantity, setQuantity] = useState(0);
+
+  const hrefAttr = buttonHref
+    ? ({ as: "link", href: buttonHref } as const)
+    : {};
 
   return (
     <StyledProductDescription $darkTheme={darkTheme} $priceCase={!!price}>
@@ -47,7 +55,8 @@ export const ProductDescription: FC<ProductDescriptionProps> = ({
         </>
       ) : (
         <Button
-          href="#hi"
+          {...hrefAttr}
+          ariaLabel={buttonAriaLabel}
           text="SEE PRODUCT"
           variant="primary"
           onClick={() => {}}
