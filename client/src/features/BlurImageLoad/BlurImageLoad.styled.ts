@@ -2,14 +2,7 @@ import { styled, css } from "styled-components";
 import { DefaultProps } from "./types";
 
 export const StyledBlurImageLoad = styled.div<DefaultProps>(
-  ({
-    isImageLoaded,
-    image,
-    withoutAnimation,
-    theme: {
-      media: { tablet, desktop },
-    },
-  }) => {
+  ({ isImageLoaded, image, withoutAnimation, theme: { media } }) => {
     return css`
       background-image: url(${image.mobile});
       background-size: cover;
@@ -41,14 +34,14 @@ export const StyledBlurImageLoad = styled.div<DefaultProps>(
 
       ${image.tablet &&
       css`
-        @media ${tablet} {
+        @media ${media.tablet} {
           background-image: url(${image.tablet});
         }
       `}
 
       ${image.desktop &&
       css`
-        @media ${desktop} {
+        @media ${media.desktop} {
           background-image: url(${image.desktop});
         }
       `}

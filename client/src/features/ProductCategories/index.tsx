@@ -17,27 +17,28 @@ export const ProductCategories: FC<ProductCategoriesProps> = ({
 }) => {
   const attrs = navigationCase
     ? { role: "menu" }
-    : { title: "productCategories" };
+    : { title: "productCategories", as: navigationCase ? "ul" : "section" };
+
   return (
-    <StyledProductCategories {...attrs} as={navigationCase ? "ul" : "section"}>
+    <StyledProductCategories {...attrs}>
       <Product
         navigationCase={navigationCase}
         autoFocus={autoFocusFirstCategory}
         imgSrc={headphonesImg}
         productName="headphones"
-        url="#headphones"
+        href="#headphones"
       />
       <Product
         navigationCase={navigationCase}
         imgSrc={speakersImg}
         productName="speakers"
-        url="#speakers"
+        href="#speakers"
       />
       <Product
         navigationCase={navigationCase}
         imgSrc={earphonesImg}
         productName="earphones"
-        url="#earphones"
+        href="#earphones"
       />
     </StyledProductCategories>
   );
