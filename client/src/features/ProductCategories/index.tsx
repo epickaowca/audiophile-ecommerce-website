@@ -49,7 +49,7 @@ export const StyledProductCategories = styled.section(
     return css`
       ${wrapperStyles};
       margin-top: 90px;
-      margin-bottom: 50px;
+      margin-bottom: 100px;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -57,13 +57,15 @@ export const StyledProductCategories = styled.section(
 
       @media ${media.tablet} {
         margin-top: 140px;
-        margin-bottom: 90px;
+        margin-bottom: 120px;
         justify-content: center;
         flex-direction: row;
         gap: 15px;
       }
       @media ${media.desktop} {
         gap: 45px;
+        margin-top: 160px;
+        margin-bottom: 160px;
       }
     `;
   }

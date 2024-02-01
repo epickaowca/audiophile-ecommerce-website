@@ -18,7 +18,7 @@ export const StyledButton = styled.div<{
     letter-spacing: 1.5px;
     cursor: pointer;
     &:hover {
-      color: ${bgColor[variant].hover};
+      color: ${color[variant].hover};
       background-color: ${bgColor[variant].hover};
     }
 
@@ -31,7 +31,7 @@ export const StyledButton = styled.div<{
 const color = {
   primary: { default: "white", hover: "white" },
   secondary: { default: "black", hover: "white" },
-  noBackground: { default: myTheme.grayText, hover: myTheme.orangeMedium },
+  noBackground: { default: myTheme.grayDarkText, hover: myTheme.orangeMedium },
   black: { default: "white", hover: "white" },
 };
 

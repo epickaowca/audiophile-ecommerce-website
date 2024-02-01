@@ -1,22 +1,13 @@
 import { styled, css } from "styled-components";
 
-export const StyledProductDescription = styled.div<{
-  $darkTheme?: boolean;
-  $priceCase?: boolean;
-}>(({ theme, $darkTheme, $priceCase }) => {
+export const StyledProductDescription = styled.div(({ theme }) => {
   return css`
     --gap: 25px;
     display: flex;
     flex-direction: column;
-    text-align: ${$priceCase ? "left" : "center"};
-    align-items: ${$priceCase ? "flex-start" : "center"};
+    text-align: center;
+    align-items: center;
     gap: var(--gap);
-
-    & > .quantity_wrapper {
-      display: flex;
-      align-items: center;
-      gap: var(--gap);
-    }
 
     & > .price {
       font-weight: bold;
@@ -25,58 +16,58 @@ export const StyledProductDescription = styled.div<{
     & > .new-product {
       --letter-spacing: 10px;
       text-align: center;
-      color: ${$darkTheme ? theme.grayText : theme.orangeMedium};
+      color: ${theme.orangeMedium};
       letter-spacing: var(--letter-spacing);
       margin-right: calc(var(--letter-spacing) * -1);
-      font-size: 0.9rem;
+      font-size: 0.87rem;
     }
 
     & > .title_wrapper {
       & > h1 {
-        --letter-spacing: ${$darkTheme ? "3px" : "1px"};
-        color: ${$darkTheme ? "#ffffff" : "#000000"};
-        font-size: ${$darkTheme ? "2.3rem" : "1.8rem"};
+        color: #000000;
+        --letter-spacing: 1px;
+        font-size: 1.8rem;
+        line-height: 1.8rem;
         letter-spacing: var(--letter-spacing);
         margin-right: calc(var(--letter-spacing) * -1);
-        line-height: 2.1rem;
+
         &:first-child {
-          margin-bottom: 10px;
+          margin-bottom: 5px;
         }
         text-transform: uppercase;
       }
     }
 
-    & > p {
+    & > .description {
       max-width: 327px;
       line-height: 1.5rem;
-      color: ${$darkTheme ? theme.grayTextLight : theme.grayText};
+      color: ${theme.grayDarkText};
+      font-weight: 500;
+      font-size: 0.95rem;
     }
 
     @media ${theme.media.tablet} {
-      --gap: 30px;
       & > .title_wrapper {
         & > h1 {
-          font-size: ${$darkTheme ? "3.3rem" : "2.1rem"};
-          line-height: 3rem;
-          letter-spacing: 4px;
-          margin-right: -4px;
+          font-size: 2.5rem;
+          line-height: 2.5rem;
         }
       }
-      & > p {
-        max-width: ${$darkTheme ? "400px" : "700px"};
+      & > .description {
+        max-width: 572px;
         line-height: 1.6rem;
-        font-size: 1rem;
-      }
-
-      & > .new-product {
-        --letter-spacing: ${$darkTheme ? "12px" : "10px"};
       }
     }
 
     @media ${theme.media.desktop} {
-      --gap: 35px;
       text-align: left;
       align-items: flex-start;
+      & > .description {
+        max-width: 445px;
+        line-height: 1.6rem;
+        font-size: 1rem;
+        max-width: 445px;
+      }
     }
   `;
 });

@@ -17,6 +17,22 @@ export const StyledMainHeroSection = styled.div(({ theme: { media } }) => {
     height: var(--wrapper-height);
     padding-bottom: ${headerHeight};
     margin-bottom: -${headerHeight};
+    & > ${StyledProductDescription} {
+      & > .title_wrapper > h1 {
+        --letter-spacing: 2px;
+        color: white;
+        font-size: 2.25rem;
+        line-height: 2.5rem;
+      }
+      & > .new-product {
+        color: rgba(255, 255, 255, 0.5);
+        margin-bottom: -5px;
+      }
+      & > .description {
+        color: rgba(255, 255, 255, 0.75);
+        font-weight: 400;
+      }
+    }
 
     & > .img-wrapper {
       position: absolute;
@@ -58,7 +74,7 @@ export const StyledMainHeroSection = styled.div(({ theme: { media } }) => {
 
     & > .mask {
       z-index: -1;
-      background-color: rgba(0, 0, 0, 0.4);
+      background-color: rgba(0, 0, 0, 0.35);
     }
 
     & > .bg {
@@ -68,6 +84,18 @@ export const StyledMainHeroSection = styled.div(({ theme: { media } }) => {
 
     @media ${media.tablet} {
       --wrapper-height: 730px;
+      ${StyledProductDescription} {
+        --gap: 35px;
+        & > .title_wrapper > h1 {
+          --letter-spacing: 3px;
+          font-size: 3.5rem;
+          line-height: 3.5rem;
+        }
+        & > .description {
+          max-width: 370px;
+          font-weight: 500;
+        }
+      }
     }
 
     @media ${media.desktop} {
@@ -76,6 +104,9 @@ export const StyledMainHeroSection = styled.div(({ theme: { media } }) => {
       & > ${StyledProductDescription} {
         ${wrapperStyles};
         width: 100vw;
+        & > .title_wrapper > h1 {
+          --letter-spacing: 5px;
+        }
       }
     }
   `;

@@ -1,7 +1,7 @@
 import { FC, useRef, useEffect } from "react";
 import arrowRightIcon from "./assets/icon-arrow-right.svg";
 import { StyledButton as s } from "./Button.styled";
-import { DefaultProps } from "./types";
+import { DefaultProps, Variant as V } from "./types";
 import { Link } from "react-router-dom";
 
 type LinkProps = DefaultProps & {
@@ -16,6 +16,7 @@ type ButtonProps = DefaultProps & {
 
 type Button = LinkProps | ButtonProps;
 
+export type Variant = V;
 export const StyledButton = s;
 export const Button: FC<Button> = ({
   text,

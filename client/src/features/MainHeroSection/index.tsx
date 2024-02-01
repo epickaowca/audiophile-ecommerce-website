@@ -32,12 +32,7 @@ export const MainHeroSection: FC = () => {
           <picture>
             <source media={myTheme.media.desktop} srcSet={heroImageDesktop} />
             <source media={myTheme.media.tablet} srcSet={heroImageTablet} />
-            <img
-              loading="lazy"
-              ref={imgRef}
-              src={heroImageMobile}
-              alt="hero-image"
-            />
+            <img ref={imgRef} src={heroImageMobile} alt="hero-image" />
           </picture>
         </BlurImageLoad>
       </div>
@@ -45,7 +40,6 @@ export const MainHeroSection: FC = () => {
       <ProductDescription
         buttonHref="#XX99 Mark II"
         buttonAriaLabel="SEE XX99 Mark II"
-        darkTheme={true}
         isNew={true}
         productName="XX99 Mark II"
         productCategory="headphones"

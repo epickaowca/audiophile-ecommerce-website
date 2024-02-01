@@ -6,31 +6,26 @@ import { styled } from "styled-components";
 import { ProductDescription } from "../features/ProductDescription";
 import { MainHeroSection } from "../features/MainHeroSection";
 import { ProductCategories } from "../features/ProductCategories";
+import { ProductBannerXL } from "../features/ProductBannerXL";
 
 export const Home: FC = () => {
-  // const [quantity, setQuantity] = useState(1);
-
   return (
-    <>
+    <Div>
       <Header transparentBg={true} />
       <MainHeroSection />
       <ProductCategories />
-    </>
+      <ProductBannerXL />
+
+      {/* <ProductDescription
+        description="The new XX99 Mark II headphones is the pinnacle of pristine audio. It redefines your premium headphone experience by reproducing the balanced depth and precision of studio-quality sound."
+        productCategory="headphones"
+        productName="XX99 Mark II"
+        isNew={true}
+      /> */}
+    </Div>
   );
 };
 
 const Div = styled.div`
-  padding: 50px 0px;
-  background-color: black;
-`;
-
-const Div2 = styled.div`
-  padding: 50px 0px;
-`;
-
-const Wrapper = styled.div`
-  /* margin: 15px;
-  display: flex;
-  gap: 25px;
-  flex-wrap: wrap; */
+  padding-bottom: 250px;
 `;
