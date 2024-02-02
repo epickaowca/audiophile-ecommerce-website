@@ -7,6 +7,7 @@ import { ProductDescription } from "../features/ProductDescription";
 import { MainHeroSection } from "../features/MainHeroSection";
 import { ProductCategories } from "../features/ProductCategories";
 import { ProductBannerXL } from "../features/ProductBannerXL";
+import { ProductBannerM } from "../features/ProductBannerM";
 
 export const Home: FC = () => {
   return (
@@ -15,7 +16,7 @@ export const Home: FC = () => {
       <MainHeroSection />
       <ProductCategories />
       <ProductBannerXL />
-
+      <ProductBannerM />
       {/* <ProductDescription
         description="The new XX99 Mark II headphones is the pinnacle of pristine audio. It redefines your premium headphone experience by reproducing the balanced depth and precision of studio-quality sound."
         productCategory="headphones"

@@ -11,10 +11,10 @@ const menuItems = ["home", "headphones", "speakers", "earphones"];
 export const navId = "main-menu";
 export const Navigation: FC<NavigationProps> = ({ isNavOpen }) => {
   return (
-    <Nav id={navId} role="navigation" isNavOpen={isNavOpen}>
+    <Nav id={navId} role="navigation" $isNavOpen={isNavOpen}>
       <ul role="menubar" className="desktop_nav">
         {menuItems.map((item) => (
-          <li>
+          <li key={item}>
             <a role="menuitem" href={`#${item}`}>
               {item}
             </a>

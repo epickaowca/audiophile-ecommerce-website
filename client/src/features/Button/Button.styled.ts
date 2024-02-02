@@ -3,12 +3,12 @@ import { myTheme } from "../../styles/styled";
 import { Variant } from "./types";
 
 export const StyledButton = styled.div<{
-  variant: Variant;
-}>(({ variant }) => {
+  $variant: Variant;
+}>(({ $variant }) => {
   return css`
-    background-color: ${bgColor[variant].default};
-    color: ${color[variant].default};
-    border: ${variant === "secondary" ? "1px solid black" : "none"};
+    background-color: ${bgColor[$variant].default};
+    color: ${color[$variant].default};
+    border: ${$variant === "secondary" ? "1px solid black" : "none"};
     text-decoration: none;
     font-weight: bold;
     padding: 17px 25px;
@@ -18,8 +18,8 @@ export const StyledButton = styled.div<{
     letter-spacing: 1.5px;
     cursor: pointer;
     &:hover {
-      color: ${color[variant].hover};
-      background-color: ${bgColor[variant].hover};
+      color: ${color[$variant].hover};
+      background-color: ${bgColor[$variant].hover};
     }
 
     & > img {

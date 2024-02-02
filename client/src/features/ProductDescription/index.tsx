@@ -6,7 +6,7 @@ import { ProductCategory } from "../../data/constants";
 type ProductDescriptionProps = {
   productName: string;
   productCategory: ProductCategory;
-  description: string;
+  description?: string;
   isNew?: boolean;
   buttonHref: string;
   buttonAriaLabel?: string;
@@ -30,7 +30,7 @@ export const ProductDescription: FC<ProductDescriptionProps> = ({
         <h1>{productName}</h1>
         <h1>{productCategory}</h1>
       </div>
-      <p className="description">{description}</p>
+      {description && <p className="description">{description}</p>}
 
       <Button
         as="link"

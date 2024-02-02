@@ -3,20 +3,20 @@ import { styled, css } from "styled-components";
 import { headerHeight } from "./index";
 
 export const StyledHeader = styled.header<{
-  transparentBg?: boolean;
-  isNavOpen?: boolean;
-}>(({ theme: { media, overlayZIndex }, transparentBg, isNavOpen }) => {
+  $transparentBg?: boolean;
+  $isNavOpen?: boolean;
+}>(({ theme: { media, overlayZIndex }, $transparentBg, $isNavOpen }) => {
   return css`
     display: block;
     position: relative;
-    z-index: ${isNavOpen ? overlayZIndex + 1 : "initial"};
-    background-color: ${transparentBg && !isNavOpen
+    z-index: ${$isNavOpen ? overlayZIndex + 1 : "initial"};
+    background-color: ${$transparentBg && !$isNavOpen
       ? "transparent"
       : "#000000"};
     height: ${headerHeight};
 
     @media ${media.desktop} {
-      background-color: ${transparentBg ? "transparent" : "#000000"};
+      background-color: ${$transparentBg ? "transparent" : "#000000"};
     }
   `;
 });

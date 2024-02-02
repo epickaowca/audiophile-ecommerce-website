@@ -16,7 +16,7 @@ export const Header: FC<HeaderProps> = ({ transparentBg }) => {
   const [isNavOpen, setIsNavOpen] = useState(false);
 
   return (
-    <StyledHeader transparentBg={transparentBg} isNavOpen={isNavOpen}>
+    <StyledHeader $transparentBg={transparentBg} $isNavOpen={isNavOpen}>
       <Wrapper>
         <div className="left-side">
           <button

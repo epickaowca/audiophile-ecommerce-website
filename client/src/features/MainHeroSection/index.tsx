@@ -1,40 +1,41 @@
-import { FC, useRef } from "react";
+import { FC, useRef, useState, useEffect } from "react";
 import { ProductDescription } from "../ProductDescription";
-import heroImageDesktop from "./assets/image-hero-desktop.jpg";
-import heroImageTablet from "./assets/image-hero-tablet.jpg";
-import heroImageMobile from "./assets/image-hero-mobile.jpg";
 import heroImageMobileThumbnail from "./assets/micro/image-hero-mobile.jpg";
 import heroImageTabletThumbnail from "./assets/micro/image-hero-tablet.jpg";
 import heroImageDesktopThumbnail from "./assets/micro/image-hero-desktop.png";
 import { myTheme } from "../../styles/styled";
-import { BlurImageLoad } from "../BlurImageLoad";
 import { useImageLoaded } from "../../hooks/useImageLoaded";
 import { StyledMainHeroSection } from "./MainHeroSection.styled";
 
 export const MainHeroSection: FC = () => {
   const imgRef = useRef<HTMLImageElement>(null);
   const { isImageLoaded } = useImageLoaded(imgRef);
+  const [images, setImages] = useState({
+    mobile: heroImageMobileThumbnail,
+    tablet: heroImageTabletThumbnail,
+    desktop: heroImageDesktopThumbnail,
+  });
+
+  useEffect(() => {
+    if (isImageLoaded) {
+      const desktop = require("./assets/image-hero-desktop.jpg");
+      const tablet = require("./assets/image-hero-tablet.jpg");
+      const mobile = require("./assets/image-hero-mobile.jpg");
+
+      setImages({ mobile, tablet, desktop });
+    }
+  }, [isImageLoaded]);
 
   return (
     <StyledMainHeroSection>
       <div className="bg"></div>
       <div className="mask"></div>
       <div className="img-wrapper">
-        <BlurImageLoad
-          isImageLoaded={isImageLoaded}
-          withoutAnimation={true}
-          image={{
-            mobile: heroImageMobileThumbnail,
-            tablet: heroImageTabletThumbnail,
-            desktop: heroImageDesktopThumbnail,
-          }}
-        >
-          <picture>
-            <source media={myTheme.media.desktop} srcSet={heroImageDesktop} />
-            <source media={myTheme.media.tablet} srcSet={heroImageTablet} />
-            <img ref={imgRef} src={heroImageMobile} alt="hero-image" />
-          </picture>
-        </BlurImageLoad>
+        <picture>
+          <source media={myTheme.media.desktop} srcSet={images.desktop} />
+          <source media={myTheme.media.tablet} srcSet={images.tablet} />
+          <img ref={imgRef} src={images.mobile} alt="hero-image" />
+        </picture>
       </div>
 
       <ProductDescription

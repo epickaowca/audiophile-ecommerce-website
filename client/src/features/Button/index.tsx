@@ -40,7 +40,7 @@ export const Button: FC<Button> = ({
   const attr = {
     ref,
     onClick,
-    variant,
+    $variant: variant,
     "aria-label": ariaLabel,
     to: isLink ? href : undefined,
     as: isLink ? Link : isDiv ? "div" : "button",

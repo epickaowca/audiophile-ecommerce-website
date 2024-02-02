@@ -2,7 +2,6 @@ import { StyledProductDescription } from "../ProductDescription";
 import { styled, css } from "styled-components";
 import { wrapperStyles } from "../../styles/wrapperStyles";
 import { headerHeight } from "../Header";
-import { StyledBlurImageLoad } from "../BlurImageLoad";
 
 export const StyledMainHeroSection = styled.div(({ theme: { media } }) => {
   return css`
@@ -48,17 +47,12 @@ export const StyledMainHeroSection = styled.div(({ theme: { media } }) => {
       align-items: center;
       overflow: hidden;
 
-      & > ${StyledBlurImageLoad} {
+      & > picture {
         width: 100%;
-        min-height: calc(var(--wrapper-height) + var(--position-offset));
-
-        & > picture {
+        & > img {
           width: 100%;
-          & > img {
-            width: 100%;
-            height: 100%;
-            min-height: calc(var(--wrapper-height) + var(--position-offset));
-          }
+          height: 100%;
+          min-height: calc(var(--wrapper-height) + var(--position-offset));
         }
       }
     }

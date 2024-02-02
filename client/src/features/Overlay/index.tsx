@@ -11,7 +11,11 @@ export const Overlay: FC<OverlayProps> = ({
   onClick,
   displayOnDesktop = true,
 }) => {
-  const attrs = { displayOnDesktop, cursorPointer: !!onClick, onClick };
+  const attrs = {
+    $displayOnDesktop: displayOnDesktop,
+    $cursorPointer: !!onClick,
+    onClick,
+  };
 
   return createPortal(
     <StyledOverlay {...attrs} />,

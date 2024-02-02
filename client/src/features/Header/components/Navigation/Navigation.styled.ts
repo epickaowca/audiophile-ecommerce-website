@@ -1,10 +1,10 @@
 import { styled, css } from "styled-components";
 import { StyledProductCategories } from "../../../ProductCategories";
 
-export const Nav = styled.nav<{ isNavOpen: boolean }>(
-  ({ isNavOpen, theme: { media } }) => {
+export const Nav = styled.nav<{ $isNavOpen: boolean }>(
+  ({ $isNavOpen, theme: { media } }) => {
     return css`
-      display: ${isNavOpen ? "block" : "none"};
+      display: ${$isNavOpen ? "block" : "none"};
       position: absolute;
       width: 100%;
       left: 0;
