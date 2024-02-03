@@ -93,6 +93,14 @@ export const StyledMainHeroSection = styled.div(({ theme: { media } }) => {
     }
 
     @media ${media.desktop} {
+      & > .img-wrapper {
+        & > picture {
+          & > img {
+            min-width: 1170px;
+          }
+        }
+      }
+
       justify-content: flex-start;
 
       & > ${StyledProductDescription} {
