@@ -1,10 +1,10 @@
-import { FC, useState, useEffect } from "react";
+import { FC, useState } from "react";
 import { Navigation, navId } from "./components/Navigation";
 import { StyledHeader, Wrapper } from "./Header.styled";
 import cartIcon from "./assets/icon-cart.svg";
 import hamburgerIcon from "./assets/icon-hamburger.svg";
 import { Overlay } from "../Overlay";
-import logo from "./assets/logo.svg";
+import logo from "../../assets/shared/logo.svg";
 
 type HeaderProps = {
   transparentBg?: boolean;

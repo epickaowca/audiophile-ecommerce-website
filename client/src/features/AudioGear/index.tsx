@@ -40,6 +40,7 @@ const Wrapper = styled.div(({ theme }) => {
     max-width: 327px;
     margin: auto;
     margin-top: 50px;
+    margin-bottom: 50px;
     display: flex;
     flex-direction: column;
     gap: 40px;

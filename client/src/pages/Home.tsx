@@ -10,6 +10,7 @@ import { ProductBannerXL } from "../features/ProductBannerXL";
 import { ProductBannerM } from "../features/ProductBannerM";
 import { ProductBannerDivided } from "../features/ProductBannerDivided";
 import { AudioGear } from "../features/AudioGear";
+import { Footer } from "../features/Footer";
 
 export const Home: FC = () => {
   return (
@@ -21,6 +22,7 @@ export const Home: FC = () => {
       <ProductBannerM />
       <ProductBannerDivided />
       <AudioGear />
+      <Footer />
       {/* <ProductDescription
         description="The new XX99 Mark II headphones is the pinnacle of pristine audio. It redefines your premium headphone experience by reproducing the balanced depth and precision of studio-quality sound."
         productCategory="headphones"
@@ -32,5 +34,5 @@ export const Home: FC = () => {
 };
 
 const Div = styled.div`
-  padding-bottom: 250px;
+  /* padding-bottom: 250px; */
 `;
