@@ -11,7 +11,6 @@ export const Anchor = styled.a(({ theme: { grayLight, orangeMedium } }) => {
   return css`
     width: 100%;
     height: 165px;
-    max-width: 327px;
     background-color: ${grayLight};
     display: flex;
     flex-direction: column;
@@ -43,6 +42,11 @@ export const Anchor = styled.a(({ theme: { grayLight, orangeMedium } }) => {
 
     & > ${StyledButton} {
       margin: auto;
+    }
+    &:hover {
+      & > ${StyledButton} {
+        color: ${orangeMedium};
+      }
     }
   `;
 });

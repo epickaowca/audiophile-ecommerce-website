@@ -1,7 +1,7 @@
 import { FC, useState } from "react";
 import { Header } from "../features/Header";
 // import { Button } from "../features/Button";
-import { styled } from "styled-components";
+import { css, styled } from "styled-components";
 // import { QuantitySelector } from "../features/QuantitySelector";
 import { ProductDescription } from "../features/ProductDescription";
 import { MainHeroSection } from "../features/MainHeroSection";
@@ -18,9 +18,11 @@ export const Home: FC = () => {
       <Header transparentBg={true} />
       <MainHeroSection />
       <ProductCategories />
-      <ProductBannerXL />
-      <ProductBannerM />
-      <ProductBannerDivided />
+      <BannersWrapper>
+        <ProductBannerXL />
+        <ProductBannerM />
+        <ProductBannerDivided />
+      </BannersWrapper>
       <AudioGear />
       <Footer />
       {/* <ProductDescription
@@ -32,6 +34,17 @@ export const Home: FC = () => {
     </Div>
   );
 };
+
+const BannersWrapper = styled.div(({ theme }) => {
+  return css`
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    @media ${theme.media.desktop} {
+      gap: 50px;
+    }
+  `;
+});
 
 const Div = styled.div`
   /* padding-bottom: 250px; */

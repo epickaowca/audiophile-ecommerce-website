@@ -6,7 +6,6 @@ export const StyledProductBannerXL = styled.section(({ theme }) => {
     background-color: ${theme.orangeMedium};
     position: relative;
     height: 600px;
-    max-width: 327px;
     width: 90%;
     margin: auto;
     padding: 50px 0;
@@ -27,7 +26,6 @@ export const StyledProductBannerXL = styled.section(({ theme }) => {
       }
       & > .description {
         color: rgba(255, 255, 255, 0.75);
-        max-width: 85%;
       }
     }
 

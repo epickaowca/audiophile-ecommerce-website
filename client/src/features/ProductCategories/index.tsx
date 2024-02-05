@@ -4,7 +4,6 @@ import speakersImg from "./assets/image-category-thumbnail-speakers.png";
 import earphonesImg from "./assets/image-category-thumbnail-earphones.png";
 import headphonesImg from "./assets/image-category-thumbnail-headphones.png";
 import { styled, css } from "styled-components";
-import { wrapperStyles } from "../../styles/wrapperStyles";
 
 type ProductCategoriesProps = {
   autoFocusFirstCategory?: boolean;
@@ -47,25 +46,23 @@ export const ProductCategories: FC<ProductCategoriesProps> = ({
 export const StyledProductCategories = styled.section(
   ({ theme: { media } }) => {
     return css`
-      ${wrapperStyles};
-      margin-top: 90px;
-      margin-bottom: 100px;
+      max-width: 90%;
+      margin: 90px auto;
       display: flex;
       flex-direction: column;
       align-items: center;
       gap: 70px;
 
       @media ${media.tablet} {
-        margin-top: 140px;
-        margin-bottom: 120px;
+        margin: 100px auto;
         justify-content: center;
         flex-direction: row;
         gap: 15px;
       }
       @media ${media.desktop} {
+        max-width: 1400px;
+        padding: 0 50px;
         gap: 45px;
-        margin-top: 160px;
-        margin-bottom: 160px;
       }
     `;
   }

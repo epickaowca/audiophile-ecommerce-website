@@ -1,4 +1,3 @@
-import { wrapperStyles } from "../../styles/wrapperStyles";
 import { styled, css } from "styled-components";
 import { headerHeight } from "./index";
 
@@ -23,7 +22,8 @@ export const StyledHeader = styled.header<{
 
 export const Wrapper = styled.div(({ theme: { media } }) => {
   return css`
-    ${wrapperStyles}
+    max-width: 90%;
+    margin: auto;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -51,6 +51,8 @@ export const Wrapper = styled.div(({ theme: { media } }) => {
     }
 
     @media ${media.tablet} {
+      max-width: 1400px;
+      padding: 0 50px;
       & > .left-side {
         justify-content: flex-start;
         gap: 40px;

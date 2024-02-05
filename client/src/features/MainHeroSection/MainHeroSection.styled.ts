@@ -1,6 +1,5 @@
 import { StyledProductDescription } from "../ProductDescription";
 import { styled, css } from "styled-components";
-import { wrapperStyles } from "../../styles/wrapperStyles";
 import { headerHeight } from "../Header";
 
 export const StyledMainHeroSection = styled.div(({ theme: { media } }) => {
@@ -104,8 +103,10 @@ export const StyledMainHeroSection = styled.div(({ theme: { media } }) => {
       justify-content: flex-start;
 
       & > ${StyledProductDescription} {
-        ${wrapperStyles};
-        width: 100vw;
+        margin: auto;
+        padding-left: 50px;
+        width: 100%;
+        max-width: 1400px;
         & > .title_wrapper > h1 {
           --letter-spacing: 5px;
         }

@@ -38,6 +38,7 @@ export const GlobalStyle = createGlobalStyle(
       padding: 0;
       font-family: "Manrope", sans-serif;
       overflow-x: hidden;
+      background-color: ${theme.grayLighter};
     }
 
     #root {
