@@ -11,7 +11,7 @@ export const myTheme = {
   grayLight: "#F1F1F1",
   grayLighter: "#FAFAFA",
   grayDarkText: "rgba(0,0,0,.5)",
-  overlayZIndex: 5,
+  overlayZIndex: 99,
   media: {
     tablet: `(min-width: ${breakpoints.tablet}px)`,
     desktop: `(min-width: ${breakpoints.desktop}px)`,
@@ -39,6 +39,10 @@ export const GlobalStyle = createGlobalStyle(
       font-family: "Manrope", sans-serif;
       overflow-x: hidden;
       background-color: ${theme.grayLighter};
+
+      @media ${theme.media.desktop} {
+        overflow-y: auto;
+      }
     }
 
     #root {

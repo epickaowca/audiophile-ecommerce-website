@@ -1,20 +1,17 @@
-import { FC, useState } from "react";
-import { Header } from "../features/Header";
-// import { Button } from "../features/Button";
+import { FC } from "react";
+import { Header } from "../features/main/Header";
 import { css, styled } from "styled-components";
-// import { QuantitySelector } from "../features/QuantitySelector";
-import { ProductDescription } from "../features/ProductDescription";
-import { MainHeroSection } from "../features/MainHeroSection";
-import { ProductCategories } from "../features/ProductCategories";
-import { ProductBannerXL } from "../features/ProductBannerXL";
-import { ProductBannerM } from "../features/ProductBannerM";
-import { ProductBannerDivided } from "../features/ProductBannerDivided";
-import { AudioGear } from "../features/AudioGear";
-import { Footer } from "../features/Footer";
+import { MainHeroSection } from "../features/main/MainHeroSection";
+import { ProductCategories } from "../features/main/ProductCategories";
+import { ProductBannerXL } from "../features/main/ProductBannerXL";
+import { ProductBannerM } from "../features/main/ProductBannerM";
+import { ProductBannerDivided } from "../features/main/ProductBannerDivided";
+import { AudioGear } from "../features/main/AudioGear";
+import { Footer } from "../features/main/Footer";
 
 export const Home: FC = () => {
   return (
-    <Div>
+    <>
       <Header transparentBg={true} />
       <MainHeroSection />
       <ProductCategories />
@@ -25,13 +22,7 @@ export const Home: FC = () => {
       </BannersWrapper>
       <AudioGear />
       <Footer />
-      {/* <ProductDescription
-        description="The new XX99 Mark II headphones is the pinnacle of pristine audio. It redefines your premium headphone experience by reproducing the balanced depth and precision of studio-quality sound."
-        productCategory="headphones"
-        productName="XX99 Mark II"
-        isNew={true}
-      /> */}
-    </Div>
+    </>
   );
 };
 
@@ -39,13 +30,10 @@ const BannersWrapper = styled.div(({ theme }) => {
   return css`
     display: flex;
     flex-direction: column;
-    gap: 30px;
+    gap: 20px;
+
     @media ${theme.media.desktop} {
       gap: 50px;
     }
   `;
 });
-
-const Div = styled.div`
-  /* padding-bottom: 250px; */
-`;
