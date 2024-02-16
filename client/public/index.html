@@ -15,10 +15,35 @@
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700&display=swap" rel="preload" as="style"
     onload="this.rel='stylesheet'">
   <title>React App</title>
+  <style>
+    #loader {
+      position: absolute;
+      border: 16px solid #f3f3f3;
+      border-top: 16px solid #3498db;
+      border-radius: 50%;
+      left: calc(50% - 60px);
+      top: 30%;
+      width: 120px;
+      height: 120px;
+      animation: spin 2s linear infinite;
+      z-index: -1;
+    }
+
+    @keyframes spin {
+      0% {
+        transform: rotate(0deg);
+      }
+
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+  </style>
 </head>
 
 <body>
   <noscript>You need to enable JavaScript to run this app.</noscript>
+  <div id="loader"></div>
   <div id="root"></div>
 </body>
 

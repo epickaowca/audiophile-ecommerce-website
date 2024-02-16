@@ -44,7 +44,13 @@ export const Header: FC<HeaderProps> = ({ transparentBg }) => {
           >
             <img src={hamburgerIcon} alt="hamburgerIcon" />
           </button>
-          <img className="logo" src={logo} alt="logo" />
+          <img
+            width="143px"
+            height="25px"
+            className="logo"
+            src={logo}
+            alt="logo"
+          />
         </div>
         <Navigation
           headerHeight={headerHeight}
