@@ -4,8 +4,7 @@ import mobile from "./assets/micro/image-hero-mobile.jpg";
 import tablet from "./assets/micro/image-hero-tablet.jpg";
 import desktop from "./assets/micro/image-hero-desktop.png";
 import { myTheme } from "../../../styles/styled";
-import { useIsImageLoaded } from "../../../hooks/useIsImageLoaded";
-import { useImagePreload } from "../../../hooks/useImagePreload";
+import { useImgPreload } from "../../../hooks/useImgPreload";
 import { StyledMainHeroSection, Picture } from "./MainHeroSection.styled";
 
 const initialImg = {
@@ -14,27 +13,26 @@ const initialImg = {
   desktop,
 };
 
-const imgRequire = () => {
-  const mobile = require("./assets/image-hero-mobile.jpg");
-  const tablet = require("./assets/image-hero-tablet.jpg");
-  const desktop = require("./assets/image-hero-desktop.jpg");
+const imgRequire = async () => {
+  const mobile = await require("./assets/image-hero-mobile.jpg");
+  const tablet = await require("./assets/image-hero-tablet.jpg");
+  const desktop = await require("./assets/image-hero-desktop.jpg");
   return { mobile, tablet, desktop };
 };
 
 export const MainHeroSection: FC = () => {
   const imgRef = useRef<HTMLImageElement>(null);
-  const { isImageLoaded } = useIsImageLoaded(imgRef);
-  const { img } = useImagePreload({
+  const { img } = useImgPreload({
     initialImg,
     imgRequire,
-    isImageLoaded,
+    imgRef,
   });
 
   return (
     <StyledMainHeroSection>
       <div className="bg"></div>
       <div className="mask"></div>
-      <Picture>
+      <Picture $isLargeImgLoaded={img.isLargeImgLoaded}>
         <source media={myTheme.media.desktop} srcSet={img.desktop} />
         <source media={myTheme.media.tablet} srcSet={img.tablet} />
         <img ref={imgRef} src={img.mobile} alt="hero-image" />

@@ -1,10 +1,12 @@
-import { FC, useEffect, useRef } from "react";
+import { FC, useEffect, useRef, useCallback } from "react";
 import { Button } from "../../../../shared/Button";
 import { ProductCategories } from "../../../../../data/constants";
 import { Anchor, Li } from "./Product.styled";
+import { useImgPreload } from "../../../../../hooks/useImgPreload";
 
 type ProductProps = {
-  imgSrc: string;
+  imgSrcInit: string;
+  imgLargeName: string;
   productName: ProductCategories;
   href: string;
   autoFocus?: boolean;
@@ -13,14 +15,26 @@ type ProductProps = {
 };
 
 export const Product: FC<ProductProps> = ({
-  imgSrc,
   productName,
   href,
   autoFocus,
   navigationCase,
   onEscapeKeyDown,
+  imgSrcInit,
+  imgLargeName,
 }) => {
+  const imgRequire = useCallback(async () => {
+    const mobile = await require(`../../assets/${imgLargeName}`);
+    return { mobile };
+  }, []);
+  const imgRef = useRef<HTMLImageElement>(null);
   const ref = useRef<HTMLAnchorElement>(null);
+
+  const { img } = useImgPreload({
+    imgRef,
+    imgRequire,
+    initialImg: { mobile: imgSrcInit },
+  });
 
   useEffect(() => {
     if (autoFocus) {
@@ -41,8 +55,8 @@ export const Product: FC<ProductProps> = ({
   const attrs = { role: navigationCase ? "menuitem" : undefined, ref, href };
 
   const AnchorComponent = (
-    <Anchor {...attrs}>
-      <img className="product-img" src={imgSrc} alt={productName} />
+    <Anchor {...attrs} $isLargeImgLoaded={img.isLargeImgLoaded}>
+      <img ref={imgRef} src={img.mobile} alt={productName} />
       <h4 className="product-name">{productName}</h4>
       <Button as="div" text="SHOP" variant="noBackground" />
     </Anchor>

@@ -1,8 +1,8 @@
 import { FC } from "react";
 import { Product } from "./components/Product";
-import speakersImg from "./assets/image-category-thumbnail-speakers.png";
-import earphonesImg from "./assets/image-category-thumbnail-earphones.png";
-import headphonesImg from "./assets/image-category-thumbnail-headphones.png";
+import speakersImg from "./assets/micro/image-category-thumbnail-speakers.png";
+import earphonesImg from "./assets/micro/image-category-thumbnail-earphones.png";
+import headphonesImg from "./assets/micro/image-category-thumbnail-headphones.png";
 import { styled, css } from "styled-components";
 
 type ProductCategoriesProps = {
@@ -29,19 +29,22 @@ export const ProductCategories: FC<ProductCategoriesProps> = ({
       <Product
         {...productAttrs}
         autoFocus={autoFocusFirstCategory}
-        imgSrc={headphonesImg}
+        imgSrcInit={headphonesImg}
+        imgLargeName="image-category-thumbnail-headphones.png"
         productName="headphones"
         href="#headphones"
       />
       <Product
         {...productAttrs}
-        imgSrc={speakersImg}
+        imgSrcInit={speakersImg}
+        imgLargeName="image-category-thumbnail-speakers.png"
         productName="speakers"
         href="#speakers"
       />
       <Product
         {...productAttrs}
-        imgSrc={earphonesImg}
+        imgSrcInit={earphonesImg}
+        imgLargeName="image-category-thumbnail-earphones.png"
         productName="earphones"
         href="#earphones"
       />

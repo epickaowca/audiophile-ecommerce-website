@@ -82,30 +82,33 @@ export const StyledMainHeroSection = styled.div(({ theme: { media } }) => {
   `;
 });
 
-export const Picture = styled.picture(({ theme }) => {
-  return css`
-    position: absolute;
-    z-index: -2;
-    left: calc(50% - 2px);
-    top: calc(var(--top-with-offset) + 50%);
-    transform: translate(-50%, -50%);
-    width: calc(100% + 2px);
-    max-width: 1440px;
-    height: 100%;
-    min-width: 375px;
-    display: flex;
-    align-items: center;
-    overflow: hidden;
-    & > img {
-      width: 100%;
+export const Picture = styled.picture<{ $isLargeImgLoaded: boolean }>(
+  ({ theme, $isLargeImgLoaded }) => {
+    return css`
+      filter: ${$isLargeImgLoaded ? "none" : "blur(2px)"};
+      position: absolute;
+      z-index: -2;
+      left: calc(50% - 2px);
+      top: calc(var(--top-with-offset) + 50%);
+      transform: translate(-50%, -50%);
+      width: calc(100% + 2px);
+      max-width: 1440px;
       height: 100%;
-      min-height: calc(var(--wrapper-height) + var(--position-offset));
-    }
-
-    @media ${theme.media.desktop} {
+      min-width: 375px;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
       & > img {
-        min-width: 1170px;
+        width: 100%;
+        height: 100%;
+        min-height: calc(var(--wrapper-height) + var(--position-offset));
       }
-    }
-  `;
-});
+
+      @media ${theme.media.desktop} {
+        & > img {
+          min-width: 1170px;
+        }
+      }
+    `;
+  }
+);

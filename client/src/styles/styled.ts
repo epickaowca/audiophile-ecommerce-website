@@ -25,14 +25,6 @@ declare module "styled-components" {
 
 export const GlobalStyle = createGlobalStyle(
   ({ theme }) => css`
-    *,
-    *::before,
-    *::after {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
     body {
       margin: 0;
       padding: 0;
@@ -47,6 +39,7 @@ export const GlobalStyle = createGlobalStyle(
 
     #root {
       position: relative;
+      min-height: 100vh;
     }
 
     button {

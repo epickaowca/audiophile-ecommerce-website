@@ -1,18 +1,13 @@
 import { FC } from "react";
-// import { Header } from "../features/main/Header";
-import { QuantitySelector } from "../features/shared/QuantitySelector";
+import { Header } from "../features/main/Header";
+import { Footer } from "../features/main/Footer";
 
 export const Checkout: FC = () => {
   return (
     <>
-      {/* <Header /> */}
-      <QuantitySelector
-        onMinus={() => {}}
-        onPlus={() => {}}
-        onValueChange={() => {}}
-        value={1}
-      />
+      <Header />
       Checkout
+      <Footer />
     </>
   );
 };

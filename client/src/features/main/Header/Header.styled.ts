@@ -9,9 +9,7 @@ export const StyledHeader = styled.header<{
     display: block;
     position: relative;
     z-index: ${$isNavOpen ? overlayZIndex + 1 : "initial"};
-    background-color: ${$transparentBg && !$isNavOpen
-      ? "transparent"
-      : "#000000"};
+    background-color: ${$transparentBg && !$isNavOpen ? "transparent" : "#000"};
     height: ${headerHeight};
 
     @media ${media.desktop} {

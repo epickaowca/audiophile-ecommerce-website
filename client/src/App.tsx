@@ -1,7 +1,5 @@
-import { FC, lazy, useEffect } from "react";
-// import { ProductCategory } from "./pages/ProductCategory";
-// import { ProductDetails } from "./pages/ProductDetails";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { FC, Suspense, lazy, useEffect } from "react";
+import { Routes, Route, Outlet } from "react-router-dom";
 
 const Home = lazy(() =>
   import("./pages/Home").then((module) => {
@@ -15,17 +13,43 @@ const Checkout = lazy(() =>
   })
 );
 
+const ProductCategory = lazy(() =>
+  import("./pages/ProductCategory").then((module) => {
+    return { default: module.ProductCategory };
+  })
+);
+
+const ProductDetails = lazy(() =>
+  import("./pages/ProductDetails").then((module) => {
+    return { default: module.ProductDetails };
+  })
+);
+
 const App: FC = () => {
   useEffect(() => {
     document.getElementById("loader")?.remove();
   }, []);
+
   return (
-    <Router>
-      <Routes>
+    <Routes>
+      <Route path="/" element={<RouteWrapper />}>
         <Route path="/" element={<Home />} />
+        <Route path="/category/:id" element={<ProductCategory />} />
+        <Route path="/detail/:id" element={<ProductDetails />} />
         <Route path="/checkout" element={<Checkout />} />
-      </Routes>
-    </Router>
+        <Route path="*" element={<h1>Page not found</h1>} />
+      </Route>
+    </Routes>
+  );
+};
+
+const RouteWrapper = () => {
+  return (
+    <>
+      <Suspense fallback={<div className="spin-loader"></div>}>
+        <Outlet />
+      </Suspense>
+    </>
   );
 };
 

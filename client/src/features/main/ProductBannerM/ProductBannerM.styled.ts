@@ -35,22 +35,25 @@ export const StyledProductBannerM = styled.div(({ theme: { media } }) => {
   `;
 });
 
-export const Picture = styled.picture(({ theme: { media } }) => {
-  return css`
-    z-index: -1;
-    left: 0;
-    top: 0;
-    position: absolute;
-    width: 100%;
-    & > img {
+export const Picture = styled.picture<{ $isLargeImgLoaded: boolean }>(
+  ({ theme: { media }, $isLargeImgLoaded }) => {
+    return css`
+      filter: ${$isLargeImgLoaded ? "none" : "blur(2px)"};
+      z-index: -1;
+      left: 0;
+      top: 0;
+      position: absolute;
       width: 100%;
-      min-height: 320px;
-    }
-
-    @media ${media.desktop} {
       & > img {
-        min-height: 350px;
+        width: 100%;
+        min-height: 320px;
       }
-    }
-  `;
-});
+
+      @media ${media.desktop} {
+        & > img {
+          min-height: 350px;
+        }
+      }
+    `;
+  }
+);

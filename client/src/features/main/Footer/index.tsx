@@ -4,10 +4,17 @@ import facebook from "./assets/icon-facebook.svg";
 import instagram from "./assets/icon-instagram.svg";
 import twitter from "./assets/icon-twitter.svg";
 import { StyledFooter } from "./Footer.styled";
+import { Link } from "react-router-dom";
 
-const menuItems = ["home", "headphones", "speakers", "earphones"];
+const menuItems = [
+  { label: "home", href: "/" },
+  { label: "headphones", href: "/category/headphones" },
+  { label: "speakers", href: "/category/speakers" },
+  { label: "earphones", href: "/category/earphones" },
+];
 
 export const Footer: FC = () => {
+  console.log("footer");
   return (
     <StyledFooter>
       <div className="wrapper">
@@ -17,10 +24,10 @@ export const Footer: FC = () => {
           <nav role="navigation">
             <ul role="menubar" className="desktop_nav">
               {menuItems.map((item) => (
-                <li key={item}>
-                  <a role="menuitem" href={`#${item}`}>
-                    {item}
-                  </a>
+                <li key={item.label}>
+                  <Link role="menuitem" to={item.href}>
+                    {item.label}
+                  </Link>
                 </li>
               ))}
             </ul>

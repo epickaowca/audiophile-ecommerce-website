@@ -16,14 +16,6 @@ export const StyledProductBannerDivided = styled.div(({ theme }) => {
       border-radius: 7px;
     }
 
-    & > picture {
-      overflow: hidden;
-      & > img {
-        width: 100%;
-        min-height: 200px;
-      }
-    }
-
     & > .card.gray {
       display: flex;
       flex-direction: column;
@@ -52,11 +44,6 @@ export const StyledProductBannerDivided = styled.div(({ theme }) => {
         max-width: unset;
         height: 320px;
       }
-
-      & > picture > img {
-        width: 100%;
-        min-height: 320px;
-      }
     }
 
     @media ${theme.media.desktop} {
@@ -69,8 +56,28 @@ export const StyledProductBannerDivided = styled.div(({ theme }) => {
       & > .card {
         height: 350px;
       }
+    }
+  `;
+});
 
-      & > picture > img {
+export const Picture = styled.picture(({ theme: { media } }) => {
+  return css`
+    background-color: #191919;
+    overflow: hidden;
+    & > img {
+      width: 100%;
+      min-height: 200px;
+    }
+
+    @media ${media.tablet} {
+      & > img {
+        width: 100%;
+        min-height: 320px;
+      }
+    }
+
+    @media ${media.desktop} {
+      & > img {
         min-height: 350px;
       }
     }

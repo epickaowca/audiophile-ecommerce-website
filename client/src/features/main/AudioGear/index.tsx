@@ -4,8 +4,7 @@ import tablet from "./assets/micro/image-best-gear-tablet.jpg";
 import mobile from "./assets/micro/image-best-gear-mobile.jpg";
 import { StyledAudioGear, Description } from "./AudioGear.styled";
 import { myTheme } from "../../../styles/styled";
-import { useIsImageLoaded } from "../../../hooks/useIsImageLoaded";
-import { useImagePreload } from "../../../hooks/useImagePreload";
+import { useImgPreload } from "../../../hooks/useImgPreload";
 
 const initialImg = {
   mobile,
@@ -13,20 +12,19 @@ const initialImg = {
   desktop,
 };
 
-const imgRequire = () => {
-  const mobile = require("./assets/image-best-gear-desktop.jpg");
-  const tablet = require("./assets/image-best-gear-tablet.jpg");
-  const desktop = require("./assets/image-best-gear-mobile.jpg");
+const imgRequire = async () => {
+  const mobile = await require("./assets/image-best-gear-desktop.jpg");
+  const tablet = await require("./assets/image-best-gear-tablet.jpg");
+  const desktop = await require("./assets/image-best-gear-mobile.jpg");
   return { mobile, tablet, desktop };
 };
 
 export const AudioGear: FC = () => {
   const imgRef = useRef<HTMLImageElement>(null);
-  const { isImageLoaded } = useIsImageLoaded(imgRef);
-  const { img } = useImagePreload({ imgRequire, initialImg, isImageLoaded });
+  const { img } = useImgPreload({ imgRequire, initialImg, imgRef });
 
   return (
-    <StyledAudioGear>
+    <StyledAudioGear $isLargeImgLoaded={img.isLargeImgLoaded}>
       <picture>
         <source media={myTheme.media.desktop} srcSet={img.desktop} />
         <source media={myTheme.media.tablet} srcSet={img.tablet} />

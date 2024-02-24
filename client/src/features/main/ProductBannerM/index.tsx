@@ -4,8 +4,7 @@ import { Button } from "../../shared/Button";
 import mobile from "./assets/micro/image-speaker-zx7-mobile.jpg";
 import tablet from "./assets/micro/image-speaker-zx7-tablet.jpg";
 import desktop from "./assets/micro/image-speaker-zx7-desktop.jpg";
-import { useIsImageLoaded } from "../../../hooks/useIsImageLoaded";
-import { useImagePreload } from "../../../hooks/useImagePreload";
+import { useImgPreload } from "../../../hooks/useImgPreload";
 import { Picture, StyledProductBannerM } from "./ProductBannerM.styled";
 
 const initialImg = {
@@ -14,24 +13,23 @@ const initialImg = {
   desktop,
 };
 
-const imgRequire = () => {
-  const mobile = require("./assets/image-speaker-zx7-mobile.jpg");
-  const tablet = require("./assets/image-speaker-zx7-tablet.jpg");
-  const desktop = require("./assets/image-speaker-zx7-desktop.jpg");
+const imgRequire = async () => {
+  const mobile = await require("./assets/image-speaker-zx7-mobile.jpg");
+  const tablet = await require("./assets/image-speaker-zx7-tablet.jpg");
+  const desktop = await require("./assets/image-speaker-zx7-desktop.jpg");
   return { mobile, tablet, desktop };
 };
 
 export const ProductBannerM: FC = () => {
-  const imageRef = useRef<HTMLImageElement>(null);
-  const { isImageLoaded } = useIsImageLoaded(imageRef);
-  const { img } = useImagePreload({ imgRequire, initialImg, isImageLoaded });
+  const imgRef = useRef<HTMLImageElement>(null);
+  const { img } = useImgPreload({ imgRequire, initialImg, imgRef });
 
   return (
     <StyledProductBannerM>
-      <Picture>
+      <Picture $isLargeImgLoaded={img.isLargeImgLoaded}>
         <source media={myTheme.media.desktop} srcSet={img.desktop} />
         <source media={myTheme.media.tablet} srcSet={img.tablet} />
-        <img ref={imageRef} src={img.mobile} alt="background-product-image" />
+        <img ref={imgRef} src={img.mobile} alt="background-product-image" />
       </Picture>
 
       <h1>ZX7 SPEAKER</h1>

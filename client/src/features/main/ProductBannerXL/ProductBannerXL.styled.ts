@@ -61,7 +61,7 @@ export const StyledProductBannerXL = styled.section(({ theme }) => {
   `;
 });
 
-export const StyledPatternCircles = styled.img(({ theme: { media } }) => {
+export const PatternCircles = styled.img(({ theme: { media } }) => {
   return css`
     --translateY: -50%;
     position: absolute;
@@ -87,41 +87,39 @@ export const StyledPatternCircles = styled.img(({ theme: { media } }) => {
   `;
 });
 
-export const StyledPicture = styled.picture(({ theme: { media } }) => {
-  return css`
-    & > img {
+export const Picture = styled.picture<{ $isImgLoaded: boolean }>(
+  ({ theme: { media }, $isImgLoaded }) => {
+    return css`
+      filter: ${$isImgLoaded ? "none" : "blur(5px)"};
       position: absolute;
       left: 50%;
       top: 150px;
       transform: translate(-50%, -50%);
-      max-width: 160px;
+      width: 160px;
       margin-top: -7px;
       z-index: 2;
-    }
-
-    @media ${media.tablet} {
       & > img {
-        max-width: 220px;
+        width: 100%;
+      }
+
+      @media ${media.tablet} {
+        width: 220px;
         margin-top: 0;
         top: 190px;
       }
-    }
 
-    @media ${media.desktop} {
-      align-self: flex-end;
-      margin-bottom: -17px;
-      display: flex;
-      justify-content: center;
-
-      & > img {
+      @media ${media.desktop} {
+        align-self: flex-end;
+        margin-bottom: -17px;
+        display: flex;
+        justify-content: center;
         width: 100%;
         max-width: 400px;
         position: relative;
         left: initial;
-        bottom: initial;
         top: initial;
         transform: initial;
       }
-    }
-  `;
-});
+    `;
+  }
+);

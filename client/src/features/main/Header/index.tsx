@@ -13,6 +13,7 @@ type HeaderProps = {
 export const headerHeight = "91px";
 
 export const Header: FC<HeaderProps> = ({ transparentBg }) => {
+  console.log("header");
   const hamburgerBtn = useRef<HTMLButtonElement>(null);
   const [isNavOpen, setIsNavOpen] = useState(false);
 

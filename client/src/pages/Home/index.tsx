@@ -1,4 +1,4 @@
-import { FC, lazy, useState, useEffect } from "react";
+import { FC, lazy, useState, useEffect, Suspense } from "react";
 import { Header } from "../../features/main/Header";
 import { MainHeroSection } from "../../features/main/MainHeroSection";
 import { ProductCategories } from "../../features/main/ProductCategories";
@@ -20,7 +20,7 @@ export const Home: FC = () => {
       <Header transparentBg={true} />
       <MainHeroSection />
       <ProductCategories />
-      {isCriticalResLoaded && <Chunk />}
+      <Suspense>{isCriticalResLoaded && <Chunk />}</Suspense>
     </>
   );
 };
