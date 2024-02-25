@@ -13,20 +13,20 @@ type HeaderProps = {
 export const headerHeight = "91px";
 
 export const Header: FC<HeaderProps> = ({ transparentBg }) => {
-  console.log("header");
   const hamburgerBtn = useRef<HTMLButtonElement>(null);
   const [isNavOpen, setIsNavOpen] = useState(false);
 
   const closeNav = () => {
     setIsNavOpen(false);
-    document.body.style.overflowY = "auto";
+
+    document.body.classList.remove("overflow-y-hidden");
     hamburgerBtn.current?.focus();
   };
 
   const openNav = () => {
     setIsNavOpen(true);
 
-    document.body.style.overflowY = "hidden";
+    document.body.classList.add("overflow-y-hidden");
     hamburgerBtn.current?.focus();
   };
 

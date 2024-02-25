@@ -31,10 +31,6 @@ export const GlobalStyle = createGlobalStyle(
       font-family: "Manrope", sans-serif;
       overflow-x: hidden;
       background-color: ${theme.grayLighter};
-
-      @media ${theme.media.desktop} {
-        overflow-y: auto;
-      }
     }
 
     #root {
@@ -44,6 +40,16 @@ export const GlobalStyle = createGlobalStyle(
 
     button {
       font-family: "Manrope", sans-serif;
+    }
+
+    .overflow-y-hidden {
+      overflow-y: hidden;
+    }
+
+    @media ${theme.media.desktop} {
+      body.overflow-y-hidden {
+        overflow-y: auto;
+      }
     }
   `
 );

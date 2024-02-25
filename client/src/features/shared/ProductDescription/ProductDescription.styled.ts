@@ -59,13 +59,18 @@ export const StyledProductDescription = styled.div(({ theme }) => {
     }
 
     @media ${theme.media.desktop} {
+      gap: 35px;
       text-align: left;
       align-items: flex-start;
+
+      & > .new-product {
+        margin-bottom: -15px;
+      }
+
       & > .description {
-        max-width: 445px;
+        max-width: 460px;
         line-height: 1.6rem;
         font-size: 1rem;
-        max-width: 445px;
       }
     }
   `;

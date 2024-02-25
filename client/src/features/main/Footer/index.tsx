@@ -14,7 +14,6 @@ const menuItems = [
 ];
 
 export const Footer: FC = () => {
-  console.log("footer");
   return (
     <StyledFooter>
       <div className="wrapper">

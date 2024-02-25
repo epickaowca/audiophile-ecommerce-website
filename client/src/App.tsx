@@ -1,5 +1,5 @@
 import { FC, Suspense, lazy, useEffect } from "react";
-import { Routes, Route, Outlet } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
 const Home = lazy(() =>
   import("./pages/Home").then((module) => {
@@ -31,15 +31,17 @@ const App: FC = () => {
   }, []);
 
   return (
-    <Routes>
-      <Route path="/" element={<RouteWrapper />}>
-        <Route path="/" element={<Home />} />
-        <Route path="/category/:id" element={<ProductCategory />} />
-        <Route path="/detail/:id" element={<ProductDetails />} />
-        <Route path="/checkout" element={<Checkout />} />
-        <Route path="*" element={<h1>Page not found</h1>} />
-      </Route>
-    </Routes>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<RouteWrapper />}>
+          <Route path="/" element={<Home />} />
+          <Route path="/category/:id" element={<ProductCategory />} />
+          <Route path="/detail/:id" element={<ProductDetails />} />
+          <Route path="/checkout" element={<Checkout />} />
+          <Route path="*" element={<h1>Page not found</h1>} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
   );
 };
 
