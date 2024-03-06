@@ -4,14 +4,8 @@ import facebook from "./assets/icon-facebook.svg";
 import instagram from "./assets/icon-instagram.svg";
 import twitter from "./assets/icon-twitter.svg";
 import { StyledFooter } from "./Footer.styled";
-import { Link } from "react-router-dom";
 
-const menuItems = [
-  { label: "home", href: "/" },
-  { label: "headphones", href: "/category/headphones" },
-  { label: "speakers", href: "/category/speakers" },
-  { label: "earphones", href: "/category/earphones" },
-];
+import { NavList } from "../Header";
 
 export const Footer: FC = () => {
   return (
@@ -21,15 +15,7 @@ export const Footer: FC = () => {
         <div className="nav-wrapper">
           <img className="logo" src={logo} alt="logo" />
           <nav role="navigation">
-            <ul role="menubar" className="desktop_nav">
-              {menuItems.map((item) => (
-                <li key={item.label}>
-                  <Link role="menuitem" to={item.href}>
-                    {item.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
+            <NavList />
           </nav>
         </div>
         <p className="description">

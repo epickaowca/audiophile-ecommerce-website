@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { ProductCategories } from "../../../data/constants";
+import { ProductCategories } from "../../../types";
 import { styled, css } from "styled-components";
 
 export const CategoryHeroSection: FC<{ title: ProductCategories }> = ({

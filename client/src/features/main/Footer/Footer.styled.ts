@@ -29,23 +29,6 @@ export const StyledFooter = styled.footer(({ theme }) => {
         & > .logo {
           margin-bottom: 40px;
         }
-        & > nav {
-          & > ul {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-            & > li {
-              list-style-type: none;
-              & > a {
-                font-weight: bold;
-                text-transform: uppercase;
-                text-decoration: none;
-                color: white;
-                font-size: 0.9rem;
-              }
-            }
-          }
-        }
       }
       & > .copyright-wrapper {
         & > p {
@@ -69,14 +52,6 @@ export const StyledFooter = styled.footer(({ theme }) => {
 
         & > .orange-rectangle {
           left: 50px;
-        }
-
-        & > .nav-wrapper {
-          & > nav {
-            & > ul {
-              flex-direction: row;
-            }
-          }
         }
 
         & > .copyright-wrapper {

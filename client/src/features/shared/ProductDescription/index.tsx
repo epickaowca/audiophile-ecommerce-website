@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { Button, Variant } from "../Button";
 import { StyledProductDescription as SPD } from "./ProductDescription.styled";
-import { ProductCategory } from "../../../data/constants";
+import { ProductCategory } from "../../../types";
 
 type ProductDescriptionProps = {
   productName: string;

@@ -1,30 +1,31 @@
 import { FC, useRef } from "react";
 import { ProductDescription } from "../../shared/ProductDescription";
-import mobile from "./assets/micro/image-hero-mobile.jpg";
-import tablet from "./assets/micro/image-hero-tablet.jpg";
-import desktop from "./assets/micro/image-hero-desktop.png";
+import mobileMicro from "./assets/micro/image-hero-mobile.jpg";
+import tabletMicro from "./assets/micro/image-hero-tablet.jpg";
+import desktopMicro from "./assets/micro/image-hero-desktop.png";
+import mobile from "./assets/image-hero-mobile.jpg";
+import tablet from "./assets/image-hero-tablet.jpg";
+import desktop from "./assets/image-hero-desktop.png";
 import { myTheme } from "../../../styles/styled";
 import { useImgPreload } from "../../../hooks/useImgPreload";
 import { StyledMainHeroSection, Picture } from "./MainHeroSection.styled";
 
 const initialImg = {
+  mobile: mobileMicro,
+  tablet: tabletMicro,
+  desktop: desktopMicro,
+};
+const largeImg = {
   mobile,
   tablet,
   desktop,
-};
-
-const imgRequire = async () => {
-  const mobile = await require("./assets/image-hero-mobile.jpg");
-  const tablet = await require("./assets/image-hero-tablet.jpg");
-  const desktop = await require("./assets/image-hero-desktop.jpg");
-  return { mobile, tablet, desktop };
 };
 
 export const MainHeroSection: FC = () => {
   const imgRef = useRef<HTMLImageElement>(null);
   const { img } = useImgPreload({
     initialImg,
-    imgRequire,
+    largeImg,
     imgRef,
   });
 

@@ -1,12 +1,12 @@
 import { FC, useEffect, useRef, useCallback } from "react";
 import { Button } from "../../../../shared/Button";
-import { ProductCategories } from "../../../../../data/constants";
+import { Image, ProductCategories } from "../../../../../types";
 import { Anchor, Li } from "./Product.styled";
 import { useImgPreload } from "../../../../../hooks/useImgPreload";
 
 type ProductProps = {
-  imgSrcInit: string;
-  imgLargeName: string;
+  initialImg: Image;
+  largeImg: Image;
   productName: ProductCategories;
   href: string;
   autoFocus?: boolean;
@@ -20,20 +20,15 @@ export const Product: FC<ProductProps> = ({
   autoFocus,
   navigationCase,
   onEscapeKeyDown,
-  imgSrcInit,
-  imgLargeName,
+  initialImg,
+  largeImg,
 }) => {
-  const imgRequire = useCallback(async () => {
-    const mobile = await require(`../../assets/${imgLargeName}`);
-    return { mobile };
-  }, []);
   const imgRef = useRef<HTMLImageElement>(null);
   const ref = useRef<HTMLAnchorElement>(null);
-
   const { img } = useImgPreload({
     imgRef,
-    imgRequire,
-    initialImg: { mobile: imgSrcInit },
+    initialImg,
+    largeImg,
   });
 
   useEffect(() => {

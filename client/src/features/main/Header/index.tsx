@@ -5,10 +5,13 @@ import cartIcon from "./assets/icon-cart.svg";
 import hamburgerIcon from "./assets/icon-hamburger.svg";
 import { Overlay } from "../../shared/Overlay";
 import logo from "../../../assets/shared/logo.svg";
+import { NavList as NL } from "./components/NavList";
 
 type HeaderProps = {
   transparentBg?: boolean;
 };
+
+export const NavList = NL;
 
 export const headerHeight = "91px";
 

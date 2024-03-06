@@ -16,6 +16,8 @@ if (corsOptions == "*") {
   app.use(cors(corsOptions));
 }
 
+app.use(express.static("public"));
+
 app.get("/category/:id", (req, res) => {
   const categoryArr = categories[req.params.id];
   if (categoryArr) {

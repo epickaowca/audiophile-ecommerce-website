@@ -1,15 +1,14 @@
 import { useEffect, useState, RefObject } from "react";
-
-type image = { mobile: string; tablet?: string; desktop?: string };
+import { Image } from "../types";
 
 type useImagePreloadProps = {
-  imgRequire: () => Promise<image>;
-  initialImg: image;
+  largeImg: Image;
+  initialImg: Image;
   imgRef: RefObject<HTMLImageElement>;
 };
 
 export const useImgPreload = ({
-  imgRequire,
+  largeImg,
   initialImg,
   imgRef,
 }: useImagePreloadProps) => {
@@ -42,15 +41,15 @@ export const useImgPreload = ({
   }, [imgRef, img]);
 
   useEffect(() => {
-    imgRequire().then(({ desktop, mobile, tablet }) => {
-      setImg((prev) => ({
-        ...prev,
-        mobile,
-        tablet,
-        desktop,
-        isLargeImgLoading: true,
-      }));
-    });
+    const { mobile, desktop, tablet } = largeImg;
+
+    setImg((prev) => ({
+      ...prev,
+      mobile,
+      tablet,
+      desktop,
+      isLargeImgLoading: true,
+    }));
   }, []);
 
   return { img };

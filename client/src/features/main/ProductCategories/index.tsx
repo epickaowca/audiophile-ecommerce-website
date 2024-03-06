@@ -1,8 +1,12 @@
 import { FC } from "react";
 import { Product } from "./components/Product";
-import speakersImg from "./assets/micro/image-category-thumbnail-speakers.png";
-import earphonesImg from "./assets/micro/image-category-thumbnail-earphones.png";
-import headphonesImg from "./assets/micro/image-category-thumbnail-headphones.png";
+import speakersImgMicro from "./assets/micro/image-category-thumbnail-speakers.png";
+import earphonesImgMicro from "./assets/micro/image-category-thumbnail-earphones.png";
+import headphonesImgMicro from "./assets/micro/image-category-thumbnail-headphones.png";
+import speakersImg from "./assets/image-category-thumbnail-speakers.png";
+import earphonesImg from "./assets/image-category-thumbnail-earphones.png";
+import headphonesImg from "./assets/image-category-thumbnail-headphones.png";
+
 import { styled, css } from "styled-components";
 
 type ProductCategoriesProps = {
@@ -24,27 +28,28 @@ export const ProductCategories: FC<ProductCategoriesProps> = ({
     onEscapeKeyDown,
     navigationCase,
   };
+
   return (
     <StyledProductCategories {...attrs}>
       <Product
         {...productAttrs}
         autoFocus={autoFocusFirstCategory}
-        imgSrcInit={headphonesImg}
-        imgLargeName="image-category-thumbnail-headphones.png"
+        initialImg={{ mobile: headphonesImgMicro }}
+        largeImg={{ mobile: headphonesImg }}
         productName="headphones"
         href="#headphones"
       />
       <Product
         {...productAttrs}
-        imgSrcInit={speakersImg}
-        imgLargeName="image-category-thumbnail-speakers.png"
+        initialImg={{ mobile: speakersImgMicro }}
+        largeImg={{ mobile: speakersImg }}
         productName="speakers"
         href="#speakers"
       />
       <Product
         {...productAttrs}
-        imgSrcInit={earphonesImg}
-        imgLargeName="image-category-thumbnail-earphones.png"
+        initialImg={{ mobile: earphonesImgMicro }}
+        largeImg={{ mobile: earphonesImg }}
         productName="earphones"
         href="#earphones"
       />
