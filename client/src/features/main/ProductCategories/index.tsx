@@ -60,7 +60,7 @@ export const ProductCategories: FC<ProductCategoriesProps> = ({
 export const StyledProductCategories = styled.section(
   ({ theme: { media } }) => {
     return css`
-      max-width: 90%;
+      width: 90%;
       margin: 90px auto;
       display: flex;
       flex-direction: column;

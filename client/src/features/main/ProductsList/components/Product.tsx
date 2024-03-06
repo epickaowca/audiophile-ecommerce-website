@@ -1,7 +1,7 @@
 import { FC, useRef } from "react";
 import { ProductDescription } from "../../../shared/ProductDescription";
 import { myTheme } from "../../../../styles/styled";
-import { StyledProductsList } from "./ProductsList.styled";
+import { StyledProductsList as SPL } from "./ProductsList.styled";
 import { useImgPreload } from "../../../../hooks/useImgPreload";
 import { Image, ProductCategory } from "../../../../types";
 import { SERVER_URL } from "../../../../constants";
@@ -15,6 +15,8 @@ type CategoryProductProps = {
   name: string;
   description: string;
 };
+
+export const StyledProductsList = SPL;
 
 export const Product: FC<CategoryProductProps> = ({
   initialImg,

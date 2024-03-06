@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { Product } from "./components/Product";
+import { Product, StyledProductsList } from "./components/Product";
 import { useParams } from "react-router-dom";
 import { useAsync } from "../../../hooks/useAsync";
 import { getCategory } from "./services/category";
@@ -43,6 +43,12 @@ const Wrapper = styled.div(({ theme }) => {
     @media ${theme.media.tablet} {
       padding: 100px 0;
       gap: 100px;
+    }
+
+    @media ${theme.media.desktop} {
+      & > ${StyledProductsList}:nth-child(even) {
+        flex-direction: row-reverse;
+      }
     }
   `;
 });

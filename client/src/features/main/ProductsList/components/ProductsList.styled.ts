@@ -39,7 +39,7 @@ export const StyledProductsList = styled.div(({ theme }) => {
       flex-direction: row;
       align-items: center;
       justify-content: space-between;
-      max-width: 1200px;
+      max-width: 1300px;
 
       & > picture {
         max-width: 540px;
@@ -47,7 +47,7 @@ export const StyledProductsList = styled.div(({ theme }) => {
       }
       & > ${StyledProductDescription} {
         width: 100%;
-        max-width: 445px;
+        max-width: 505px;
       }
     }
   `;

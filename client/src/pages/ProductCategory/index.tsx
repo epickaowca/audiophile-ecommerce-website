@@ -2,7 +2,7 @@ import { FC, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import { Header } from "../../features/main/Header";
 import { Footer } from "../../features/main/Footer";
-import { CategoryHeroSection } from "../../features/main/CategoryHeroSection";
+
 import { ProductList } from "../../features/main/ProductsList";
 import { styled, css } from "styled-components";
 import { AudioGear } from "../../features/main/AudioGear";
@@ -14,8 +14,7 @@ import { ErrorPage } from "../../features/main/ErrorPage";
 export const ProductCategory: FC = () => {
   return (
     <>
-      <Header />
-      <CategoryHeroSection title={"earphones"} />
+      <Header displayHeadline={true} />
       <ProductList />
       {/* <p>ProductCategory</p> */}
       {/* <p>{id}</p> */}

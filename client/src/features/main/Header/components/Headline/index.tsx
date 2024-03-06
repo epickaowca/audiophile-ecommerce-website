@@ -1,13 +1,12 @@
 import { FC } from "react";
-import { ProductCategories } from "../../../types";
 import { styled, css } from "styled-components";
+import { useParams } from "react-router-dom";
 
-export const CategoryHeroSection: FC<{ title: ProductCategories }> = ({
-  title,
-}) => {
+export const Headline: FC = () => {
+  const { id } = useParams();
   return (
     <Wrapper>
-      <h1>{title}</h1>
+      <h1>{id}</h1>
     </Wrapper>
   );
 };
