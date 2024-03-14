@@ -28,6 +28,7 @@ export const StyledMainHeroSection = styled.div(({ theme: { media } }) => {
       & > .description {
         color: rgba(255, 255, 255, 0.75);
         font-weight: 400;
+        max-width: 370px;
       }
     }
 
@@ -60,7 +61,6 @@ export const StyledMainHeroSection = styled.div(({ theme: { media } }) => {
           line-height: 3.5rem;
         }
         & > .description {
-          max-width: 370px;
           font-weight: 500;
         }
       }

@@ -7,6 +7,7 @@ type QuantitySelectorProps = {
   onPlus: () => void;
   onValueChange: (newVal: string) => void;
   ariaLabel?: string;
+  checkoutCase?: boolean;
 };
 
 export const QuantitySelector: FC<QuantitySelectorProps> = ({
@@ -15,9 +16,10 @@ export const QuantitySelector: FC<QuantitySelectorProps> = ({
   onPlus,
   onValueChange,
   ariaLabel,
+  checkoutCase,
 }) => {
   return (
-    <StyledQuantitySelector>
+    <StyledQuantitySelector $checkoutCase={!!checkoutCase}>
       <button tabIndex={-1} onClick={onMinus}>
         -
       </button>

@@ -7,7 +7,8 @@ import { Overlay } from "../../shared/Overlay";
 import logo from "../../../assets/shared/logo.svg";
 import { NavList as NL } from "./components/NavList";
 import { Headline } from "./components/Headline";
-import { ProductCategories } from "../../../types";
+import { toggleBodyOverflow } from "../../../utils";
+import { useCart } from "../Cart";
 
 type HeaderProps = {
   transparentBg?: boolean;
@@ -21,29 +22,40 @@ export const headerHeight = "91px";
 export const Header: FC<HeaderProps> = ({ transparentBg, displayHeadline }) => {
   const hamburgerBtn = useRef<HTMLButtonElement>(null);
   const [isNavOpen, setIsNavOpen] = useState(false);
+  const { toggleCart, isCartOpen } = useCart();
+  const isOverlay = isNavOpen || isCartOpen;
 
   const closeNav = () => {
     setIsNavOpen(false);
 
-    document.body.classList.remove("overflow-y-hidden");
+    toggleBodyOverflow("visible", true);
     hamburgerBtn.current?.focus();
   };
 
   const openNav = () => {
     setIsNavOpen(true);
 
-    document.body.classList.add("overflow-y-hidden");
+    toggleBodyOverflow("hidden", true);
     hamburgerBtn.current?.focus();
   };
 
   return (
     <>
-      <StyledHeader $transparentBg={transparentBg} $isNavOpen={isNavOpen}>
+      <StyledHeader $transparentBg={transparentBg} $isNavOpen={isOverlay}>
         <Wrapper>
           <div className="left-side">
             <button
               ref={hamburgerBtn}
-              onClick={isNavOpen ? closeNav : openNav}
+              onClick={() => {
+                if (isNavOpen) {
+                  closeNav();
+                } else if (isCartOpen) {
+                  toggleCart("close");
+                  openNav();
+                } else {
+                  openNav();
+                }
+              }}
               className="menu"
               type="button"
               aria-label="Menu"
@@ -66,7 +78,19 @@ export const Header: FC<HeaderProps> = ({ transparentBg, displayHeadline }) => {
             isNavOpen={isNavOpen}
           />
           <div className="cart">
-            <button aria-label="Cart">
+            <button
+              aria-label="Cart"
+              onClick={() => {
+                if (isNavOpen) {
+                  closeNav();
+                  toggleCart("open");
+                } else if (isCartOpen) {
+                  toggleCart("close");
+                } else {
+                  toggleCart("open");
+                }
+              }}
+            >
               <img src={cartIcon} alt="cartIcon" />
             </button>
           </div>

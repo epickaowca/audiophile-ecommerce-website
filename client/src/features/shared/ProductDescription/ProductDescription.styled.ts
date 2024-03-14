@@ -38,7 +38,7 @@ export const StyledProductDescription = styled.div(({ theme }) => {
     }
 
     & > .description {
-      max-width: 327px;
+      max-width: 572px;
       line-height: 1.5rem;
       color: ${theme.grayDarkText};
       font-weight: 500;
@@ -53,7 +53,6 @@ export const StyledProductDescription = styled.div(({ theme }) => {
         }
       }
       & > .description {
-        max-width: 572px;
         line-height: 1.6rem;
       }
     }
@@ -68,7 +67,7 @@ export const StyledProductDescription = styled.div(({ theme }) => {
       }
 
       & > .description {
-        max-width: 460px;
+        max-width: 800px;
         line-height: 1.6rem;
         font-size: 1rem;
       }

@@ -1,13 +1,13 @@
 import { makeRequest } from "../../../../services/makeRequest";
 import { Image, ProductCategory } from "../../../../types";
 
-export const getCategory: GetCategory = ({ categoryName }) => {
+export const getCategoryList: GetCategoryList = ({ categoryName }) => {
   return makeRequest(`/category/${categoryName}`, {
     method: "get",
   });
 };
 
-export type GetCategory = ({
+type GetCategoryList = ({
   categoryName,
 }: {
   categoryName: string;

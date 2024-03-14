@@ -1,20 +1,27 @@
 import { FC } from "react";
-import { Product, StyledProductsList } from "./components/Product";
+import { Product, StyledProductsList } from "../../shared/Product";
 import { useParams } from "react-router-dom";
 import { useAsync } from "../../../hooks/useAsync";
-import { getCategory } from "./services/category";
+import { getCategoryList } from "./services/category";
 import { ErrorPage } from "../ErrorPage";
 import { styled, css } from "styled-components";
 
 export const ProductList: FC = () => {
   const { id } = useParams();
-  const { error, resData } = useAsync(
-    () => getCategory({ categoryName: id! }),
+  const { error, resData, loading } = useAsync(
+    () => getCategoryList({ categoryName: id! }),
     [id]
   );
 
+  if (loading) {
+    return (
+      <LoadingWrapper>
+        <div className="spin-loader"></div>
+      </LoadingWrapper>
+    );
+  }
   if (error) {
-    return <ErrorPage />;
+    return <ErrorPage message="error loading products" />;
   }
   return (
     <Wrapper>
@@ -52,3 +59,8 @@ const Wrapper = styled.div(({ theme }) => {
     }
   `;
 });
+
+const LoadingWrapper = styled.div`
+  position: relative;
+  height: 450px;
+`;

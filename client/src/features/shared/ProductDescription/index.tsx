@@ -8,7 +8,7 @@ type ProductDescriptionProps = {
   productCategory: ProductCategory;
   description?: string;
   isNew?: boolean;
-  buttonHref: string;
+  buttonHref?: string;
   buttonAriaLabel?: string;
   buttonVariant?: Variant;
 };
@@ -31,14 +31,15 @@ export const ProductDescription: FC<ProductDescriptionProps> = ({
         <h1>{productCategory}</h1>
       </div>
       {description && <p className="description">{description}</p>}
-
-      <Button
-        as="link"
-        text="SEE PRODUCT"
-        href={buttonHref}
-        ariaLabel={buttonAriaLabel}
-        variant={buttonVariant}
-      />
+      {buttonHref && (
+        <Button
+          as="link"
+          text="SEE PRODUCT"
+          href={buttonHref}
+          ariaLabel={buttonAriaLabel}
+          variant={buttonVariant}
+        />
+      )}
     </StyledProductDescription>
   );
 };

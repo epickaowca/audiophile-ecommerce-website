@@ -2,10 +2,14 @@ import { FC } from "react";
 import { Link } from "react-router-dom";
 import { styled } from "styled-components";
 
-export const ErrorPage: FC = () => {
+type ErrorPageProps = {
+  message?: string;
+};
+
+export const ErrorPage: FC<ErrorPageProps> = ({ message }) => {
   return (
     <Wrapper>
-      <p>something wrong</p>
+      <p>{message || "something wrong"}</p>
       <Link to="/">Go back to home</Link>
     </Wrapper>
   );

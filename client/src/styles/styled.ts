@@ -46,9 +46,16 @@ export const GlobalStyle = createGlobalStyle(
       overflow-y: hidden;
     }
 
+    .overflow-y-hidden-mobile {
+      overflow-y: hidden;
+    }
+
     @media ${theme.media.desktop} {
-      body.overflow-y-hidden {
+      .overflow-y-hidden-mobile {
         overflow-y: auto;
+      }
+      .overflow-y-hidden {
+        overflow-y: hidden;
       }
     }
   `

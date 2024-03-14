@@ -14,8 +14,9 @@ export const StyledButton = styled.div<{
     padding: 17px 25px;
     font-size: 0.85rem;
     display: flex;
-    align-items: center;
     letter-spacing: 1.5px;
+    justify-content: center;
+    align-items: center;
     cursor: pointer;
     &:hover {
       color: ${color[$variant].hover};

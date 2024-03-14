@@ -43,6 +43,7 @@ export const Wrapper = styled.div(({ theme: { media } }) => {
       flex-grow: 1;
       text-align: right;
       & > button {
+        cursor: pointer;
         background: transparent;
         border: none;
       }
