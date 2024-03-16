@@ -2,6 +2,7 @@ import { FC } from "react";
 import { StyledCartProduct } from "./CartProduct.styled";
 import { priceWithComma } from "../../../../../utils";
 import { QuantitySelector } from "../../../../shared/QuantitySelector";
+import { CartType } from "../../types";
 
 type CartProductProps = {
   productName: string;
@@ -9,6 +10,7 @@ type CartProductProps = {
   imgSrc: string;
   quantity: number;
   setQuantity: (quantity: number) => void;
+  cartType: CartType;
 };
 
 export const CartProduct: FC<CartProductProps> = ({
@@ -17,6 +19,7 @@ export const CartProduct: FC<CartProductProps> = ({
   productName,
   quantity,
   setQuantity,
+  cartType,
 }) => {
   return (
     <StyledCartProduct>
@@ -27,13 +30,17 @@ export const CartProduct: FC<CartProductProps> = ({
           <span>$ {priceWithComma(price * quantity)}</span>
         </div>
       </div>
-      <QuantitySelector
-        onMinus={() => setQuantity(quantity - 1)}
-        onPlus={() => setQuantity(quantity + 1)}
-        onValueChange={(value) => setQuantity(+value)}
-        value={quantity}
-        checkoutCase={true}
-      />
+      {cartType === "static" ? (
+        <span className="quantity-span">x{quantity}</span>
+      ) : (
+        <QuantitySelector
+          onMinus={() => setQuantity(quantity - 1)}
+          onPlus={() => setQuantity(quantity + 1)}
+          onValueChange={(value) => setQuantity(+value)}
+          value={quantity}
+          checkoutCase={true}
+        />
+      )}
     </StyledCartProduct>
   );
 };

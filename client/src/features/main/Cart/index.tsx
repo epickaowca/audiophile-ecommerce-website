@@ -1,72 +1,48 @@
 import { FC } from "react";
+import { createPortal } from "react-dom";
 import { CartProvider as CP, useCart as UC } from "./context";
-import { StyledCart, Wrapper } from "./Cart.styled";
+import { Wrapper } from "./Cart.styled";
 import { Overlay } from "../../shared/Overlay";
-import { CartProduct } from "./components/CartProduct";
-import { Button } from "../../shared/Button";
-import { priceWithComma } from ".././../../utils";
+import { CartComponent } from "./components/CartComponent";
+import { CartType } from "./types";
 
 export const CartProvider = CP;
 export const useCart = UC;
 
-export const Cart: FC = () => {
-  const { isCartOpen, productList, toggleCart, updateQuantity } = useCart();
+type CartProps = {
+  cartType: CartType;
+};
+
+export const Cart: FC<CartProps> = ({ cartType }) => {
+  const { isCartOpen, productList, updateQuantity, toggleCart } = useCart();
 
   const closeCart = () => {
     toggleCart("close");
   };
 
+  if (cartType === "modal") {
+    const component = isCartOpen ? (
+      <>
+        <Wrapper $isCartOpen={isCartOpen}>
+          <CartComponent
+            cartType="modal"
+            productList={productList}
+            updateQuantity={updateQuantity}
+          />
+        </Wrapper>
+        <Overlay onClick={closeCart} />
+      </>
+    ) : (
+      <></>
+    );
+    return createPortal(component, document.getElementById("root")!);
+  }
+
   return (
-    <>
-      {isCartOpen && (
-        <>
-          <Wrapper $isCartOpen={isCartOpen}>
-            <StyledCart>
-              <div className="heading">
-                <span>CART (3)</span>
-                <button>Remove all</button>
-              </div>
-              <div className="product-list">
-                {productList.map((product) => (
-                  <CartProduct
-                    key={product.productTag}
-                    imgSrc={product.imgSrc}
-                    price={product.price}
-                    productName={product.productName}
-                    quantity={product.quantity}
-                    setQuantity={(quantity) =>
-                      updateQuantity({
-                        productTag: product.productTag,
-                        quantity,
-                      })
-                    }
-                  />
-                ))}
-              </div>
-              <div className="total">
-                <span className="text">TOTAL</span>
-                <span className="price">
-                  $
-                  {priceWithComma(
-                    productList.reduce(
-                      (accumulator, { price, quantity }) =>
-                        accumulator + price * quantity,
-                      0
-                    )
-                  )}
-                </span>
-              </div>
-              <Button
-                text="CHECKOUT"
-                variant="primary"
-                as="link"
-                href="#CHECKOUT"
-              />
-            </StyledCart>
-          </Wrapper>
-          <Overlay onClick={closeCart} />
-        </>
-      )}
-    </>
+    <CartComponent
+      cartType="static"
+      productList={productList}
+      updateQuantity={updateQuantity}
+    />
   );
 };

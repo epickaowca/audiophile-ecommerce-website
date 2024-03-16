@@ -52,7 +52,7 @@ const RouteWrapper = () => {
   return (
     <>
       <Suspense fallback={<div className="spin-loader"></div>}>
-        <Cart />
+        <Cart cartType="modal" />
         <Outlet />
       </Suspense>
     </>

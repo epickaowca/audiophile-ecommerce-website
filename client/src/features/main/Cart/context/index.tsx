@@ -1,4 +1,4 @@
-import React, { FC, useContext, useReducer, ReactNode } from "react";
+import React, { FC, useContext, useReducer, ReactNode, useEffect } from "react";
 import { reducer, ActionType } from "./reducer";
 import { toggleBodyOverflow } from "../../../../utils";
 import { Product, ContextType, UpdateQuantityProps } from "./types";
@@ -6,6 +6,8 @@ import { Product, ContextType, UpdateQuantityProps } from "./types";
 type CartProviderProps = {
   children?: ReactNode;
 };
+
+const CART_PRODUCT_LIST = "CART_PRODUCT_LIST";
 
 const defaultState = {
   isCartOpen: false,
@@ -24,7 +26,7 @@ export const useCart = () => {
 export const CartProvider: FC<CartProviderProps> = ({ children }) => {
   const [{ isCartOpen, productList }, dispatch] = useReducer(reducer, {
     isCartOpen: false,
-    productList: [],
+    productList: getProductListFromLocalStorage(),
   });
 
   const toggleCart = (props: "open" | "close") => {
@@ -37,6 +39,11 @@ export const CartProvider: FC<CartProviderProps> = ({ children }) => {
   };
 
   const addProduct = (payload: Product) => {
+    localStorage.setItem(
+      CART_PRODUCT_LIST,
+      JSON.stringify([...productList, payload])
+    );
+
     dispatch({
       type: ActionType.ADD_PRODUCT,
       payload,
@@ -65,4 +72,12 @@ export const CartProvider: FC<CartProviderProps> = ({ children }) => {
       {children}
     </Context.Provider>
   );
+};
+
+const getProductListFromLocalStorage = () => {
+  const productListRaw = localStorage.getItem(CART_PRODUCT_LIST);
+  if (productListRaw) {
+    return JSON.parse(productListRaw);
+  }
+  return [];
 };

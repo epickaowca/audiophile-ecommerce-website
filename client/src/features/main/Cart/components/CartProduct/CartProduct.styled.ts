@@ -5,6 +5,12 @@ export const StyledCartProduct = styled.div(({ theme }) => {
     display: flex;
     justify-content: space-between;
     align-items: center;
+
+    & > .quantity-span {
+      font-weight: bold;
+      color: ${theme.grayDarkText};
+    }
+
     & > .product {
       display: flex;
       align-items: center;
@@ -14,6 +20,7 @@ export const StyledCartProduct = styled.div(({ theme }) => {
         border-radius: 7px;
       }
       & > .description {
+        text-transform: uppercase;
         & > h3 {
           font-size: 1rem;
           margin-bottom: 5px;
