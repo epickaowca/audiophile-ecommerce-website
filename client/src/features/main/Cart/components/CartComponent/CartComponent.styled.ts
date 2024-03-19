@@ -32,6 +32,7 @@ export const StyledCart = styled.div(({ theme }) => {
       & > h2 {
         font-size: 1rem;
         font-weight: bold;
+        text-transform: uppercase;
       }
       & > button {
         background-color: transparent;
@@ -45,6 +46,11 @@ export const StyledCart = styled.div(({ theme }) => {
           color: ${theme.orangeMedium};
         }
       }
+    }
+
+    @media ${theme.media.tablet} {
+      padding: 35px;
+      max-width: 370px;
     }
   `;
 });
