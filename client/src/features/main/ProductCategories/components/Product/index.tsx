@@ -53,7 +53,7 @@ export const Product: FC<ProductProps> = ({
     <Anchor {...attrs} $isLargeImgLoaded={img.isLargeImgLoaded}>
       <img ref={imgRef} src={img.mobile} alt={productName} />
       <h4 className="product-name">{productName}</h4>
-      <Button as="div" text="SHOP" variant="noBackground" />
+      <Button as="button" text="SHOP" variant="noBackground" />
     </Anchor>
   );
 

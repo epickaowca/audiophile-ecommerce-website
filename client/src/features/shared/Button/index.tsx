@@ -1,24 +1,12 @@
 import { FC, useRef, useEffect } from "react";
 import arrowRightIcon from "./assets/icon-arrow-right.svg";
-import { StyledButton as s } from "./Button.styled";
-import { DefaultProps, Variant as V } from "./types";
+import { StyledButton as SB } from "./Button.styled";
+import { ButtonProps, Variant as V } from "./types";
 import { Link } from "react-router-dom";
 
-type LinkProps = DefaultProps & {
-  as: "link";
-  href: string;
-};
-
-type ButtonProps = DefaultProps & {
-  as?: "div";
-  href?: undefined;
-};
-
-type Button = LinkProps | ButtonProps;
-
 export type Variant = V;
-export const StyledButton = s;
-export const Button: FC<Button> = ({
+export const StyledButton = SB;
+export const Button: FC<ButtonProps> = ({
   text,
   variant,
   ariaLabel,
@@ -26,6 +14,7 @@ export const Button: FC<Button> = ({
   autoFocus,
   onClick,
   href,
+  type,
 }) => {
   const ref = useRef<HTMLButtonElement>(null);
 
@@ -35,7 +24,6 @@ export const Button: FC<Button> = ({
     }
   }, []);
 
-  const isDiv = as === "div";
   const isLink = as === "link";
   const attr = {
     ref,
@@ -43,7 +31,8 @@ export const Button: FC<Button> = ({
     $variant: variant,
     "aria-label": ariaLabel,
     to: isLink ? href : undefined,
-    as: isLink ? Link : isDiv ? "div" : "button",
+    as: isLink ? Link : "button",
+    type,
   } as const;
 
   return (

@@ -26,8 +26,15 @@ export const CartComponent: FC<CartComponentProps> = ({
     (accumulator, { price, quantity }) => accumulator + price * quantity,
     0
   );
-
   const vatValue = returnVat(SHIPPING_PRICE + totalProductsPrice);
+
+  const btnProps = {
+    text: "CHECKOUT",
+    variant: "primary",
+    as: isStatic ? "link" : "button",
+    href: isStatic ? "#CHECKOUT" : undefined,
+    type: isStatic ? "submit" : undefined,
+  } as const;
 
   return (
     <StyledCart>
@@ -70,7 +77,7 @@ export const CartComponent: FC<CartComponentProps> = ({
         />
       )}
 
-      <Button text="CHECKOUT" variant="primary" as="link" href="#CHECKOUT" />
+      <Button {...btnProps} />
     </StyledCart>
   );
 };

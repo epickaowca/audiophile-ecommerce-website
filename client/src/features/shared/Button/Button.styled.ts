@@ -2,7 +2,7 @@ import { styled, css } from "styled-components";
 import { myTheme } from "../../../styles/styled";
 import { Variant } from "./types";
 
-export const StyledButton = styled.div<{
+export const StyledButton = styled.button<{
   $variant: Variant;
 }>(({ $variant }) => {
   return css`

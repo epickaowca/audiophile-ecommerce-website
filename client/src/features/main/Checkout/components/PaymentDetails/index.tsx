@@ -1,10 +1,16 @@
 import { FC, useState } from "react";
 import { Row } from "../Form";
-import { Input } from "../Input";
 import { Fieldset, CashInfoWrapper } from "./PaymentDetails.styled";
 import cashIcon from "../../assets/icon-cash-on-delivery.svg";
+import { UseFormRegister } from "react-hook-form";
+import { FormInput } from "../../types";
+import { Input } from "../Input";
 
-export const PaymentDetails: FC = () => {
+type PaymentDetailsProps = {
+  register: UseFormRegister<FormInput>;
+};
+
+export const PaymentDetails: FC<PaymentDetailsProps> = ({ register }) => {
   const [state, setState] = useState("e-Money");
 
   return (
@@ -16,8 +22,8 @@ export const PaymentDetails: FC = () => {
           <div className="btns-wrapper">
             <label>
               <input
+                {...register("paymentMethod")}
                 type="radio"
-                name="drone"
                 value="e-Money"
                 checked={state === "e-Money"}
                 onChange={(e) => setState(e.target.value)}
@@ -26,8 +32,8 @@ export const PaymentDetails: FC = () => {
             </label>
             <label>
               <input
+                {...register("paymentMethod")}
                 type="radio"
-                name="drone"
                 value="cash"
                 checked={state === "cash"}
                 onChange={(e) => setState(e.target.value)}
@@ -48,8 +54,18 @@ export const PaymentDetails: FC = () => {
         </CashInfoWrapper>
       ) : (
         <Row>
-          <Input label="e-Money Number" placeholder="238521993" />
-          <Input label="e-Money PIN" placeholder="6891" />
+          <Input
+            register={register}
+            name="e-MoneyNumber"
+            label="e-Money Number"
+            placeholder="238521993"
+          />
+          <Input
+            register={register}
+            name="e-MoneyPIN"
+            label="e-Money PIN"
+            placeholder="6891"
+          />
         </Row>
       )}
     </>

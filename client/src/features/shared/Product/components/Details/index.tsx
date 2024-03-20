@@ -31,6 +31,7 @@ export const Details: FC<DetailsProps> = ({
           value={quantity}
         />
         <Button
+          as="button"
           text="ADD TO CART"
           variant="primary"
           onClick={() =>

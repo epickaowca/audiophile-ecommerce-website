@@ -1,7 +1,9 @@
 import { FC } from "react";
 import { Cart } from "../Cart";
-import { styled, css } from "styled-components";
+import { CartWrapper, StyledCheckout } from "./Checkout.styled";
 import { Form } from "./components/Form";
+import { useForm, SubmitHandler } from "react-hook-form";
+import { FormInput } from "./types";
 
 const phrasesArr = [
   "Harmonizing life's journey",
@@ -13,10 +15,13 @@ const phrasesArr = [
 ];
 
 export const Checkout: FC = () => {
+  const { register, handleSubmit } = useForm<FormInput>();
+  const onSubmit: SubmitHandler<FormInput> = (data) => console.log(data);
+
   return (
-    <Wrapper>
-      <form action="">
-        <Form />
+    <StyledCheckout>
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <Form register={register} />
         <CartWrapper>
           <div className="black-box">
             <p>{phrasesArr[Math.floor(Math.random() * phrasesArr.length)]}</p>
@@ -24,71 +29,6 @@ export const Checkout: FC = () => {
           <Cart cartType="static" />
         </CartWrapper>
       </form>
-    </Wrapper>
+    </StyledCheckout>
   );
 };
-
-const CartWrapper = styled.div(({ theme }) => {
-  return css`
-    background-color: white;
-    border-radius: 10px;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    max-width: 360px;
-    height: 100%;
-    overflow: hidden;
-    & > .black-box {
-      display: none;
-    }
-
-    @media ${theme.media.tablet} {
-      max-width: unset;
-      justify-content: space-between;
-      align-items: stretch;
-      & > .black-box {
-        width: 100%;
-        min-height: 100%;
-        background-color: ${theme.grayDark};
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        & > p {
-          text-align: center;
-          font-size: 2rem;
-          color: white;
-          max-width: 300px;
-        }
-      }
-    }
-
-    @media ${theme.media.desktop} {
-      max-width: 360px;
-      & > .black-box {
-        display: none;
-      }
-    }
-  `;
-});
-
-const Wrapper = styled.div(({ theme }) => {
-  return css`
-    width: 90%;
-    margin: 50px auto;
-    & > form {
-      display: flex;
-      flex-direction: column;
-      gap: 35px;
-      align-items: center;
-    }
-
-    @media ${theme.media.desktop} {
-      max-width: 1300px;
-      margin: 100px auto;
-      & > form {
-        flex-direction: row;
-        align-items: flex-start;
-      }
-    }
-  `;
-});
