@@ -43,19 +43,13 @@ export const StyledInfo = styled.div(({ theme }) => {
     }
 
     @media ${theme.media.desktop} {
-      margin-top: 150px;
       flex-direction: row;
       justify-content: space-between;
       max-width: 1300px;
-      /* gap: 20%; */
       & > .box {
         min-width: 215px;
         &.features {
           max-width: 645px;
-        }
-        &.includes {
-          /* margin-left: -50px; */
-          /* min-width: 405px; */
         }
       }
     }

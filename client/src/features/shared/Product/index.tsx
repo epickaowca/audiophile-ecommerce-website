@@ -34,18 +34,16 @@ export const Product: FC<CategoryProductProps> = ({
   const imgRef = useRef<HTMLImageElement>(null);
   const { img } = useImgPreload({ imgRef, largeImg, initialImg });
 
-  const descriptionAttr = { buttonHref: detailCase ? undefined : "#hi" };
+  const descriptionAttr = {
+    buttonHref: detailCase ? undefined : `/details/${tagName}`,
+  };
 
   return (
     <StyledProductsList $detailCase={!!detailCase}>
       <picture>
-        <source
-          media={myTheme.media.desktop}
-          // ${SERVER_URL}/${img.desktop}`
-          srcSet={`${img.desktop}`}
-        />
-        <source media={myTheme.media.tablet} srcSet={`${img.tablet}`} />
-        <img ref={imgRef} src={`${img.mobile}`} alt="YX1 wireless earphone" />
+        <source media={myTheme.media.desktop} srcSet={img.desktop} />
+        <source media={myTheme.media.tablet} srcSet={img.tablet} />
+        <img ref={imgRef} src={img.mobile} alt="YX1 wireless earphone" />
       </picture>
       <div className="description-wrapper">
         <ProductDescription

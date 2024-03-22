@@ -22,6 +22,7 @@ export const Input: FC<InputProps> = ({
       <label htmlFor={id}>{label}</label>
       <input
         {...register(name)}
+        required
         id={id}
         placeholder={placeholder}
         type="text"

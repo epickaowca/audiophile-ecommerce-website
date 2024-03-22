@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { StyledCartProduct } from "./CartProduct.styled";
+import { StyledCartProduct as SCP } from "./CartProduct.styled";
 import { priceWithComma } from "../../../../../utils";
 import { QuantitySelector } from "../../../../shared/QuantitySelector";
 import { CartType } from "../../types";
@@ -12,6 +12,8 @@ type CartProductProps = {
   setQuantity: (quantity: number) => void;
   cartType: CartType;
 };
+
+export const StyledCartProduct = SCP;
 
 export const CartProduct: FC<CartProductProps> = ({
   imgSrc,

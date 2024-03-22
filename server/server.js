@@ -1,6 +1,6 @@
 import express from "express";
 import cors from "cors";
-import { categories, details } from "./data.js";
+import { categories, details, gallery } from "./data.js";
 
 const app = express();
 const PORT = 3002;
@@ -31,6 +31,15 @@ app.get("/details/:tagName", (req, res) => {
   const detailsObj = details[req.params.tagName];
   if (detailsObj) {
     res.send(detailsObj);
+  } else {
+    res.status(404).send({ message: "product not found" });
+  }
+});
+
+app.get("/gallery/:tagName", (req, res) => {
+  const galleryObj = gallery[req.params.tagName];
+  if (galleryObj) {
+    res.send(galleryObj);
   } else {
     res.status(404).send({ message: "product not found" });
   }

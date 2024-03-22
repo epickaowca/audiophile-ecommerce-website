@@ -387,3 +387,150 @@ export const details = {
     ],
   },
 };
+
+export const gallery = {
+  "XX99-Mark-2": {
+    img1: {
+      desktop: `${SERVER_URL}/gallery/xx99-mark-two/desktop/image-gallery-1.jpg`,
+      tablet: `${SERVER_URL}/gallery/xx99-mark-two/tablet/image-gallery-1.jpg`,
+      mobile: `${SERVER_URL}/gallery/xx99-mark-two/mobile/image-gallery-1.jpg`,
+    },
+    img2: {
+      desktop: `${SERVER_URL}/gallery/xx99-mark-two/desktop/image-gallery-2.jpg`,
+      tablet: `${SERVER_URL}/gallery/xx99-mark-two/tablet/image-gallery-2.jpg`,
+      mobile: `${SERVER_URL}/gallery/xx99-mark-two/mobile/image-gallery-2.jpg`,
+    },
+    img3: {
+      large: {
+        desktop: `${SERVER_URL}/gallery/xx99-mark-two/desktop/image-gallery-3.jpg`,
+        tablet: `${SERVER_URL}/gallery/xx99-mark-two/tablet/image-gallery-3.jpg`,
+        mobile: `${SERVER_URL}/gallery/xx99-mark-two/mobile/image-gallery-3.jpg`,
+      },
+      micro: {
+        desktop: `${SERVER_URL}/gallery/xx99-mark-two/desktop/image-gallery-3-micro.jpg`,
+        tablet: `${SERVER_URL}/gallery/xx99-mark-two/tablet/image-gallery-3-micro.jpg`,
+        mobile: `${SERVER_URL}/gallery/xx99-mark-two/mobile/image-gallery-3-micro.jpg`,
+      },
+    },
+  },
+  "XX99-Mark-1": {
+    img1: {
+      desktop: `${SERVER_URL}/gallery/xx99-mark-one/desktop/image-gallery-1.jpg`,
+      tablet: `${SERVER_URL}/gallery/xx99-mark-one/tablet/image-gallery-1.jpg`,
+      mobile: `${SERVER_URL}/gallery/xx99-mark-one/mobile/image-gallery-1.jpg`,
+    },
+    img2: {
+      desktop: `${SERVER_URL}/gallery/xx99-mark-one/desktop/image-gallery-2.jpg`,
+      tablet: `${SERVER_URL}/gallery/xx99-mark-one/tablet/image-gallery-2.jpg`,
+      mobile: `${SERVER_URL}/gallery/xx99-mark-one/mobile/image-gallery-2.jpg`,
+    },
+    img3: {
+      large: {
+        desktop: `${SERVER_URL}/gallery/xx99-mark-one/desktop/image-gallery-3.jpg`,
+        tablet: `${SERVER_URL}/gallery/xx99-mark-one/tablet/image-gallery-3.jpg`,
+        mobile: `${SERVER_URL}/gallery/xx99-mark-one/mobile/image-gallery-3.jpg`,
+      },
+      micro: {
+        desktop: `${SERVER_URL}/gallery/xx99-mark-one/desktop/image-gallery-3-micro.jpg`,
+        tablet: `${SERVER_URL}/gallery/xx99-mark-one/tablet/image-gallery-3-micro.jpg`,
+        mobile: `${SERVER_URL}/gallery/xx99-mark-one/mobile/image-gallery-3-micro.jpg`,
+      },
+    },
+  },
+  XX59: {
+    img1: {
+      desktop: `${SERVER_URL}/gallery/xx59/desktop/image-gallery-1.jpg`,
+      tablet: `${SERVER_URL}/gallery/xx59/tablet/image-gallery-1.jpg`,
+      mobile: `${SERVER_URL}/gallery/xx59/mobile/image-gallery-1.jpg`,
+    },
+    img2: {
+      desktop: `${SERVER_URL}/gallery/xx59/desktop/image-gallery-2.jpg`,
+      tablet: `${SERVER_URL}/gallery/xx59/tablet/image-gallery-2.jpg`,
+      mobile: `${SERVER_URL}/gallery/xx59/mobile/image-gallery-2.jpg`,
+    },
+    img3: {
+      large: {
+        desktop: `${SERVER_URL}/gallery/xx59/desktop/image-gallery-3.jpg`,
+        tablet: `${SERVER_URL}/gallery/xx59/tablet/image-gallery-3.jpg`,
+        mobile: `${SERVER_URL}/gallery/xx59/mobile/image-gallery-3.jpg`,
+      },
+      micro: {
+        desktop: `${SERVER_URL}/gallery/xx59/desktop/image-gallery-3-micro.jpg`,
+        tablet: `${SERVER_URL}/gallery/xx59/tablet/image-gallery-3-micro.jpg`,
+        mobile: `${SERVER_URL}/gallery/xx59/mobile/image-gallery-3-micro.jpg`,
+      },
+    },
+  },
+  ZX9: {
+    img1: {
+      desktop: `${SERVER_URL}/gallery/zx9/desktop/image-gallery-1.jpg`,
+      tablet: `${SERVER_URL}/gallery/zx9/tablet/image-gallery-1.jpg`,
+      mobile: `${SERVER_URL}/gallery/zx9/mobile/image-gallery-1.jpg`,
+    },
+    img2: {
+      desktop: `${SERVER_URL}/gallery/zx9/desktop/image-gallery-2.jpg`,
+      tablet: `${SERVER_URL}/gallery/zx9/tablet/image-gallery-2.jpg`,
+      mobile: `${SERVER_URL}/gallery/zx9/mobile/image-gallery-2.jpg`,
+    },
+    img3: {
+      large: {
+        desktop: `${SERVER_URL}/gallery/zx9/desktop/image-gallery-3.jpg`,
+        tablet: `${SERVER_URL}/gallery/zx9/tablet/image-gallery-3.jpg`,
+        mobile: `${SERVER_URL}/gallery/zx9/mobile/image-gallery-3.jpg`,
+      },
+      micro: {
+        desktop: `${SERVER_URL}/gallery/zx9/desktop/image-gallery-3-micro.jpg`,
+        tablet: `${SERVER_URL}/gallery/zx9/tablet/image-gallery-3-micro.jpg`,
+        mobile: `${SERVER_URL}/gallery/zx9/mobile/image-gallery-3-micro.jpg`,
+      },
+    },
+  },
+  ZX7: {
+    img1: {
+      desktop: `${SERVER_URL}/gallery/zx7/desktop/image-gallery-1.jpg`,
+      tablet: `${SERVER_URL}/gallery/zx7/tablet/image-gallery-1.jpg`,
+      mobile: `${SERVER_URL}/gallery/zx7/mobile/image-gallery-1.jpg`,
+    },
+    img2: {
+      desktop: `${SERVER_URL}/gallery/zx7/desktop/image-gallery-2.jpg`,
+      tablet: `${SERVER_URL}/gallery/zx7/tablet/image-gallery-2.jpg`,
+      mobile: `${SERVER_URL}/gallery/zx7/mobile/image-gallery-2.jpg`,
+    },
+    img3: {
+      large: {
+        desktop: `${SERVER_URL}/gallery/zx7/desktop/image-gallery-3.jpg`,
+        tablet: `${SERVER_URL}/gallery/zx7/tablet/image-gallery-3.jpg`,
+        mobile: `${SERVER_URL}/gallery/zx7/mobile/image-gallery-3.jpg`,
+      },
+      micro: {
+        desktop: `${SERVER_URL}/gallery/zx7/desktop/image-gallery-3-micro.jpg`,
+        tablet: `${SERVER_URL}/gallery/zx7/tablet/image-gallery-3-micro.jpg`,
+        mobile: `${SERVER_URL}/gallery/zx7/mobile/image-gallery-3-micro.jpg`,
+      },
+    },
+  },
+  YX1: {
+    img1: {
+      desktop: `${SERVER_URL}/gallery/yx1/desktop/image-gallery-1.jpg`,
+      tablet: `${SERVER_URL}/gallery/yx1/tablet/image-gallery-1.jpg`,
+      mobile: `${SERVER_URL}/gallery/yx1/mobile/image-gallery-1.jpg`,
+    },
+    img2: {
+      desktop: `${SERVER_URL}/gallery/yx1/desktop/image-gallery-2.jpg`,
+      tablet: `${SERVER_URL}/gallery/yx1/tablet/image-gallery-2.jpg`,
+      mobile: `${SERVER_URL}/gallery/yx1/mobile/image-gallery-2.jpg`,
+    },
+    img3: {
+      large: {
+        desktop: `${SERVER_URL}/gallery/yx1/desktop/image-gallery-3.jpg`,
+        tablet: `${SERVER_URL}/gallery/yx1/tablet/image-gallery-3.jpg`,
+        mobile: `${SERVER_URL}/gallery/yx1/mobile/image-gallery-3.jpg`,
+      },
+      micro: {
+        desktop: `${SERVER_URL}/gallery/yx1/desktop/image-gallery-3-micro.jpg`,
+        tablet: `${SERVER_URL}/gallery/yx1/tablet/image-gallery-3-micro.jpg`,
+        mobile: `${SERVER_URL}/gallery/yx1/mobile/image-gallery-3-micro.jpg`,
+      },
+    },
+  },
+};

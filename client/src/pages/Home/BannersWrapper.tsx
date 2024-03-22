@@ -1,6 +1,6 @@
 import { FC } from "react";
 import { styled, css } from "styled-components";
-import { Banner } from "../../features/main/Banner";
+import { ProductBanner } from "../../features/main/ProductBanner";
 import desktopZx9 from "./assets/image-speaker-zx9-desktop.png";
 import tabletZx9 from "./assets/image-speaker-zx9-tablet.png";
 import mobileZx9 from "./assets/image-speaker-zx9-mobile.png";
@@ -59,28 +59,28 @@ const largeImgYx1 = {
 export const BannersWrapper: FC = () => {
   return (
     <Wrapper>
-      <Banner
+      <ProductBanner
         initialImg={initialImgZx9}
         largeImg={largeImgZx9}
         cardType="large"
-        buttonHref="#hi"
+        buttonHref="/details/ZX9"
         productCategory="speaker"
         productName="ZX9"
         description="Upgrade to premium speakers that are phenomenally built to deliver truly remarkable sound."
       />
-      <Banner
+      <ProductBanner
         initialImg={initialImgZx7}
         largeImg={largeImgZx7}
         cardType="medium"
-        buttonHref="#hi"
+        buttonHref="/details/ZX7"
         productCategory="speaker"
         productName="ZX7"
       />
-      <Banner
+      <ProductBanner
         initialImg={initialImgYx1}
         largeImg={largeImgYx1}
         cardType="divided"
-        buttonHref="#hi"
+        buttonHref="/details/YX1"
         productCategory="earphones"
         productName="YX1"
       />

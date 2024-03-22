@@ -37,21 +37,21 @@ export const ProductCategories: FC<ProductCategoriesProps> = ({
         initialImg={{ mobile: headphonesImgMicro }}
         largeImg={{ mobile: headphonesImg }}
         productName="headphones"
-        href="#headphones"
+        href="/category/headphones"
       />
       <Product
         {...productAttrs}
         initialImg={{ mobile: speakersImgMicro }}
         largeImg={{ mobile: speakersImg }}
         productName="speakers"
-        href="#speakers"
+        href="/category/speakers"
       />
       <Product
         {...productAttrs}
         initialImg={{ mobile: earphonesImgMicro }}
         largeImg={{ mobile: earphonesImg }}
         productName="earphones"
-        href="#earphones"
+        href="/category/earphones"
       />
     </StyledProductCategories>
   );

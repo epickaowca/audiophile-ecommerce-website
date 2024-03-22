@@ -1,6 +1,7 @@
-import { FC } from "react";
+import { FC, useEffect } from "react";
 import { createPortal } from "react-dom";
 import { StyledOverlay } from "./Overlay.styled";
+import { toggleBodyOverflow } from "./utils";
 
 type OverlayProps = {
   onClick?: () => void;
@@ -11,6 +12,13 @@ export const Overlay: FC<OverlayProps> = ({
   onClick,
   displayOnDesktop = true,
 }) => {
+  useEffect(() => {
+    toggleBodyOverflow("hidden", !displayOnDesktop);
+    return () => {
+      toggleBodyOverflow("visible", !displayOnDesktop);
+    };
+  }, []);
+
   const attrs = {
     $displayOnDesktop: displayOnDesktop,
     $cursorPointer: !!onClick,

@@ -22,7 +22,7 @@ export const Details: FC<DetailsProps> = ({
   const { addProduct } = useCart();
   return (
     <DetailsWrapper>
-      <p className="price">{priceWithComma(price * quantity)}</p>
+      <p className="price">$ {priceWithComma(price * quantity)}</p>
       <div className="CTA-container">
         <QuantitySelector
           onMinus={() => setQuantity((prev) => prev - 1)}

@@ -1,6 +1,6 @@
-import React, { FC, useContext, useReducer, ReactNode, useEffect } from "react";
+import React, { FC, useContext, useReducer, ReactNode } from "react";
 import { reducer, ActionType } from "./reducer";
-import { toggleBodyOverflow } from "../../../../utils";
+
 import { Product, ContextType, UpdateQuantityProps } from "./types";
 
 type CartProviderProps = {
@@ -35,7 +35,6 @@ export const CartProvider: FC<CartProviderProps> = ({ children }) => {
       type: ActionType.TOGGLE_CART,
       payload: { isCartOpen: isOpen },
     });
-    toggleBodyOverflow(isOpen ? "hidden" : "visible");
   };
 
   const addProduct = (payload: Product) => {
@@ -48,7 +47,6 @@ export const CartProvider: FC<CartProviderProps> = ({ children }) => {
       type: ActionType.ADD_PRODUCT,
       payload,
     });
-    toggleBodyOverflow("hidden");
   };
 
   const updateQuantity = (payload: UpdateQuantityProps) => {
@@ -56,7 +54,6 @@ export const CartProvider: FC<CartProviderProps> = ({ children }) => {
       type: ActionType.UPDATE_QUANTITY,
       payload,
     });
-    toggleBodyOverflow("hidden");
   };
 
   return (

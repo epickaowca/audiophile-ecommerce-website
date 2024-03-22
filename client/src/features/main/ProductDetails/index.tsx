@@ -1,11 +1,12 @@
 import { FC } from "react";
 import { Product } from "../../shared/Product";
-import { styled } from "styled-components";
+import { styled, css } from "styled-components";
 import { getProductDetails } from "./services/details";
 import { useAsync } from "../../../hooks/useAsync";
 import { useParams } from "react-router-dom";
 import { ErrorPage } from "../ErrorPage";
 import { Info } from "./components/Info";
+import { SpinLoader } from "../../shared/SpinLoader";
 
 export const ProductDetails: FC = () => {
   const { id } = useParams();
@@ -14,11 +15,7 @@ export const ProductDetails: FC = () => {
   );
 
   if (loading) {
-    return (
-      <LoadingWrapper>
-        <div className="spin-loader"></div>
-      </LoadingWrapper>
-    );
+    return <SpinLoader heightInPx={450} />;
   }
   if (error) {
     return <ErrorPage message="error loading product" />;
@@ -49,11 +46,11 @@ export const ProductDetails: FC = () => {
   );
 };
 
-const Wrapper = styled.div`
-  margin-top: 150px;
-`;
-
-const LoadingWrapper = styled.div`
-  position: relative;
-  height: 450px;
-`;
+const Wrapper = styled.div(({ theme }) => {
+  return css`
+    margin-top: 50px;
+    @media ${theme.media.desktop} {
+      margin-top: 80px;
+    }
+  `;
+});

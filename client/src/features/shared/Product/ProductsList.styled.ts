@@ -54,6 +54,7 @@ export const StyledProductsList = styled.div<{ $detailCase?: boolean }>(
           justify-content: space-between;
           max-width: 1300px;
           & > .description-wrapper > ${StyledProductDescription} {
+            margin-top: 0;
             & > .description {
               max-width: 800px;
             }
@@ -69,8 +70,9 @@ export const StyledProductsList = styled.div<{ $detailCase?: boolean }>(
 
         & > picture {
           max-width: 540px;
-          height: 560px;
+          height: 520px;
         }
+
         & > .description-wrapper > ${StyledProductDescription} {
           width: 100%;
           max-width: 505px;

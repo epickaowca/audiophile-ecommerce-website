@@ -7,7 +7,6 @@ import { Overlay } from "../../shared/Overlay";
 import logo from "../../../assets/shared/logo.svg";
 import { NavList as NL } from "./components/NavList";
 import { Headline } from "./components/Headline";
-import { toggleBodyOverflow } from "../../../utils";
 import { useCart } from "../Cart";
 
 type HeaderProps = {
@@ -16,7 +15,6 @@ type HeaderProps = {
 };
 
 export const NavList = NL;
-
 export const headerHeight = "91px";
 
 export const Header: FC<HeaderProps> = ({ transparentBg, displayHeadline }) => {
@@ -28,14 +26,12 @@ export const Header: FC<HeaderProps> = ({ transparentBg, displayHeadline }) => {
   const closeNav = () => {
     setIsNavOpen(false);
 
-    toggleBodyOverflow("visible", true);
     hamburgerBtn.current?.focus();
   };
 
   const openNav = () => {
     setIsNavOpen(true);
 
-    toggleBodyOverflow("hidden", true);
     hamburgerBtn.current?.focus();
   };
 

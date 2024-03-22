@@ -1,18 +1,11 @@
 import { FC } from "react";
-import { CartProduct } from "../CartProduct";
 import { Button } from "../../../../shared/Button";
-import { priceWithComma } from "../../.././../../utils";
 import { StyledCart } from "./CartComponent.styled";
-import { Product, UpdateQuantityProps } from "../../context/types";
-import { CartType } from "../../types";
 import { PriceDisplay } from "../PriceDisplay";
 import { returnVat } from "../../helpers";
+import { CartList, CartListProps } from "../CartList";
 
-type CartComponentProps = {
-  productList: Product[];
-  updateQuantity: (payload: UpdateQuantityProps) => void;
-  cartType: CartType;
-};
+type CartComponentProps = CartListProps;
 
 const SHIPPING_PRICE = 50;
 
@@ -31,8 +24,8 @@ export const CartComponent: FC<CartComponentProps> = ({
   const btnProps = {
     text: "CHECKOUT",
     variant: "primary",
-    as: isStatic ? "link" : "button",
-    href: isStatic ? "#CHECKOUT" : undefined,
+    as: isStatic ? "button" : "link",
+    href: isStatic ? undefined : "/checkout",
     type: isStatic ? "submit" : undefined,
   } as const;
 
@@ -42,24 +35,11 @@ export const CartComponent: FC<CartComponentProps> = ({
         <h2>{isStatic ? "summary" : `cart (${productList.length})`}</h2>
         {!isStatic && <button>Remove all</button>}
       </div>
-      <div className="list product-list">
-        {productList.map((product) => (
-          <CartProduct
-            cartType={cartType}
-            key={product.productTag}
-            imgSrc={product.imgSrc}
-            price={product.price}
-            productName={product.productName}
-            quantity={product.quantity}
-            setQuantity={(quantity) =>
-              updateQuantity({
-                productTag: product.productTag,
-                quantity,
-              })
-            }
-          />
-        ))}
-      </div>
+      <CartList
+        cartType={cartType}
+        productList={productList}
+        updateQuantity={updateQuantity}
+      />
       <div className="list price-list">
         <PriceDisplay name="total" price={totalProductsPrice} />
         {isStatic && (

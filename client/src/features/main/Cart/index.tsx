@@ -5,13 +5,18 @@ import { Wrapper } from "./Cart.styled";
 import { Overlay } from "../../shared/Overlay";
 import { CartComponent } from "./components/CartComponent";
 import { CartType } from "./types";
+import { CartList as CL } from "./components/CartList";
+import { StyledCartProduct as SCP } from "./components/CartProduct";
 
+export const CartList = CL;
 export const CartProvider = CP;
 export const useCart = UC;
 
 type CartProps = {
   cartType: CartType;
 };
+
+export const StyledCartProduct = SCP;
 
 export const Cart: FC<CartProps> = ({ cartType }) => {
   const { isCartOpen, productList, updateQuantity, toggleCart } = useCart();

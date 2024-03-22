@@ -8,7 +8,7 @@ export const StyledHeader = styled.header<{
   return css`
     display: block;
     position: relative;
-    z-index: ${$isNavOpen ? overlayZIndex + 1 : "initial"};
+    z-index: ${overlayZIndex + 1};
     background-color: ${$transparentBg && !$isNavOpen ? "transparent" : "#000"};
     height: ${headerHeight};
 
