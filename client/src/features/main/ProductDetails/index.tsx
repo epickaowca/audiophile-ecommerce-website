@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, useEffect } from "react";
 import { Product } from "../../shared/Product";
 import { styled, css } from "styled-components";
 import { getProductDetails } from "./services/details";
@@ -8,10 +8,23 @@ import { ErrorPage } from "../ErrorPage";
 import { Info } from "./components/Info";
 import { SpinLoader } from "../../shared/SpinLoader";
 
-export const ProductDetails: FC = () => {
+type ProductDetailsProps = {
+  dataLoaded: () => void;
+};
+
+export const ProductDetails: FC<ProductDetailsProps> = ({ dataLoaded }) => {
   const { id } = useParams();
   const { error, loading, resData } = useAsync(() =>
     getProductDetails({ tagName: id! })
+  );
+
+  useEffect(
+    function onDataLoaded() {
+      if (resData) {
+        dataLoaded();
+      }
+    },
+    [resData]
   );
 
   if (loading) {

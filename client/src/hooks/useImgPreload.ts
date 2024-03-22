@@ -41,15 +41,22 @@ export const useImgPreload = ({
   }, [imgRef, img]);
 
   useEffect(() => {
-    const { mobile, desktop, tablet } = largeImg;
+    const setLargeImg = () => {
+      const { mobile, desktop, tablet } = largeImg;
+      setImg((prev) => ({
+        ...prev,
+        mobile,
+        tablet,
+        desktop,
+        isLargeImgLoading: true,
+      }));
+    };
 
-    setImg((prev) => ({
-      ...prev,
-      mobile,
-      tablet,
-      desktop,
-      isLargeImgLoading: true,
-    }));
+    if (imgRef.current?.complete) {
+      setLargeImg();
+    } else {
+      imgRef.current?.addEventListener("load", setLargeImg);
+    }
   }, []);
 
   return { img };

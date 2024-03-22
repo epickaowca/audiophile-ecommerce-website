@@ -11,13 +11,14 @@ const Chunk = lazy(() =>
 export const Category: FC = () => {
   const [isCriticalResLoaded, setIsCriticalResLoaded] = useState(false);
 
-  useEffect(() => {
+  const dataLoaded = () => {
     setIsCriticalResLoaded(true);
-  }, []);
+  };
+
   return (
     <>
       <Header displayHeadline={true} />
-      <ProductList />
+      <ProductList dataLoaded={dataLoaded} />
       <Suspense>{isCriticalResLoaded && <Chunk />}</Suspense>
     </>
   );

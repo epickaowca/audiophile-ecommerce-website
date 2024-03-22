@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, useEffect } from "react";
 import { Product, StyledProductsList } from "../../shared/Product";
 import { useParams } from "react-router-dom";
 import { useAsync } from "../../../hooks/useAsync";
@@ -6,11 +6,24 @@ import { getCategoryList } from "./services/category";
 import { ErrorPage } from "../ErrorPage";
 import { styled, css } from "styled-components";
 
-export const ProductList: FC = () => {
+type ProductListProps = {
+  dataLoaded: () => void;
+};
+
+export const ProductList: FC<ProductListProps> = ({ dataLoaded }) => {
   const { id } = useParams();
   const { error, resData, loading } = useAsync(
     () => getCategoryList({ categoryName: id! }),
     [id]
+  );
+
+  useEffect(
+    function onDataLoaded() {
+      if (resData) {
+        dataLoaded();
+      }
+    },
+    [resData]
   );
 
   if (loading) {
@@ -23,6 +36,7 @@ export const ProductList: FC = () => {
   if (error) {
     return <ErrorPage message="error loading products" />;
   }
+
   return (
     <Wrapper>
       {resData?.map((data) => {
