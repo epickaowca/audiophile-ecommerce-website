@@ -1,4 +1,5 @@
 import { Product, UpdateQuantityProps } from "./types";
+import { isProductAlreadyAdded } from "../utils";
 
 export function reducer(
   state: {
@@ -15,32 +16,38 @@ export function reducer(
       };
 
     case ActionType.ADD_PRODUCT: {
-      const isProductAlreadyAdded =
-        state.productList.findIndex(
-          (obj) => obj.productTag === payload.productTag
-        ) !== -1;
-
       return {
         ...state,
         isCartOpen: true,
-        productList: isProductAlreadyAdded
+        productList: isProductAlreadyAdded(payload, state.productList)
           ? state.productList
           : [...state.productList, payload],
       };
     }
 
     case ActionType.UPDATE_QUANTITY: {
-      const productList = state.productList.map((product) => {
-        const isTagMatch = product.productTag === payload.productTag;
-        if (isTagMatch) {
-          return { ...product, quantity: payload.quantity };
-        }
-        return product;
-      });
+      const productList = state.productList
+        .map((product) => {
+          const isTagMatch = product.productTag === payload.productTag;
+          if (isTagMatch) {
+            if (payload.quantity === 0) {
+              return undefined;
+            }
+            return { ...product, quantity: payload.quantity };
+          }
+          return product;
+        })
+        .filter((product) => product) as Product[];
 
       return {
         ...state,
         productList,
+      };
+    }
+    case ActionType.REMOVE_ALL: {
+      return {
+        ...state,
+        productList: [],
       };
     }
 
@@ -53,6 +60,7 @@ export enum ActionType {
   TOGGLE_CART = "USE_CART/TOGGLE_CART",
   ADD_PRODUCT = "USE_CART/ADD_PRODUCT",
   UPDATE_QUANTITY = "USE_CART/UPDATE_QUANTITY",
+  REMOVE_ALL = "USE_CART/REMOVE_ALL",
 }
 
 type ToggleCart = {
@@ -70,4 +78,9 @@ type UpdateQuantity = {
   payload: UpdateQuantityProps;
 };
 
-type Action = ToggleCart | AddProduct | UpdateQuantity;
+type RemoveAll = {
+  type: ActionType.REMOVE_ALL;
+  payload: {};
+};
+
+type Action = ToggleCart | AddProduct | UpdateQuantity | RemoveAll;

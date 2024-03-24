@@ -5,6 +5,7 @@ import { useAsync } from "../../../hooks/useAsync";
 import { getCategoryList } from "./services/category";
 import { ErrorPage } from "../ErrorPage";
 import { styled, css } from "styled-components";
+import { SpinLoader } from "../../shared/SpinLoader";
 
 type ProductListProps = {
   dataLoaded: () => void;
@@ -27,11 +28,7 @@ export const ProductList: FC<ProductListProps> = ({ dataLoaded }) => {
   );
 
   if (loading) {
-    return (
-      <LoadingWrapper>
-        <div className="spin-loader"></div>
-      </LoadingWrapper>
-    );
+    return <SpinLoader heightInPx={450} />;
   }
   if (error) {
     return <ErrorPage message="error loading products" />;
@@ -59,11 +56,10 @@ const Wrapper = styled.div(({ theme }) => {
     padding: 60px 0;
     display: flex;
     flex-direction: column;
-    gap: 60px;
+    gap: 150px;
 
     @media ${theme.media.tablet} {
       padding: 100px 0;
-      gap: 100px;
     }
 
     @media ${theme.media.desktop} {
@@ -73,8 +69,3 @@ const Wrapper = styled.div(({ theme }) => {
     }
   `;
 });
-
-const LoadingWrapper = styled.div`
-  position: relative;
-  height: 450px;
-`;

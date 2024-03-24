@@ -11,7 +11,6 @@ type ProductProps = {
   href: string;
   autoFocus?: boolean;
   navigationCase?: boolean;
-  onEscapeKeyDown?: () => void;
 };
 
 export const Product: FC<ProductProps> = ({
@@ -19,7 +18,6 @@ export const Product: FC<ProductProps> = ({
   href,
   autoFocus,
   navigationCase,
-  onEscapeKeyDown,
   initialImg,
   largeImg,
 }) => {
@@ -35,16 +33,6 @@ export const Product: FC<ProductProps> = ({
     if (autoFocus) {
       ref.current?.focus();
     }
-    if (!onEscapeKeyDown || !ref.current) return;
-
-    const onEscapeHandler = (e: KeyboardEvent) => {
-      e.key === "Escape" && onEscapeKeyDown();
-    };
-
-    ref.current.addEventListener("keydown", onEscapeHandler);
-    return () => {
-      ref.current?.removeEventListener("keydown", onEscapeHandler);
-    };
   }, []);
 
   const attrs = { role: navigationCase ? "menuitem" : undefined, ref, href };

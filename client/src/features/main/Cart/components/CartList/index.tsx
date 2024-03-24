@@ -1,23 +1,24 @@
 import { FC } from "react";
-import { Product, UpdateQuantityProps } from "../../context/types";
 import { styled, css } from "styled-components";
 import { CartProduct } from "../CartProduct";
 import { CartType } from "../../types";
+import { useCart } from "../../context";
+import { Product } from "../../context/types";
 
 export type CartListProps = {
-  productList: Product[];
   cartType: CartType;
-  updateQuantity: (payload: UpdateQuantityProps) => void;
+  customProductList?: Product[];
 };
 
 export const CartList: FC<CartListProps> = ({
-  productList,
   cartType,
-  updateQuantity,
+  customProductList,
 }) => {
+  const { updateQuantity, productList } = useCart();
+  const myProductList = customProductList || productList;
   return (
     <StyledCartList>
-      {productList.map((product) => (
+      {myProductList.map((product) => (
         <CartProduct
           cartType={cartType}
           key={product.productTag}

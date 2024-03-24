@@ -2,18 +2,21 @@ import { FC } from "react";
 import { Button } from "../../../../shared/Button";
 import { StyledCart } from "./CartComponent.styled";
 import { PriceDisplay } from "../PriceDisplay";
-import { returnVat } from "../../helpers";
-import { CartList, CartListProps } from "../CartList";
+import { returnVat } from "../../utils";
+import { CartList } from "../CartList";
+import { useNavigate } from "react-router-dom";
+import { useCart } from "../../context";
+import { CartType } from "../../types";
 
-type CartComponentProps = CartListProps;
+type CartComponentProps = {
+  cartType: CartType;
+};
 
 const SHIPPING_PRICE = 50;
 
-export const CartComponent: FC<CartComponentProps> = ({
-  productList,
-  updateQuantity,
-  cartType,
-}) => {
+export const CartComponent: FC<CartComponentProps> = ({ cartType }) => {
+  const { removeAll, toggleCart, productList } = useCart();
+  const navigate = useNavigate();
   const isStatic = cartType === "static";
   const totalProductsPrice = productList.reduce(
     (accumulator, { price, quantity }) => accumulator + price * quantity,
@@ -22,24 +25,29 @@ export const CartComponent: FC<CartComponentProps> = ({
   const vatValue = returnVat(SHIPPING_PRICE + totalProductsPrice);
 
   const btnProps = {
-    text: "CHECKOUT",
+    text: isStatic ? "CONTINUE & PAY" : "CHECKOUT",
     variant: "primary",
-    as: isStatic ? "button" : "link",
-    href: isStatic ? undefined : "/checkout",
+    as: "button",
     type: isStatic ? "submit" : undefined,
+    onClick: isStatic
+      ? undefined
+      : () => {
+          navigate("/checkout");
+          toggleCart("close");
+        },
+    ariaLabel: isStatic ? undefined : "go to checkout",
   } as const;
 
+  const idAttr = {
+    id: isStatic ? undefined : "main-cart",
+  };
   return (
-    <StyledCart>
+    <StyledCart {...idAttr}>
       <div className="heading">
         <h2>{isStatic ? "summary" : `cart (${productList.length})`}</h2>
-        {!isStatic && <button>Remove all</button>}
+        {!isStatic && <button onClick={removeAll}>Remove all</button>}
       </div>
-      <CartList
-        cartType={cartType}
-        productList={productList}
-        updateQuantity={updateQuantity}
-      />
+      <CartList cartType={cartType} />
       <div className="list price-list">
         <PriceDisplay name="total" price={totalProductsPrice} />
         {isStatic && (

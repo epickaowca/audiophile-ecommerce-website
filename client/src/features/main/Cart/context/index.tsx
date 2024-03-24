@@ -1,6 +1,6 @@
 import React, { FC, useContext, useReducer, ReactNode } from "react";
 import { reducer, ActionType } from "./reducer";
-
+import { isProductAlreadyAdded } from "../utils";
 import { Product, ContextType, UpdateQuantityProps } from "./types";
 
 type CartProviderProps = {
@@ -15,6 +15,7 @@ const defaultState = {
   toggleCart: () => {},
   addProduct: () => {},
   updateQuantity: () => {},
+  removeAll: () => {},
 };
 
 const Context = React.createContext<ContextType>(defaultState);
@@ -31,6 +32,7 @@ export const CartProvider: FC<CartProviderProps> = ({ children }) => {
 
   const toggleCart = (props: "open" | "close") => {
     const isOpen = props === "open";
+
     dispatch({
       type: ActionType.TOGGLE_CART,
       payload: { isCartOpen: isOpen },
@@ -38,11 +40,14 @@ export const CartProvider: FC<CartProviderProps> = ({ children }) => {
   };
 
   const addProduct = (payload: Product) => {
-    localStorage.setItem(
-      CART_PRODUCT_LIST,
-      JSON.stringify([...productList, payload])
-    );
+    if (!isProductAlreadyAdded(payload, productList)) {
+      localStorage.setItem(
+        CART_PRODUCT_LIST,
+        JSON.stringify([...productList, payload])
+      );
+    }
 
+    window.scroll(0, 0);
     dispatch({
       type: ActionType.ADD_PRODUCT,
       payload,
@@ -56,6 +61,14 @@ export const CartProvider: FC<CartProviderProps> = ({ children }) => {
     });
   };
 
+  const removeAll = () => {
+    localStorage.setItem(CART_PRODUCT_LIST, JSON.stringify([]));
+    dispatch({
+      type: ActionType.REMOVE_ALL,
+      payload: {},
+    });
+  };
+
   return (
     <Context.Provider
       value={{
@@ -64,6 +77,7 @@ export const CartProvider: FC<CartProviderProps> = ({ children }) => {
         toggleCart,
         addProduct,
         updateQuantity,
+        removeAll,
       }}
     >
       {children}

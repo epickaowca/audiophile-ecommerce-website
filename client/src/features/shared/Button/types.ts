@@ -6,6 +6,6 @@ export type ButtonProps = {
   ariaLabel?: string;
   onClick?: () => void;
   as: "link" | "button";
-  href?: string | undefined;
-  type?: "button" | "submit" | undefined;
+  href?: string;
+  type?: "button" | "submit";
 };

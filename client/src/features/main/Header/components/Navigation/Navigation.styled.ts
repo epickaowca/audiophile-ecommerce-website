@@ -1,9 +1,8 @@
 import { styled, css } from "styled-components";
-import { StyledProductCategories } from "../../../ProductCategories";
 import { StyledNavList } from "../NavList";
 
 export const Nav = styled.nav<{ $isNavOpen: boolean; $headerHeight: string }>(
-  ({ $headerHeight, $isNavOpen, theme: { media, orangeMedium } }) => {
+  ({ $headerHeight, $isNavOpen, theme: { media } }) => {
     return css`
       display: ${$isNavOpen ? "block" : "none"};
       position: absolute;
@@ -17,20 +16,14 @@ export const Nav = styled.nav<{ $isNavOpen: boolean; $headerHeight: string }>(
       border-bottom-right-radius: 10px;
       max-height: calc(100vh - ${$headerHeight});
       overflow-y: auto;
+      & > .productCategoriesWrapper {
+        display: ${$isNavOpen ? "block" : "nonde"};
+      }
       & > ${StyledNavList} {
         display: none;
       }
 
-      & > ${StyledProductCategories} {
-        margin: auto;
-        margin-top: 50px;
-      }
-
       @media ${media.tablet} {
-        & > ${StyledProductCategories} {
-          margin: auto;
-          margin-top: 50px;
-        }
       }
 
       @media ${media.desktop} {
@@ -41,7 +34,7 @@ export const Nav = styled.nav<{ $isNavOpen: boolean; $headerHeight: string }>(
         top: 0;
         padding: 0;
         background-color: transparent;
-        & > ${StyledProductCategories} {
+        & > .productCategoriesWrapper {
           display: none;
         }
         & > ${StyledNavList} {

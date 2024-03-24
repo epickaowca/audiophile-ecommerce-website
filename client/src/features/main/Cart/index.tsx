@@ -19,23 +19,15 @@ type CartProps = {
 export const StyledCartProduct = SCP;
 
 export const Cart: FC<CartProps> = ({ cartType }) => {
-  const { isCartOpen, productList, updateQuantity, toggleCart } = useCart();
-
-  const closeCart = () => {
-    toggleCart("close");
-  };
+  const { isCartOpen, toggleCart } = useCart();
 
   if (cartType === "modal") {
     const component = isCartOpen ? (
       <>
         <Wrapper $isCartOpen={isCartOpen}>
-          <CartComponent
-            cartType="modal"
-            productList={productList}
-            updateQuantity={updateQuantity}
-          />
+          <CartComponent cartType="modal" />
         </Wrapper>
-        <Overlay onClick={closeCart} />
+        <Overlay onClick={() => toggleCart("close")} />
       </>
     ) : (
       <></>
@@ -43,11 +35,5 @@ export const Cart: FC<CartProps> = ({ cartType }) => {
     return createPortal(component, document.getElementById("root")!);
   }
 
-  return (
-    <CartComponent
-      cartType="static"
-      productList={productList}
-      updateQuantity={updateQuantity}
-    />
-  );
+  return <CartComponent cartType="static" />;
 };

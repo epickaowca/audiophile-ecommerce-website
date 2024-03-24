@@ -76,6 +76,8 @@ export const Header: FC<HeaderProps> = ({ transparentBg, displayHeadline }) => {
           <div className="cart">
             <button
               aria-label="Cart"
+              aria-controls="main-cart"
+              aria-expanded={isCartOpen}
               onClick={() => {
                 if (isNavOpen) {
                   closeNav();

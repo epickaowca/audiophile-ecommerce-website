@@ -16,5 +16,6 @@ export type ContextType = {
   toggleCart: (props: "open" | "close") => void;
   addProduct: (payload: Product) => void;
   updateQuantity: (payload: UpdateQuantityProps) => void;
+  removeAll: () => void;
   productList: Product[];
 };

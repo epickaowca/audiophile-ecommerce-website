@@ -12,20 +12,17 @@ import { styled, css } from "styled-components";
 type ProductCategoriesProps = {
   autoFocusFirstCategory?: boolean;
   navigationCase?: boolean;
-  onEscapeKeyDown?: () => void;
 };
 
 export const ProductCategories: FC<ProductCategoriesProps> = ({
   autoFocusFirstCategory,
   navigationCase,
-  onEscapeKeyDown,
 }) => {
   const attrs = navigationCase
     ? { role: "menu" }
     : { title: "productCategories", as: navigationCase ? "ul" : "section" };
 
   const productAttrs = {
-    onEscapeKeyDown,
     navigationCase,
   };
 
