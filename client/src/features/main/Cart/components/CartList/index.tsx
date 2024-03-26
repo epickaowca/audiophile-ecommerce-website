@@ -20,15 +20,12 @@ export const CartList: FC<CartListProps> = ({
     <StyledCartList>
       {myProductList.map((product) => (
         <CartProduct
+          {...product}
+          key={product.tag}
           cartType={cartType}
-          key={product.productTag}
-          imgSrc={product.imgSrc}
-          price={product.price}
-          productName={product.productName}
-          quantity={product.quantity}
           setQuantity={(quantity) =>
             updateQuantity({
-              productTag: product.productTag,
+              tag: product.tag,
               quantity,
             })
           }

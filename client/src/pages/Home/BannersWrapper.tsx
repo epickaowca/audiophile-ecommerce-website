@@ -63,26 +63,26 @@ export const BannersWrapper: FC = () => {
         initialImg={initialImgZx9}
         largeImg={largeImgZx9}
         cardType="large"
-        buttonHref="/details/ZX9"
-        productCategory="speaker"
-        productName="ZX9"
+        href="/details/ZX9"
+        category="speaker"
+        name="ZX9"
         description="Upgrade to premium speakers that are phenomenally built to deliver truly remarkable sound."
       />
       <ProductBanner
         initialImg={initialImgZx7}
         largeImg={largeImgZx7}
         cardType="medium"
-        buttonHref="/details/ZX7"
-        productCategory="speaker"
-        productName="ZX7"
+        href="/details/ZX7"
+        category="speaker"
+        name="ZX7"
       />
       <ProductBanner
         initialImg={initialImgYx1}
         largeImg={largeImgYx1}
         cardType="divided"
-        buttonHref="/details/YX1"
-        productCategory="earphones"
-        productName="YX1"
+        href="/details/YX1"
+        category="earphones"
+        name="YX1"
       />
     </Wrapper>
   );

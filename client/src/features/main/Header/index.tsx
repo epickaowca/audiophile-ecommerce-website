@@ -1,4 +1,4 @@
-import { FC, useState, useRef } from "react";
+import { FC, useState, useRef, useEffect } from "react";
 import { Navigation, navId } from "./components/Navigation";
 import { StyledHeader, Wrapper } from "./Header.styled";
 import cartIcon from "./assets/icon-cart.svg";
@@ -19,21 +19,33 @@ export const headerHeight = "91px";
 
 export const Header: FC<HeaderProps> = ({ transparentBg, displayHeadline }) => {
   const hamburgerBtn = useRef<HTMLButtonElement>(null);
+  const cartBtn = useRef<HTMLButtonElement>(null);
   const [isNavOpen, setIsNavOpen] = useState(false);
   const { toggleCart, isCartOpen } = useCart();
   const isOverlay = isNavOpen || isCartOpen;
 
   const closeNav = () => {
     setIsNavOpen(false);
-
     hamburgerBtn.current?.focus();
   };
 
-  const openNav = () => {
-    setIsNavOpen(true);
-
-    hamburgerBtn.current?.focus();
+  const btnHandler = (open: "cart" | "nav") => {
+    if (isNavOpen || isCartOpen) {
+      isNavOpen && closeNav();
+      isCartOpen && toggleCart("close");
+    } else {
+      open === "cart" ? toggleCart("open") : setIsNavOpen(true);
+    }
   };
+
+  useEffect(
+    function onCartClose() {
+      if (!isCartOpen) {
+        cartBtn.current?.focus();
+      }
+    },
+    [isCartOpen]
+  );
 
   return (
     <>
@@ -42,21 +54,11 @@ export const Header: FC<HeaderProps> = ({ transparentBg, displayHeadline }) => {
           <div className="left-side">
             <button
               ref={hamburgerBtn}
-              onClick={() => {
-                if (isNavOpen) {
-                  closeNav();
-                } else if (isCartOpen) {
-                  toggleCart("close");
-                  openNav();
-                } else {
-                  openNav();
-                }
-              }}
               className="menu"
-              type="button"
               aria-label="Menu"
               aria-expanded={isNavOpen}
               aria-controls={navId}
+              onClick={() => btnHandler("nav")}
             >
               <img src={hamburgerIcon} alt="hamburgerIcon" />
             </button>
@@ -64,8 +66,8 @@ export const Header: FC<HeaderProps> = ({ transparentBg, displayHeadline }) => {
               width="143px"
               height="25px"
               className="logo"
-              src={logo}
               alt="logo"
+              src={logo}
             />
           </div>
           <Navigation
@@ -75,19 +77,11 @@ export const Header: FC<HeaderProps> = ({ transparentBg, displayHeadline }) => {
           />
           <div className="cart">
             <button
+              ref={cartBtn}
               aria-label="Cart"
               aria-controls="main-cart"
               aria-expanded={isCartOpen}
-              onClick={() => {
-                if (isNavOpen) {
-                  closeNav();
-                  toggleCart("open");
-                } else if (isCartOpen) {
-                  toggleCart("close");
-                } else {
-                  toggleCart("open");
-                }
-              }}
+              onClick={() => btnHandler("cart")}
             >
               <img src={cartIcon} alt="cartIcon" />
             </button>

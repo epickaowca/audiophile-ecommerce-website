@@ -3,43 +3,36 @@ import { Button, Variant } from "../Button";
 import { StyledProductDescription as SPD } from "./ProductDescription.styled";
 import { ProductCategory } from "../../../types";
 
-type ProductDescriptionProps = {
-  productName: string;
-  productCategory: ProductCategory;
+type ButtonProps = {
+  href?: string;
+  ariaLabel?: string;
+  variant?: Variant;
+};
+
+export type ProductDescriptionProps = {
+  name: string;
+  category: ProductCategory;
   description?: string;
   isNew?: boolean;
-  buttonHref?: string;
-  buttonAriaLabel?: string;
-  buttonVariant?: Variant;
 };
 
 export const StyledProductDescription = SPD;
-export const ProductDescription: FC<ProductDescriptionProps> = ({
+export const ProductDescription: FC<ProductDescriptionProps & ButtonProps> = ({
   description,
-  productCategory,
-  productName,
+  category,
+  name,
   isNew,
-  buttonAriaLabel,
-  buttonHref,
-  buttonVariant = "primary",
+  ...btnProps
 }) => {
   return (
     <StyledProductDescription>
-      {isNew && <span className="new-product">NEW PRODUCT</span>}
+      {isNew && <span className="new_product">NEW PRODUCT</span>}
       <div className="title_wrapper">
-        <h1>{productName}</h1>
-        <h1>{productCategory}</h1>
+        <h1>{name}</h1>
+        <h1>{category}</h1>
       </div>
       {description && <p className="description">{description}</p>}
-      {buttonHref && (
-        <Button
-          as="link"
-          text="SEE PRODUCT"
-          href={buttonHref}
-          ariaLabel={buttonAriaLabel}
-          variant={buttonVariant}
-        />
-      )}
+      {btnProps.href && <Button as="link" text="SEE PRODUCT" {...btnProps} />}
     </StyledProductDescription>
   );
 };

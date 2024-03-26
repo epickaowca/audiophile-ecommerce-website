@@ -39,11 +39,11 @@ export const MainHeroSection: FC = () => {
         <img ref={imgRef} src={img.mobile} alt="hero-image" />
       </Picture>
       <ProductDescription
-        buttonHref="#XX99 Mark II"
-        buttonAriaLabel="SEE XX99 Mark II"
+        href="#XX99 Mark II"
+        ariaLabel="SEE XX99 Mark II"
         isNew={true}
-        productName="XX99 Mark II"
-        productCategory="headphones"
+        name="XX99 Mark II"
+        category="headphones"
         description="Experience natural, lifelike audio and exceptional build quality made for the passionate music enthusiast."
       />
     </StyledMainHeroSection>

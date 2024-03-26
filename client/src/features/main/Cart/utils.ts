@@ -7,5 +7,4 @@ export const returnVat = (price: number) => {
 export const isProductAlreadyAdded = (
   product: Product,
   productList: Product[]
-) =>
-  productList.findIndex((obj) => obj.productTag === product.productTag) !== -1;
+) => productList.findIndex((obj) => obj.tag === product.tag) !== -1;

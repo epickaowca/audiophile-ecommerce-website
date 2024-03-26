@@ -19,14 +19,12 @@ export const Overlay: FC<OverlayProps> = ({
     };
   }, []);
 
-  const attrs = {
-    $displayOnDesktop: displayOnDesktop,
-    $cursorPointer: !!onClick,
-    onClick,
-  };
-
   return createPortal(
-    <StyledOverlay {...attrs} />,
+    <StyledOverlay
+      onClick={onClick}
+      $cursorPointer={!!onClick}
+      $displayOnDesktop={displayOnDesktop}
+    />,
     document.getElementById("root")!
   );
 };

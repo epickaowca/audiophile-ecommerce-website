@@ -5,7 +5,7 @@ import { QuantitySelector } from "../../../../shared/QuantitySelector";
 import { CartType } from "../../types";
 
 type CartProductProps = {
-  productName: string;
+  name: string;
   price: number;
   imgSrc: string;
   quantity: number;
@@ -18,7 +18,7 @@ export const StyledCartProduct = SCP;
 export const CartProduct: FC<CartProductProps> = ({
   imgSrc,
   price,
-  productName,
+  name,
   quantity,
   setQuantity,
   cartType,
@@ -26,9 +26,9 @@ export const CartProduct: FC<CartProductProps> = ({
   return (
     <StyledCartProduct>
       <div className="product">
-        <img src={imgSrc} alt={productName} />
+        <img src={imgSrc} alt={name} />
         <div className="description">
-          <h3>{productName}</h3>
+          <h3>{name}</h3>
           <span>$ {priceWithComma(price * quantity)}</span>
         </div>
       </div>
@@ -41,6 +41,7 @@ export const CartProduct: FC<CartProductProps> = ({
           onValueChange={(value) => setQuantity(+value)}
           value={quantity}
           checkoutCase={true}
+          ariaLabel={`${name} product quantity`}
         />
       )}
     </StyledCartProduct>

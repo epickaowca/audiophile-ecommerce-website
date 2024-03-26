@@ -1,4 +1,4 @@
-import { FC, useRef, useEffect } from "react";
+import { FC, useRef } from "react";
 import arrowRightIcon from "./assets/icon-arrow-right.svg";
 import { StyledButton as SB } from "./Button.styled";
 import { ButtonProps, Variant as V } from "./types";
@@ -8,21 +8,14 @@ export type Variant = V;
 export const StyledButton = SB;
 export const Button: FC<ButtonProps> = ({
   text,
-  variant,
+  variant = "primary",
   ariaLabel,
   as,
-  autoFocus,
   onClick,
   href,
   type,
 }) => {
   const ref = useRef<HTMLButtonElement>(null);
-
-  useEffect(() => {
-    if (autoFocus) {
-      ref.current?.focus();
-    }
-  }, []);
 
   const isLink = as === "link";
   const attr = {
@@ -31,7 +24,7 @@ export const Button: FC<ButtonProps> = ({
     $variant: variant,
     "aria-label": ariaLabel,
     to: isLink ? href : undefined,
-    as: isLink ? Link : "button",
+    as: isLink ? Link : as === "button" ? "button" : "div",
     type,
   } as const;
 

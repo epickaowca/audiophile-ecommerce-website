@@ -1,6 +1,6 @@
 export type Product = {
-  productName: string;
-  productTag: string;
+  name: string;
+  tag: string;
   price: number;
   imgSrc: string;
   quantity: number;
@@ -8,7 +8,7 @@ export type Product = {
 
 export type UpdateQuantityProps = {
   quantity: number;
-  productTag: string;
+  tag: string;
 };
 
 export type ContextType = {

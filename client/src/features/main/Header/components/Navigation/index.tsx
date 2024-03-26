@@ -38,14 +38,11 @@ export const Navigation: FC<NavigationProps> = ({
       $headerHeight={headerHeight}
     >
       <NavList />
-
       <div ref={ref} className="productCategoriesWrapper">
-        {isNavOpen && (
-          <ProductCategories
-            autoFocusFirstCategory={true}
-            navigationCase={true}
-          />
-        )}
+        <ProductCategories
+          autoFocusFirstCategory={true}
+          navigationCase={true}
+        />
       </div>
     </Nav>
   );

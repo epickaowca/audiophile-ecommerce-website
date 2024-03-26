@@ -25,7 +25,7 @@ export const Footer: FC = () => {
           demo facility - we’re open 7 days a week.
         </p>
         <div className="copyright-wrapper">
-          <p>Copyright 2021. All Rights Reserved</p>
+          <p>Copyright 2024. All Rights Reserved</p>
           <div className="social-media">
             <a href="#facebook">
               <img src={facebook} alt="facebook" />

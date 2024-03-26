@@ -1,13 +1,12 @@
 import { FC } from "react";
 import { Product } from "./components/Product";
+import { styled, css } from "styled-components";
 import speakersImgMicro from "./assets/micro/image-category-thumbnail-speakers.png";
 import earphonesImgMicro from "./assets/micro/image-category-thumbnail-earphones.png";
 import headphonesImgMicro from "./assets/micro/image-category-thumbnail-headphones.png";
 import speakersImg from "./assets/image-category-thumbnail-speakers.png";
 import earphonesImg from "./assets/image-category-thumbnail-earphones.png";
 import headphonesImg from "./assets/image-category-thumbnail-headphones.png";
-
-import { styled, css } from "styled-components";
 
 type ProductCategoriesProps = {
   autoFocusFirstCategory?: boolean;

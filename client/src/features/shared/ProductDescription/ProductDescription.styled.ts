@@ -12,7 +12,7 @@ export const StyledProductDescription = styled.div(({ theme }) => {
       font-weight: bold;
     }
 
-    & > .new-product {
+    & > .new_product {
       --letter-spacing: 10px;
       text-align: center;
       color: ${theme.orangeMedium};
@@ -62,7 +62,7 @@ export const StyledProductDescription = styled.div(({ theme }) => {
       text-align: left;
       align-items: flex-start;
 
-      & > .new-product {
+      & > .new_product {
         margin-bottom: -15px;
       }
 

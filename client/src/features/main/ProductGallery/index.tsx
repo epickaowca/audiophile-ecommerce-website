@@ -25,7 +25,7 @@ export const ProductGallery: FC = () => {
     <Wrapper>
       {resData && (
         <>
-          <ImgSmall img1={resData.img1} img2={resData.img2} />
+          <ImgSmall {...resData} />
           <ImgLarge
             initialImg={resData.img3.micro}
             largeImg={resData.img3.large}

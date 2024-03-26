@@ -15,7 +15,7 @@ type GetCategoryList = ({
 
 type CategoryObjApi = {
   name: string;
-  tagName: string;
+  tag: string;
   category: ProductCategory;
   description: string;
   isNew: boolean;

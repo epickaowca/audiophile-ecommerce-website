@@ -10,8 +10,8 @@ export type BannerProps = {
 };
 
 export type DescriptionProps = {
-  buttonHref: string;
+  href: string;
   description?: string;
-  productCategory: ProductCategory;
-  productName: string;
+  category: ProductCategory;
+  name: string;
 };

@@ -11,12 +11,11 @@ import { StyledCartProduct as SCP } from "./components/CartProduct";
 export const CartList = CL;
 export const CartProvider = CP;
 export const useCart = UC;
+export const StyledCartProduct = SCP;
 
 type CartProps = {
   cartType: CartType;
 };
-
-export const StyledCartProduct = SCP;
 
 export const Cart: FC<CartProps> = ({ cartType }) => {
   const { isCartOpen, toggleCart } = useCart();

@@ -5,27 +5,27 @@ import { Button } from "../../../../shared/Button";
 import { CardType } from "../../types";
 
 type CardContentProps = {
-  productName: string;
-  productCategory: ProductCategory;
-  buttonHref: string;
+  name: string;
+  category: ProductCategory;
+  href: string;
   cardType: CardType;
 };
 
 export const CardContent: FC<CardContentProps> = ({
-  buttonHref,
-  productCategory,
-  productName,
+  href,
+  category,
+  name,
   cardType,
 }) => {
   return (
     <Wrapper $cardType={cardType}>
       <h1>
-        {productName} {productCategory}
+        {name} {category}
       </h1>
       <Button
         as="link"
-        href={buttonHref}
-        ariaLabel={`SEE ${productName}`}
+        href={href}
+        ariaLabel={`SEE ${name}`}
         text="SEE PRODUCT"
         variant="secondary"
       />

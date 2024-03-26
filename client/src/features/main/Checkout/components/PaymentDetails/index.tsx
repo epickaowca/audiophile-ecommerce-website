@@ -1,6 +1,6 @@
 import { FC, useState } from "react";
 import { Row } from "../Form";
-import { Fieldset, CashInfoWrapper } from "./PaymentDetails.styled";
+import { Fieldset } from "./PaymentDetails.styled";
 import cashIcon from "../../assets/icon-cash-on-delivery.svg";
 import { UseFormRegister } from "react-hook-form";
 import { FormInput } from "../../types";
@@ -44,14 +44,14 @@ export const PaymentDetails: FC<PaymentDetailsProps> = ({ register }) => {
         </Fieldset>
       </Row>
       {state === "cash" ? (
-        <CashInfoWrapper>
+        <div>
           <img src={cashIcon} alt="cash-icon" />
           <p>
             The ‘Cash on Delivery’ option enables you to pay in cash when our
             delivery courier arrives at your residence. Just make sure your
             address is correct so that your order will not be cancelled.
           </p>
-        </CashInfoWrapper>
+        </div>
       ) : (
         <Row>
           <Input

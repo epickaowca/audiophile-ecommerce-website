@@ -5,7 +5,6 @@ import mobileMicro from "./assets/micro/image-best-gear-mobile.jpg";
 import desktop from "./assets/image-best-gear-desktop.jpg";
 import tablet from "./assets/image-best-gear-tablet.jpg";
 import mobile from "./assets/image-best-gear-mobile.jpg";
-
 import { StyledAudioGear, Description } from "./AudioGear.styled";
 import { myTheme } from "../../../styles/styled";
 import { useImgPreload } from "../../../hooks/useImgPreload";

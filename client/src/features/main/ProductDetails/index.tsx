@@ -41,18 +41,14 @@ export const ProductDetails: FC<ProductDetailsProps> = ({ dataLoaded }) => {
           <Product
             initialImg={resData.imgProductMicro}
             largeImg={resData.imgProductLarge}
-            category={resData.category}
-            description={resData.description}
-            isNew={resData.isNew}
-            name={resData.name}
-            tagName={resData.tagName}
             detailCase={{
               price: resData.price,
               maxQuantity: 999,
-              imgCart: resData.imgCart,
+              cartImg: resData.imgCart,
             }}
+            {...resData}
           />
-          <Info features={resData.features} includes={resData.includes} />
+          <Info {...resData} />
         </>
       )}
     </Wrapper>

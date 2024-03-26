@@ -28,7 +28,7 @@ export function reducer(
     case ActionType.UPDATE_QUANTITY: {
       const productList = state.productList
         .map((product) => {
-          const isTagMatch = product.productTag === payload.productTag;
+          const isTagMatch = product.tag === payload.tag;
           if (isTagMatch) {
             if (payload.quantity === 0) {
               return undefined;

@@ -1,9 +1,5 @@
 import { styled, css } from "styled-components";
 
-export const CashInfoWrapper = styled.div(() => {
-  return css``;
-});
-
 export const Fieldset = styled.fieldset(({ theme }) => {
   return css`
     border: none;

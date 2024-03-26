@@ -8,16 +8,11 @@ import { useCart } from "../../../../main/Cart";
 type DetailsProps = {
   cartImg: string;
   price: number;
-  productName: string;
-  productTag: string;
+  name: string;
+  tag: string;
 };
 
-export const Details: FC<DetailsProps> = ({
-  price,
-  cartImg,
-  productName,
-  productTag,
-}) => {
+export const Details: FC<DetailsProps> = ({ price, cartImg, name, tag }) => {
   const [quantity, setQuantity] = useState(1);
   const { addProduct } = useCart();
   return (
@@ -34,12 +29,13 @@ export const Details: FC<DetailsProps> = ({
           as="button"
           text="ADD TO CART"
           variant="primary"
+          ariaLabel={`ADD ${name} TO CART`}
           onClick={() =>
             addProduct({
               imgSrc: cartImg,
               price,
-              productName,
-              productTag,
+              name,
+              tag,
               quantity,
             })
           }

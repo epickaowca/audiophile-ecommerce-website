@@ -11,9 +11,9 @@ import { CardContent } from "./components/CardContent";
 
 export const ProductBanner: FC<BannerProps & DescriptionProps> = ({
   cardType,
-  buttonHref,
-  productCategory,
-  productName,
+  href,
+  category,
+  name,
   description,
   initialImg,
   largeImg,
@@ -24,19 +24,19 @@ export const ProductBanner: FC<BannerProps & DescriptionProps> = ({
   const { img } = useImgPreload({ largeImg, initialImg, imgRef });
 
   const cardContentProps = {
-    buttonHref,
-    productCategory,
-    productName,
+    href,
+    category,
+    name,
     cardType,
   };
 
   const descriptionProps = {
-    buttonHref,
+    href,
+    category,
     description,
-    productCategory,
-    productName,
-    buttonVariant: cardType === "large" ? "black" : "secondary",
-    buttonAriaLabel: `SEE ${productName} ${productCategory}`,
+    name,
+    variant: cardType === "large" ? "black" : "secondary",
+    ariaLabel: `SEE ${name} ${category}`,
   } as const;
 
   const cardContent = isLarge ? (
@@ -55,7 +55,7 @@ export const ProductBanner: FC<BannerProps & DescriptionProps> = ({
           >
             <source media={myTheme.media.desktop} srcSet={img.desktop} />
             <source media={myTheme.media.tablet} srcSet={img.tablet} />
-            <img ref={imgRef} src={img.mobile} alt="product-image" />
+            <img ref={imgRef} src={img.mobile} alt={`${name} product image`} />
           </Picture>
         </Card>
       )}
@@ -69,7 +69,7 @@ export const ProductBanner: FC<BannerProps & DescriptionProps> = ({
           >
             <source media={myTheme.media.desktop} srcSet={img.desktop} />
             <source media={myTheme.media.tablet} srcSet={img.tablet} />
-            <img ref={imgRef} src={img.mobile} alt="product-image" />
+            <img ref={imgRef} src={img.mobile} alt={`${name} product image`} />
           </Picture>
         )}
         {cardContent}
