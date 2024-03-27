@@ -4,7 +4,7 @@ import { StyledNavList as SNL } from "./NavList.styled";
 
 export const StyledNavList = SNL;
 
-const menuItems = [
+export const menuItems = [
   { label: "home", href: "/" },
   { label: "headphones", href: "/category/headphones" },
   { label: "speakers", href: "/category/speakers" },

@@ -2,11 +2,12 @@ import { FC, useEffect, useRef } from "react";
 import { StyledThankYou, ProductsWrapper } from "./ThankYou.styled";
 import confirmIcon from "../../assets/icon-order-confirmation.svg";
 import { Button } from "../../../../shared/Button";
-import { CartList, useCart } from "../../../Cart";
+import { CartList, useCart, returnVat, SHIPPING_PRICE } from "../../../Cart";
 import { createPortal } from "react-dom";
 import { Overlay } from "../../../../shared/Overlay";
 import { useNavigate } from "react-router-dom";
 import { Product } from "../../../Cart/context/types";
+import { priceWithComma } from "../../../../../utils";
 
 export const ThankYou: FC = () => {
   const navigate = useNavigate();
@@ -19,13 +20,19 @@ export const ThankYou: FC = () => {
       />
       <ThankYouComponent />
     </>,
-    document.getElementById("root")!
+    document.body
   );
 };
 
 const ThankYouComponent: FC = () => {
   const { productList, removeAll } = useCart();
   const productListSnapshot = useRef<Product[]>([]);
+
+  const totalProductsPrice = productList.reduce(
+    (accumulator, { price, quantity }) => accumulator + price * quantity,
+    0
+  );
+  const vatValue = returnVat(SHIPPING_PRICE + totalProductsPrice);
 
   useEffect(() => {
     window.scroll(0, 0);
@@ -51,7 +58,7 @@ const ThankYouComponent: FC = () => {
         </div>
         <div>
           <span>Grand Total</span>
-          <span>$ 5,446</span>
+          <span>$ {priceWithComma(totalProductsPrice + vatValue)}</span>
         </div>
       </ProductsWrapper>
       <Button as="link" href="/" text="BACK TO HOME" variant="primary" />

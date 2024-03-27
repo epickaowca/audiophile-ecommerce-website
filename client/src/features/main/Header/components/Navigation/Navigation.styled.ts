@@ -23,9 +23,6 @@ export const Nav = styled.nav<{ $isNavOpen: boolean; $headerHeight: string }>(
         display: none;
       }
 
-      @media ${media.tablet} {
-      }
-
       @media ${media.desktop} {
         overflow-y: unset;
         max-height: unset;

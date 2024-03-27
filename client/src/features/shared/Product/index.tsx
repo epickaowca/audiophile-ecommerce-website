@@ -27,8 +27,8 @@ export const Product: FC<CategoryProductProps> = ({
   const { img } = useImgPreload({ imgRef, largeImg, initialImg });
 
   const ProductDescriptionProps = {
-    buttonHref: detailCase ? undefined : `/details/${tag}`,
-    buttonAriaLabel: `SEE ${rest.name}`,
+    href: detailCase ? undefined : `/details/${tag}`,
+    ariaLabel: `SEE ${rest.name}`,
     ...rest,
   } as const;
 

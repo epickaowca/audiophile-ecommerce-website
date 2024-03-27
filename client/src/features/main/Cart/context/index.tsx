@@ -5,11 +5,12 @@ import { Product, ContextType, UpdateQuantityProps } from "./types";
 
 type CartProviderProps = {
   children?: ReactNode;
+  staticState?: ContextType;
 };
 
 const CART_PRODUCT_LIST = "CART_PRODUCT_LIST";
 
-const defaultState = {
+const defaultStateEmpty = {
   isCartOpen: false,
   productList: [],
   toggleCart: () => {},
@@ -18,13 +19,16 @@ const defaultState = {
   removeAll: () => {},
 };
 
-const Context = React.createContext<ContextType>(defaultState);
+const Context = React.createContext<ContextType>(defaultStateEmpty);
 
 export const useCart = () => {
   return useContext(Context);
 };
 
-export const CartProvider: FC<CartProviderProps> = ({ children }) => {
+export const CartProvider: FC<CartProviderProps> = ({
+  children,
+  staticState,
+}) => {
   const [{ isCartOpen, productList }, dispatch] = useReducer(reducer, {
     isCartOpen: false,
     productList: getProductListFromLocalStorage(),
@@ -55,6 +59,13 @@ export const CartProvider: FC<CartProviderProps> = ({ children }) => {
   };
 
   const updateQuantity = (payload: UpdateQuantityProps) => {
+    if (payload.quantity === 0) {
+      localStorage.setItem(
+        CART_PRODUCT_LIST,
+        JSON.stringify(productList.filter((e) => e.tag !== payload.tag))
+      );
+    }
+
     dispatch({
       type: ActionType.UPDATE_QUANTITY,
       payload,
@@ -69,20 +80,16 @@ export const CartProvider: FC<CartProviderProps> = ({ children }) => {
     });
   };
 
-  return (
-    <Context.Provider
-      value={{
-        isCartOpen,
-        productList,
-        toggleCart,
-        addProduct,
-        updateQuantity,
-        removeAll,
-      }}
-    >
-      {children}
-    </Context.Provider>
-  );
+  const value = staticState || {
+    isCartOpen,
+    productList,
+    toggleCart,
+    addProduct,
+    updateQuantity,
+    removeAll,
+  };
+
+  return <Context.Provider value={value}>{children}</Context.Provider>;
 };
 
 const getProductListFromLocalStorage = () => {

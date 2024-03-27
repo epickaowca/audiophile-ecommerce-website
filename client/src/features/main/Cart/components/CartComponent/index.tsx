@@ -8,12 +8,11 @@ import { useNavigate } from "react-router-dom";
 import { useCart } from "../../context";
 import { CartType } from "../../types";
 import { CloseBtn } from "../CloseBtn";
+import { SHIPPING_PRICE } from "../../constants";
 
 type CartComponentProps = {
   cartType: CartType;
 };
-
-const SHIPPING_PRICE = 50;
 
 export const CartComponent: FC<CartComponentProps> = ({ cartType }) => {
   const cartRef = useRef<HTMLDivElement>(null);

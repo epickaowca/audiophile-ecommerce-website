@@ -7,11 +7,15 @@ import { CartComponent } from "./components/CartComponent";
 import { CartType } from "./types";
 import { CartList as CL } from "./components/CartList";
 import { StyledCartProduct as SCP } from "./components/CartProduct";
+import { returnVat as RV } from "./utils";
+import { SHIPPING_PRICE as SP } from "./constants";
 
 export const CartList = CL;
 export const CartProvider = CP;
 export const useCart = UC;
 export const StyledCartProduct = SCP;
+export const returnVat = RV;
+export const SHIPPING_PRICE = SP;
 
 type CartProps = {
   cartType: CartType;

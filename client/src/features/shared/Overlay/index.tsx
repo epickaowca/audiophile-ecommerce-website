@@ -25,6 +25,6 @@ export const Overlay: FC<OverlayProps> = ({
       $cursorPointer={!!onClick}
       $displayOnDesktop={displayOnDesktop}
     />,
-    document.getElementById("root")!
+    document.body
   );
 };
