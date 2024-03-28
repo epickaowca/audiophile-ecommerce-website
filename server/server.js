@@ -1,6 +1,11 @@
 import express from "express";
 import cors from "cors";
 import { categories, details, gallery } from "./data.js";
+import path from "path";
+import { fileURLToPath } from "url";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const app = express();
 const PORT = process.env.PORT || 3002;
@@ -15,8 +20,6 @@ if (corsOptions == "*") {
 } else {
   app.use(cors(corsOptions));
 }
-
-app.use(express.static("public"));
 
 app.get("/category/:id", (req, res) => {
   const categoryArr = categories[req.params.id];
@@ -44,6 +47,9 @@ app.get("/gallery/:tagName", (req, res) => {
     res.status(404).send({ message: "product not found" });
   }
 });
+
+const correctPath = path.join(__dirname, "public");
+app.use("/public", express.static(correctPath));
 
 app.listen(PORT, () => {
   console.log(`server is running on ${PORT}`);
