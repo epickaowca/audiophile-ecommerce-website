@@ -1,10 +1,11 @@
 import axios, { AxiosRequestConfig } from "axios";
 
-export const SERVER_URL =
+const PATH = process.env.REACT_APP_BACKEND_SERVER_PATH || "";
+const SERVER_URL =
   process.env.REACT_APP_BACKEND_SERVER_URL || "http://localhost:3002";
 
 const api = axios.create({
-  baseURL: SERVER_URL,
+  baseURL: `${SERVER_URL}/${PATH}`,
 });
 
 export function makeRequest(
