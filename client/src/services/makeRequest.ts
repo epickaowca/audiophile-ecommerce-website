@@ -1,5 +1,7 @@
 import axios, { AxiosRequestConfig } from "axios";
-import { SERVER_URL } from "../constants";
+
+export const SERVER_URL =
+  process.env.REACT_APP_BACKEND_SERVER_URL || "http://localhost:3002";
 
 const api = axios.create({
   baseURL: SERVER_URL,

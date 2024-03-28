@@ -3,7 +3,7 @@ import cors from "cors";
 import { categories, details, gallery } from "./data.js";
 
 const app = express();
-const PORT = 3002;
+const PORT = process.env.PORT || 3002;
 const corsOrigin = process.env.CORS_ORIGIN || "http://localhost:3000";
 const corsOptions = {
   origin: corsOrigin,
