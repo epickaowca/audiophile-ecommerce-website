@@ -37,6 +37,7 @@ export const Anchor = styled.a<{ $isLargeImgLoaded: boolean }>(
         font-size: 1rem;
         margin-bottom: 10px;
         text-transform: uppercase;
+        font-weight: bold;
       }
 
       & > ${StyledButton} {

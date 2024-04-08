@@ -39,7 +39,7 @@ export const MainHeroSection: FC = () => {
         <img ref={imgRef} src={img.mobile} alt="hero-image" />
       </Picture>
       <ProductDescription
-        href="#XX99 Mark II"
+        href="/details/XX99-Mark-2"
         ariaLabel="SEE XX99 Mark II"
         isNew={true}
         name="XX99 Mark II"
