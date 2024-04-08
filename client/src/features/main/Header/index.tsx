@@ -21,7 +21,7 @@ export const Header: FC<HeaderProps> = React.memo(
   ({ transparentBg, displayHeadline }) => {
     const hamburgerBtn = useRef<HTMLButtonElement>(null);
     const cartBtn = useRef<HTMLButtonElement>(null);
-    const [isNavOpen, setIsNavOpen] = [false, (props: boolean) => {}];
+    const [isNavOpen, setIsNavOpen] = useState(false);
     const { toggleCart, isCartOpen } = useCart();
     const isOverlay = isNavOpen;
     const initialRender = useRef(true);
@@ -32,6 +32,7 @@ export const Header: FC<HeaderProps> = React.memo(
     };
 
     const btnHandler = (open: "cart" | "nav") => {
+      console.log("hi");
       if (isNavOpen || isCartOpen) {
         isNavOpen && closeNav();
         isCartOpen && toggleCart("close");
@@ -87,7 +88,7 @@ export const Header: FC<HeaderProps> = React.memo(
                 ref={cartBtn}
                 aria-label="Cart"
                 aria-controls="main-cart"
-                // aria-expanded={isCartOpen}
+                aria-expanded={isCartOpen}
                 onClick={() => btnHandler("cart")}
               >
                 <img src={cartIcon} alt="cartIcon" />

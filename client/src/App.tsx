@@ -1,6 +1,7 @@
 import { FC, Suspense, lazy, useEffect } from "react";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 import { Cart } from "./features/main/Cart";
+import { SpinLoader } from "./features/shared/SpinLoader";
 
 const Home = lazy(() =>
   import("./pages/Home").then((module) => {
@@ -51,7 +52,7 @@ const App: FC = () => {
 const RouteWrapper = () => {
   return (
     <>
-      <Suspense fallback={<div className="spin-loader"></div>}>
+      <Suspense fallback={<Loading />}>
         <Cart cartType="modal" />
         <Outlet />
       </Suspense>
@@ -59,4 +60,13 @@ const RouteWrapper = () => {
   );
 };
 
+const Loading: FC = () => {
+  useEffect(() => {
+    document.getElementById("root")!.ariaBusy = "true";
+    return () => {
+      document.getElementById("root")!.ariaBusy = "false";
+    };
+  }, []);
+  return <SpinLoader />;
+};
 export default App;

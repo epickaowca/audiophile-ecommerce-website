@@ -1,4 +1,4 @@
-import { FC, useEffect } from "react";
+import { FC, useEffect, useRef } from "react";
 import { Product, StyledProductsList } from "../../shared/Product";
 import { useParams } from "react-router-dom";
 import { useAsync } from "../../../hooks/useAsync";
@@ -17,7 +17,7 @@ export const ProductList: FC<ProductListProps> = ({ dataLoaded }) => {
     () => getCategoryList({ categoryName: id! }),
     [id]
   );
-
+  const sectionRef = useRef<HTMLElement>(null);
   useEffect(
     function onDataLoaded() {
       if (resData) {
@@ -27,31 +27,44 @@ export const ProductList: FC<ProductListProps> = ({ dataLoaded }) => {
     [resData]
   );
 
-  if (loading) {
-    return <SpinLoader heightInPx={450} />;
-  }
-  if (error) {
-    return <ErrorPage message="error loading products" />;
-  }
+  useEffect(
+    function onLoading() {
+      if (sectionRef.current) {
+        sectionRef.current.ariaBusy = loading.toString();
+      }
+    },
+    [loading]
+  );
 
   return (
-    <Wrapper>
-      {resData?.map((data) => {
-        const { _id, imgPreviewMicro, imgPreviewLarge, ...attrs } = data;
-        return (
-          <Product
-            key={data._id}
-            initialImg={imgPreviewMicro}
-            largeImg={imgPreviewLarge}
-            {...attrs}
-          />
-        );
-      })}
-    </Wrapper>
+    <Section
+      ref={sectionRef}
+      aria-label="list of products"
+      aria-live="polite"
+      aria-busy="false"
+    >
+      {loading ? (
+        <SpinLoader heightInPx={450} />
+      ) : error ? (
+        <ErrorPage message="error loading products" />
+      ) : (
+        resData?.map((data) => {
+          const { _id, imgPreviewMicro, imgPreviewLarge, ...attrs } = data;
+          return (
+            <Product
+              key={data._id}
+              initialImg={imgPreviewMicro}
+              largeImg={imgPreviewLarge}
+              {...attrs}
+            />
+          );
+        })
+      )}
+    </Section>
   );
 };
 
-const Wrapper = styled.div(({ theme }) => {
+const Section = styled.section(({ theme }) => {
   return css`
     padding: 60px 0;
     display: flex;

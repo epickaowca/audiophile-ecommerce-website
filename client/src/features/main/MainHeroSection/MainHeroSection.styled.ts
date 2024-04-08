@@ -2,7 +2,7 @@ import { StyledProductDescription } from "../../shared/ProductDescription";
 import { styled, css } from "styled-components";
 import { headerHeight } from "../Header";
 
-export const StyledMainHeroSection = styled.div(({ theme: { media } }) => {
+export const StyledMainHeroSection = styled.section(({ theme: { media } }) => {
   return css`
     --wrapper-height: 600px;
     --top-with-offset: calc(calc(${headerHeight} + 3px) * -1);

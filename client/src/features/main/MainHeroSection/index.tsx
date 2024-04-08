@@ -30,7 +30,7 @@ export const MainHeroSection: FC = () => {
   });
 
   return (
-    <StyledMainHeroSection>
+    <StyledMainHeroSection aria-label="hero section">
       <div className="bg"></div>
       <div className="mask"></div>
       <Picture $isLargeImgLoaded={img.isLargeImgLoaded}>

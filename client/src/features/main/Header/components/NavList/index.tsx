@@ -18,13 +18,12 @@ export const NavList: FC = () => {
       {menuItems.map(({ href, label }) => {
         const isActive = href === pathname;
         const attrs = {
-          role: "menuitem",
           className: isActive ? "active" : undefined,
           "aria-current": isActive ? ("page" as const) : undefined,
           to: href,
         };
         return (
-          <li key={label}>
+          <li key={label} role="menuitem">
             <Link {...attrs}>{label}</Link>
           </li>
         );

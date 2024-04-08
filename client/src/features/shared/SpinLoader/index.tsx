@@ -2,15 +2,19 @@ import { FC } from "react";
 import { styled, css } from "styled-components";
 
 type SpinLoaderProps = {
-  heightInPx: number;
+  heightInPx?: number;
 };
 
 export const SpinLoader: FC<SpinLoaderProps> = ({ heightInPx }) => {
-  return (
-    <Wrapper $heightInPx={heightInPx}>
-      <div aria-label="Loading..." className="spin-loader"></div>
-    </Wrapper>
-  );
+  if (heightInPx) {
+    return (
+      <Wrapper $heightInPx={heightInPx}>
+        <div aria-label="Loading..." className="spin-loader"></div>
+      </Wrapper>
+    );
+  } else {
+    return <div aria-label="Loading..." className="spin-loader"></div>;
+  }
 };
 
 const Wrapper = styled.div<{ $heightInPx: number }>(({ $heightInPx }) => {

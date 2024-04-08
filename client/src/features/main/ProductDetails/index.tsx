@@ -1,4 +1,4 @@
-import { FC, useEffect } from "react";
+import { FC, useEffect, useRef } from "react";
 import { Product } from "../../shared/Product";
 import { styled, css } from "styled-components";
 import { getProductDetails } from "./services/details";
@@ -17,6 +17,7 @@ export const ProductDetails: FC<ProductDetailsProps> = ({ dataLoaded }) => {
   const { error, loading, resData } = useAsync(() =>
     getProductDetails({ tagName: id! })
   );
+  const sectionRef = useRef<HTMLElement>(null);
 
   useEffect(
     function onDataLoaded() {
@@ -27,16 +28,27 @@ export const ProductDetails: FC<ProductDetailsProps> = ({ dataLoaded }) => {
     [resData]
   );
 
-  if (loading) {
-    return <SpinLoader heightInPx={450} />;
-  }
-  if (error) {
-    return <ErrorPage message="error loading product" />;
-  }
+  useEffect(
+    function onLoading() {
+      if (sectionRef.current) {
+        sectionRef.current.ariaBusy = loading.toString();
+      }
+    },
+    [loading]
+  );
 
   return (
-    <Wrapper>
-      {resData && (
+    <Section
+      ref={sectionRef}
+      aria-label="product details"
+      aria-live="polite"
+      aria-busy="false"
+    >
+      {loading ? (
+        <SpinLoader heightInPx={450} />
+      ) : error ? (
+        <ErrorPage message="error loading product" />
+      ) : resData ? (
         <>
           <Product
             initialImg={resData.imgProductMicro}
@@ -50,12 +62,14 @@ export const ProductDetails: FC<ProductDetailsProps> = ({ dataLoaded }) => {
           />
           <Info {...resData} />
         </>
+      ) : (
+        <></>
       )}
-    </Wrapper>
+    </Section>
   );
 };
 
-const Wrapper = styled.div(({ theme }) => {
+const Section = styled.section(({ theme }) => {
   return css`
     margin-top: 50px;
     @media ${theme.media.desktop} {

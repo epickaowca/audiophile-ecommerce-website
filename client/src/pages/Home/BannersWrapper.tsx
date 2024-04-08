@@ -58,7 +58,7 @@ const largeImgYx1 = {
 
 export const BannersWrapper: FC = () => {
   return (
-    <Wrapper>
+    <Wrapper aria-label="banner section">
       <ProductBanner
         initialImg={initialImgZx9}
         largeImg={largeImgZx9}
@@ -88,7 +88,7 @@ export const BannersWrapper: FC = () => {
   );
 };
 
-const Wrapper = styled.div(({ theme }) => {
+const Wrapper = styled.section(({ theme }) => {
   return css`
     display: flex;
     flex-direction: column;
