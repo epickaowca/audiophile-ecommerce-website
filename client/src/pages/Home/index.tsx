@@ -12,7 +12,6 @@ const Chunk = lazy(() =>
 
 export const Home: FC = () => {
   const [isCriticalResLoaded, setIsCriticalResLoaded] = useState(false);
-
   useEffect(() => {
     setIsCriticalResLoaded(true);
   }, []);

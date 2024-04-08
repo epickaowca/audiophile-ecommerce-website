@@ -8,7 +8,7 @@ type SpinLoaderProps = {
 export const SpinLoader: FC<SpinLoaderProps> = ({ heightInPx }) => {
   return (
     <Wrapper $heightInPx={heightInPx}>
-      <div aria-label="spin-loader" className="spin-loader"></div>
+      <div aria-label="Loading..." className="spin-loader"></div>
     </Wrapper>
   );
 };
