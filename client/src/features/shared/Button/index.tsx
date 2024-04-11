@@ -1,11 +1,11 @@
 import { FC, useRef } from "react";
 import arrowRightIcon from "./assets/icon-arrow-right.svg";
-import { StyledButton as SB } from "./Button.styled";
-import { ButtonProps, Variant as V } from "./types";
+import { StyledButton } from "./Button.styled";
+import { ButtonProps, Variant } from "./types";
 import { Link } from "react-router-dom";
 
-export type Variant = V;
-export const StyledButton = SB;
+export { StyledButton };
+export type { Variant };
 export const Button: FC<ButtonProps> = ({
   text,
   variant = "primary",

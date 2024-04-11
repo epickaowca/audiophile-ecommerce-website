@@ -5,7 +5,7 @@ import cartIcon from "./assets/icon-cart.svg";
 import hamburgerIcon from "./assets/icon-hamburger.svg";
 import { Overlay } from "../../shared/Overlay";
 import logo from "../../../assets/shared/logo.svg";
-import { NavList as NL } from "./components/NavList";
+import { NavList } from "./components/NavList";
 import { Headline } from "./components/Headline";
 import { useCart } from "../Cart";
 
@@ -14,7 +14,7 @@ type HeaderProps = {
   displayHeadline?: boolean;
 };
 
-export const NavList = NL;
+export { NavList };
 export const headerHeight = "91px";
 
 export const Header: FC<HeaderProps> = React.memo(

@@ -4,7 +4,6 @@ import facebook from "./assets/icon-facebook.svg";
 import instagram from "./assets/icon-instagram.svg";
 import twitter from "./assets/icon-twitter.svg";
 import { StyledFooter } from "./Footer.styled";
-
 import { NavList } from "../Header";
 
 export const Footer: FC = () => {
