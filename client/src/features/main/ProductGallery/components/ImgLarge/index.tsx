@@ -11,13 +11,17 @@ type ImgLargeProps = {
 
 export const ImgLarge: FC<ImgLargeProps> = ({ initialImg, largeImg }) => {
   const imgRef = useRef<HTMLImageElement>(null);
-  const { img } = useImgPreload({ imgRef, initialImg, largeImg });
+  const { desktop, isLargeImgLoaded, mobile, tablet } = useImgPreload({
+    imgRef,
+    initialImg,
+    largeImg,
+  });
 
   return (
-    <Picture $isLargeImgLoaded={img.isLargeImgLoaded}>
-      <source media={myTheme.media.desktop} srcSet={img.desktop} />
-      <source media={myTheme.media.tablet} srcSet={img.tablet} />
-      <img ref={imgRef} src={img.mobile} alt="gallery-img-3" />
+    <Picture $isLargeImgLoaded={isLargeImgLoaded}>
+      <source media={myTheme.media.desktop} srcSet={desktop} />
+      <source media={myTheme.media.tablet} srcSet={tablet} />
+      <img ref={imgRef} src={mobile} alt="gallery-img-3" />
     </Picture>
   );
 };

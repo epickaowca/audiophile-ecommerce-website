@@ -1,5 +1,5 @@
 import React, { FC, useState, useRef, useEffect } from "react";
-import { Navigation, navId } from "./components/Navigation";
+import { StyledNavigation, navId } from "./components/Navigation";
 import { StyledHeader, Wrapper } from "./Header.styled";
 import cartIcon from "./assets/icon-cart.svg";
 import hamburgerIcon from "./assets/icon-hamburger.svg";
@@ -78,7 +78,7 @@ export const Header: FC<HeaderProps> = React.memo(
                 src={logo}
               />
             </div>
-            <Navigation
+            <StyledNavigation
               headerHeight={headerHeight}
               closeNav={closeNav}
               isNavOpen={isNavOpen}

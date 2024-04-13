@@ -1,5 +1,10 @@
 import { createGlobalStyle, css } from "styled-components";
 
+export const media = {
+  tablet: `(min-width: 768px)`,
+  desktop: `(min-width: 1024px)`,
+};
+
 export const myTheme = {
   orangeMedium: "#D87D4A",
   orangeLight: "#FBAF85",
@@ -8,10 +13,7 @@ export const myTheme = {
   grayLighter: "#FAFAFA",
   grayDarkText: "rgba(0,0,0,.5)",
   overlayZIndex: 99,
-  media: {
-    tablet: `(min-width: 768px)`,
-    desktop: `(min-width: 1024px)`,
-  },
+  media,
 } as const;
 
 type MyTheme = typeof myTheme;

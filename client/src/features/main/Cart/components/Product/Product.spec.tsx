@@ -1,5 +1,5 @@
 import { screen } from "@testing-library/react";
-import { CartProduct } from "./index";
+import { Product } from "./index";
 import { render } from "../../../../../../tests/render";
 import { stateWithProductsTest } from "../../../../../../tests/Mocks/cartProvider";
 import { priceWithComma } from "../../../../../utils";
@@ -8,7 +8,7 @@ const product = stateWithProductsTest.productList[0];
 
 it("should render product", async () => {
   render(
-    <CartProduct
+    <Product
       cartType="static"
       {...product}
       setQuantity={(quantity: number) => {}}

@@ -1,67 +1,68 @@
 import { styled, css } from "styled-components";
-import { StyledCartProduct } from "../../../Cart";
+import { StyledProductList, StyledProduct } from "../../../Cart";
 
-export const StyledThankYou = styled.div(({ theme }) => {
-  return css`
-    max-width: 560px;
-    position: absolute;
-    background-color: white;
-    left: 50%;
-    transform: translateX(-50%);
-    top: 15%;
-    z-index: ${theme.overlayZIndex + 1};
-    width: 90%;
-    border-radius: 10px;
-    overflow: hidden;
-    padding: 25px;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
+export const StyledThankYou = styled.div<{ $className: string }>(
+  ({ theme, $className }) => {
+    return css`
+      width: 95%;
+      max-width: 560px;
+      background-color: white;
+      position: absolute;
+      left: 50%;
+      top: 15%;
+      transform: translateX(-50%);
+      z-index: ${theme.overlayZIndex + 1};
+      border-radius: 10px;
+      overflow: hidden;
+      padding: 25px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
 
-    & > img {
-      width: 50px;
-    }
+      .${$className} {
+        &_icon {
+          width: 50px;
+        }
 
-    & > h2 {
-      text-transform: uppercase;
-    }
-    & > p {
-      font-weight: 500;
-      color: ${theme.grayDarkText};
-    }
-  `;
-});
+        &_title {
+          text-transform: uppercase;
+        }
 
-export const ProductsWrapper = styled.div(({ theme }) => {
-  return css`
-    border-radius: 10px;
-    overflow: hidden;
+        &_description {
+          font-weight: 500;
+          color: ${theme.grayDarkText};
+        }
 
-    & > div {
-      padding: 10px;
-      &:nth-child(1) {
-        padding-right: 20px;
-        background-color: ${theme.grayLight};
-      }
-      &:nth-child(2) {
-        background-color: black;
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-        padding: 30px;
-        & > span {
-          &:nth-child(1) {
-            color: rgba(255, 255, 255, 0.5);
-            text-transform: uppercase;
+        &_grandTotal {
+          background-color: black;
+          display: flex;
+          flex-direction: column;
+          gap: 10px;
+          padding: 30px;
+          & > span {
+            &:nth-child(1) {
+              color: rgba(255, 255, 255, 0.5);
+              text-transform: uppercase;
+            }
+            &:nth-child(2) {
+              color: white;
+              font-weight: bold;
+            }
           }
-          &:nth-child(2) {
-            color: white;
-            font-weight: bold;
-          }
+        }
+
+        &_summaryWrapper {
+          border-radius: 10px;
+          overflow: hidden;
         }
       }
 
-      & ${StyledCartProduct} {
+      ${StyledProductList} {
+        padding: 30px;
+        background-color: ${theme.grayLight};
+      }
+
+      ${StyledProduct} {
         & > .product {
           gap: 10px;
           & > .description {
@@ -73,22 +74,27 @@ export const ProductsWrapper = styled.div(({ theme }) => {
           }
         }
       }
-    }
 
-    @media ${theme.media.tablet} {
-      display: flex;
-      width: 100%;
+      @media ${theme.media.tablet} {
+        .${$className} {
+          &_summaryWrapper {
+            display: flex;
+            width: 100%;
 
-      & > div {
-        &:nth-child(1) {
-          flex: 2;
-        }
-        &:nth-child(2) {
-          flex: 1;
-          display: flex;
-          justify-content: center;
+            & > div {
+              &:nth-child(1) {
+                flex: 2;
+              }
+            }
+          }
+
+          &_grandTotal {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+          }
         }
       }
-    }
-  `;
-});
+    `;
+  }
+);

@@ -19,6 +19,7 @@ export const emptyStateTest = {
 };
 
 export const stateWithProductsTest = {
+  total: 293,
   isCartOpen: false,
   productList: [
     {

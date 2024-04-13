@@ -1,98 +1,106 @@
 import { styled, css } from "styled-components";
 
-export const StyledAudioGear = styled.div<{ $isLargeImgLoaded: boolean }>(
-  ({ theme, $isLargeImgLoaded }) => {
-    return css`
-      width: 90%;
-      margin: 90px auto;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 40px;
+export const StyledAudioGear = styled.div<{
+  $isLargeImgLoaded: boolean;
+  $className: string;
+}>(({ theme, $isLargeImgLoaded, $className }) => {
+  return css`
+    width: 90%;
+    margin: 90px auto;
 
-      & > picture {
+    .${$className} {
+      &_picture {
         filter: ${$isLargeImgLoaded ? "none" : "blur(3px)"};
         width: 100%;
         height: 300px;
         border-radius: 7px;
+        overflow: hidden;
+        margin-bottom: 40px;
         display: flex;
         justify-content: center;
         align-items: flex-start;
-        overflow: hidden;
-
-        & > img {
-          min-width: 327px;
-          width: 100%;
-          min-height: 300px;
-        }
       }
 
-      @media ${theme.media.tablet} {
-        gap: 70px;
-        max-width: 1200px;
-        margin: 100px auto;
+      &_img {
+        min-width: 327px;
+        width: 100%;
+        min-height: 300px;
       }
 
-      @media ${theme.media.desktop} {
-        gap: 25px;
-        flex-direction: row-reverse;
-        justify-content: space-between;
-        align-items: center;
-
-        & > picture {
-          flex-grow: 1;
-          max-width: 540px;
-          height: 540px;
-
-          & > img {
-            min-width: 540px;
-            min-height: 540px;
-          }
-        }
+      &_textWrapper {
+        margin: auto;
+        max-width: 420px;
+        text-align: center;
       }
-    `;
-  }
-);
 
-export const Description = styled.div(
-  ({ theme: { media, orangeMedium, grayDarkText } }) => {
-    return css`
-      text-align: center;
-      max-width: 420px;
-
-      & > h1 {
+      &_title {
         text-transform: uppercase;
         margin-bottom: 25px;
         font-size: 1.75rem;
 
         & > span {
-          color: ${orangeMedium};
+          color: ${theme.orangeMedium};
         }
       }
 
-      & > p {
-        color: ${grayDarkText};
-        font-weight: 500;
+      &_description {
+        color: ${theme.grayDarkText};
         font-size: 0.95rem;
+        font-weight: 500;
         line-height: 1.6rem;
       }
+    }
 
-      @media ${media.tablet} {
-        max-width: 573px;
+    @media ${theme.media.tablet} {
+      max-width: 1200px;
+      margin: 100px auto;
 
-        & > h1 {
+      .${$className} {
+        &_picture {
+          margin-bottom: 70px;
+        }
+
+        &_textWrapper {
+          max-width: 573px;
+        }
+
+        &_title {
           font-size: 2.5rem;
         }
       }
+    }
 
-      @media ${media.desktop} {
-        text-align: left;
-        max-width: 450px;
-        flex-grow: 1;
-        & > h1 {
+    @media ${theme.media.desktop} {
+      display: flex;
+      flex-direction: row-reverse;
+      justify-content: space-between;
+      align-items: center;
+      gap: 25px;
+
+      .${$className} {
+        &_picture {
+          flex-grow: 1;
+          max-width: 540px;
+          height: 540px;
+          margin-bottom: 0;
+        }
+
+        &_img {
+          min-width: 540px;
+          min-height: 540px;
+        }
+
+        &_textWrapper {
+          margin: 0;
+          text-align: left;
+          max-width: 450px;
+          flex-grow: 1;
+        }
+
+        &_title {
           margin-bottom: 50px;
         }
       }
-    `;
-  }
-);
+    }
+  `;
+});

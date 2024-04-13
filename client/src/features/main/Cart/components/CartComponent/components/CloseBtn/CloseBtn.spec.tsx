@@ -1,7 +1,7 @@
 import { screen } from "@testing-library/react";
 import { CloseBtn } from "./index";
-import { render } from "../../../../../../tests/render";
-import { stateWithProductsTest } from "../../../../../../tests/Mocks/cartProvider";
+import { render } from "../../../../../../../../tests/render";
+import { stateWithProductsTest } from "../../../../../../../../tests/Mocks/cartProvider";
 
 it("should render close icon", async () => {
   render(<CloseBtn />);

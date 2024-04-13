@@ -1,25 +1,25 @@
 import { FC } from "react";
 import { styled, css } from "styled-components";
-import { CartProduct } from "../CartProduct";
+import { Product } from "../Product";
 import { CartType } from "../../types";
 import { useCart } from "../../context";
-import { Product } from "../../context/types";
+import { Product as ProductType } from "../../context/types";
 
-export type CartListProps = {
+type CartListProps = {
   cartType: CartType;
-  customProductList?: Product[];
+  customProductList?: ProductType[];
 };
 
-export const CartList: FC<CartListProps> = ({
+export const ProductList: FC<CartListProps> = ({
   cartType,
   customProductList,
 }) => {
   const { updateQuantity, productList } = useCart();
   const myProductList = customProductList || productList;
   return (
-    <StyledCartList>
+    <StyledProductList>
       {myProductList.map((product) => (
-        <CartProduct
+        <Product
           {...product}
           key={product.tag}
           cartType={cartType}
@@ -31,11 +31,11 @@ export const CartList: FC<CartListProps> = ({
           }
         />
       ))}
-    </StyledCartList>
+    </StyledProductList>
   );
 };
 
-const StyledCartList = styled.div(() => {
+export const StyledProductList = styled.div(() => {
   return css`
     display: flex;
     flex-direction: column;

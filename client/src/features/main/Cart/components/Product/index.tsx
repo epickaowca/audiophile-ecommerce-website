@@ -1,8 +1,10 @@
 import { FC } from "react";
-import { StyledCartProduct as SCP } from "./CartProduct.styled";
+import { StyledProduct } from "./Product.styled";
 import { priceWithComma } from "../../../../../utils";
 import { QuantitySelector } from "../../../../shared/QuantitySelector";
 import { CartType } from "../../types";
+
+export { StyledProduct };
 
 type CartProductProps = {
   name: string;
@@ -13,9 +15,7 @@ type CartProductProps = {
   cartType: CartType;
 };
 
-export const StyledCartProduct = SCP;
-
-export const CartProduct: FC<CartProductProps> = ({
+export const Product: FC<CartProductProps> = ({
   imgSrc,
   price,
   name,
@@ -23,13 +23,17 @@ export const CartProduct: FC<CartProductProps> = ({
   setQuantity,
   cartType,
 }) => {
+  const { styledComponentId: CartProduct } = StyledProduct;
+
   return (
-    <StyledCartProduct>
-      <div className="product">
-        <img src={imgSrc} alt={name} />
-        <div className="description">
-          <h3>{name}</h3>
-          <span>$ {priceWithComma(price * quantity)}</span>
+    <StyledProduct $className={CartProduct}>
+      <div className={`${CartProduct}_container`}>
+        <img src={imgSrc} alt={name} className={`${CartProduct}_img`} />
+        <div>
+          <h3 className={`${CartProduct}_name`}>{name}</h3>
+          <span className={`${CartProduct}_price`}>
+            $ {priceWithComma(price * quantity)}
+          </span>
         </div>
       </div>
       {cartType === "static" ? (
@@ -44,6 +48,6 @@ export const CartProduct: FC<CartProductProps> = ({
           ariaLabel={`${name} product quantity`}
         />
       )}
-    </StyledCartProduct>
+    </StyledProduct>
   );
 };

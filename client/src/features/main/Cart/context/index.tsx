@@ -1,16 +1,18 @@
-import React, { FC, useContext, useReducer, ReactNode } from "react";
+import React, { FC, useContext, useReducer, ReactNode, useEffect } from "react";
 import { reducer, ActionType } from "./reducer";
-import { isProductAlreadyAdded } from "../utils";
+import {
+  isProductAlreadyAdded,
+  getProductListFromLocalStorage,
+} from "../utils";
 import { Product, ContextType, UpdateQuantityProps } from "./types";
-
+import { LOCAL_STORAGE_PRODUCT_LIST } from "../constants";
 type CartProviderProps = {
   children?: ReactNode;
   staticState?: ContextType;
 };
 
-const CART_PRODUCT_LIST = "CART_PRODUCT_LIST";
-
 const defaultStateEmpty = {
+  total: 0,
   isCartOpen: false,
   productList: [],
   toggleCart: () => {},
@@ -29,9 +31,10 @@ export const CartProvider: FC<CartProviderProps> = ({
   children,
   staticState,
 }) => {
-  const [{ isCartOpen, productList }, dispatch] = useReducer(reducer, {
+  const [{ isCartOpen, productList, total }, dispatch] = useReducer(reducer, {
     isCartOpen: false,
     productList: getProductListFromLocalStorage(),
+    total: 0,
   });
 
   const toggleCart = (props: "open" | "close") => {
@@ -46,7 +49,7 @@ export const CartProvider: FC<CartProviderProps> = ({
   const addProduct = (payload: Product) => {
     if (!isProductAlreadyAdded(payload, productList)) {
       localStorage.setItem(
-        CART_PRODUCT_LIST,
+        LOCAL_STORAGE_PRODUCT_LIST,
         JSON.stringify([...productList, payload])
       );
     }
@@ -61,7 +64,7 @@ export const CartProvider: FC<CartProviderProps> = ({
   const updateQuantity = (payload: UpdateQuantityProps) => {
     if (payload.quantity === 0) {
       localStorage.setItem(
-        CART_PRODUCT_LIST,
+        LOCAL_STORAGE_PRODUCT_LIST,
         JSON.stringify(productList.filter((e) => e.tag !== payload.tag))
       );
     }
@@ -73,7 +76,7 @@ export const CartProvider: FC<CartProviderProps> = ({
   };
 
   const removeAll = () => {
-    localStorage.setItem(CART_PRODUCT_LIST, JSON.stringify([]));
+    localStorage.setItem(LOCAL_STORAGE_PRODUCT_LIST, JSON.stringify([]));
     dispatch({
       type: ActionType.REMOVE_ALL,
       payload: {},
@@ -81,6 +84,7 @@ export const CartProvider: FC<CartProviderProps> = ({
   };
 
   const value = staticState || {
+    total,
     isCartOpen,
     productList,
     toggleCart,
@@ -90,12 +94,4 @@ export const CartProvider: FC<CartProviderProps> = ({
   };
 
   return <Context.Provider value={value}>{children}</Context.Provider>;
-};
-
-const getProductListFromLocalStorage = () => {
-  const productListRaw = localStorage.getItem(CART_PRODUCT_LIST);
-  if (productListRaw) {
-    return JSON.parse(productListRaw);
-  }
-  return [];
 };

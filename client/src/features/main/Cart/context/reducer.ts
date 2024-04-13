@@ -1,10 +1,11 @@
 import { Product, UpdateQuantityProps } from "./types";
-import { isProductAlreadyAdded } from "../utils";
+import { isProductAlreadyAdded, getTotal } from "../utils";
 
 export function reducer(
   state: {
     isCartOpen: boolean;
     productList: Product[];
+    total: number;
   },
   { type, payload }: Action
 ) {
@@ -16,12 +17,15 @@ export function reducer(
       };
 
     case ActionType.ADD_PRODUCT: {
+      const productList = isProductAlreadyAdded(payload, state.productList)
+        ? state.productList
+        : [...state.productList, payload];
+      const total = getTotal(productList);
       return {
         ...state,
         isCartOpen: true,
-        productList: isProductAlreadyAdded(payload, state.productList)
-          ? state.productList
-          : [...state.productList, payload],
+        productList,
+        total,
       };
     }
 
@@ -38,16 +42,18 @@ export function reducer(
           return product;
         })
         .filter((product) => product) as Product[];
-
+      const total = getTotal(productList);
       return {
         ...state,
         productList,
+        total,
       };
     }
     case ActionType.REMOVE_ALL: {
       return {
         ...state,
         productList: [],
+        total: 0,
       };
     }
 

@@ -1,21 +1,21 @@
 import { FC } from "react";
 import { createPortal } from "react-dom";
 import { CartProvider, useCart } from "./context";
-import { Wrapper } from "./Cart.styled";
 import { Overlay } from "../../shared/Overlay";
 import { CartComponent } from "./components/CartComponent";
 import { CartType } from "./types";
-import { CartList } from "./components/CartList";
-import { StyledCartProduct } from "./components/CartProduct";
-import { returnVat } from "./utils";
+import { ProductList, StyledProductList } from "./components/ProductList";
+import { StyledProduct } from "./components/Product";
 import { SHIPPING_PRICE } from "./constants";
+import { styled, css } from "styled-components";
+import { headerHeight } from "../Header";
 
 export {
-  CartList,
+  ProductList,
+  StyledProductList,
   CartProvider,
   useCart,
-  StyledCartProduct,
-  returnVat,
+  StyledProduct,
   SHIPPING_PRICE,
 };
 
@@ -42,3 +42,30 @@ export const Cart: FC<CartProps> = ({ cartType }) => {
 
   return <CartComponent cartType="static" />;
 };
+
+export const Wrapper = styled.div<{ $isCartOpen: boolean }>(
+  ({ theme, $isCartOpen }) => {
+    return css`
+      z-index: ${$isCartOpen ? theme.overlayZIndex + 1 : "initial"};
+      position: absolute;
+      left: 50%;
+      top: ${`calc(${headerHeight} + 30px)`};
+      transform: translateX(-50%);
+      width: 90%;
+      height: 0;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+
+      @media ${theme.media.tablet} {
+        justify-content: flex-end;
+      }
+
+      @media ${theme.media.desktop} {
+        padding: 0 50px;
+        width: 100%;
+        max-width: 1400px;
+      }
+    `;
+  }
+);

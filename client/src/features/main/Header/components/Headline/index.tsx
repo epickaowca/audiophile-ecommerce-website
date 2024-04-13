@@ -4,34 +4,47 @@ import { useParams } from "react-router-dom";
 
 export const Headline: FC = () => {
   const { id } = useParams();
+  const { styledComponentId: Headline } = StyledHeadline;
+
   return (
-    <Wrapper>
-      <h1>{id}</h1>
-    </Wrapper>
+    <StyledHeadline $className={Headline}>
+      <h1 className={`${Headline}_title`}>{id}</h1>
+    </StyledHeadline>
   );
 };
 
-const Wrapper = styled.div(({ theme }) => {
-  return css`
-    width: 100%;
-    background-color: #000;
-    height: 140px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-top: 1px solid rgba(255, 255, 255, 0.15);
+const StyledHeadline = styled.div<{ $className: string }>(
+  ({
+    $className,
+    theme: {
+      media: { tablet },
+    },
+  }) => {
+    return css`
+      width: 100%;
+      height: 140px;
+      display: grid;
+      place-items: center;
+      background-color: #000;
+      border-top: 1px solid rgba(255, 255, 255, 0.15);
 
-    & > h1 {
-      color: white;
-      text-transform: uppercase;
-      font-size: 1.8rem;
-    }
-
-    @media ${theme.media.tablet} {
-      height: 220px;
-      & > h1 {
-        font-size: 2.5rem;
+      .${$className} {
+        &_title {
+          color: white;
+          text-transform: uppercase;
+          font-size: 1.8rem;
+        }
       }
-    }
-  `;
-});
+
+      @media ${tablet} {
+        height: 220px;
+
+        .${$className} {
+          &_title {
+            font-size: 2.5rem;
+          }
+        }
+      }
+    `;
+  }
+);

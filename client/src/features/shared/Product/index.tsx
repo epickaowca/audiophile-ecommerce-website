@@ -24,7 +24,11 @@ export const Product: FC<CategoryProductProps> = ({
   ...rest
 }) => {
   const imgRef = useRef<HTMLImageElement>(null);
-  const { img } = useImgPreload({ imgRef, largeImg, initialImg });
+  const { desktop, isLargeImgLoaded, mobile, tablet } = useImgPreload({
+    imgRef,
+    largeImg,
+    initialImg,
+  });
 
   const ProductDescriptionProps = {
     href: detailCase ? undefined : `/details/${tag}`,
@@ -35,13 +39,9 @@ export const Product: FC<CategoryProductProps> = ({
   return (
     <StyledProductsList $detailCase={!!detailCase}>
       <picture>
-        <source media={myTheme.media.desktop} srcSet={img.desktop} />
-        <source media={myTheme.media.tablet} srcSet={img.tablet} />
-        <img
-          ref={imgRef}
-          src={img.mobile}
-          alt={`${rest.name} ${rest.category}`}
-        />
+        <source media={myTheme.media.desktop} srcSet={desktop} />
+        <source media={myTheme.media.tablet} srcSet={tablet} />
+        <img ref={imgRef} src={mobile} alt={`${rest.name} ${rest.category}`} />
       </picture>
       <div className="description-wrapper">
         <ProductDescription {...ProductDescriptionProps} />

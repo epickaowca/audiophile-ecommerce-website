@@ -21,7 +21,11 @@ export const ProductBanner: FC<BannerProps & DescriptionProps> = ({
   const isDivided = cardType === "divided";
   const isLarge = cardType === "large";
   const imgRef = useRef<HTMLImageElement>(null);
-  const { img } = useImgPreload({ largeImg, initialImg, imgRef });
+  const { desktop, isLargeImgLoaded, mobile, tablet } = useImgPreload({
+    largeImg,
+    initialImg,
+    imgRef,
+  });
 
   const cardContentProps = {
     href,
@@ -51,11 +55,11 @@ export const ProductBanner: FC<BannerProps & DescriptionProps> = ({
           <Picture
             isFullBg={!isLarge}
             cardType={cardType}
-            isImgLoaded={img.isLargeImgLoaded}
+            isImgLoaded={isLargeImgLoaded}
           >
-            <source media={myTheme.media.desktop} srcSet={img.desktop} />
-            <source media={myTheme.media.tablet} srcSet={img.tablet} />
-            <img ref={imgRef} src={img.mobile} alt={`${name} product image`} />
+            <source media={myTheme.media.desktop} srcSet={desktop} />
+            <source media={myTheme.media.tablet} srcSet={tablet} />
+            <img ref={imgRef} src={mobile} alt={`${name} product image`} />
           </Picture>
         </Card>
       )}
@@ -65,11 +69,11 @@ export const ProductBanner: FC<BannerProps & DescriptionProps> = ({
           <Picture
             isFullBg={!isLarge}
             cardType={cardType}
-            isImgLoaded={img.isLargeImgLoaded}
+            isImgLoaded={isLargeImgLoaded}
           >
-            <source media={myTheme.media.desktop} srcSet={img.desktop} />
-            <source media={myTheme.media.tablet} srcSet={img.tablet} />
-            <img ref={imgRef} src={img.mobile} alt={`${name} product image`} />
+            <source media={myTheme.media.desktop} srcSet={desktop} />
+            <source media={myTheme.media.tablet} srcSet={tablet} />
+            <img ref={imgRef} src={mobile} alt={`${name} product image`} />
           </Picture>
         )}
         {cardContent}

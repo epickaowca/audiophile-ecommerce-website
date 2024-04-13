@@ -23,7 +23,7 @@ export const Product: FC<ProductProps> = ({
 }) => {
   const imgRef = useRef<HTMLImageElement>(null);
   const ref = useRef<HTMLAnchorElement>(null);
-  const { img } = useImgPreload({
+  const { isLargeImgLoaded, mobile } = useImgPreload({
     imgRef,
     initialImg,
     largeImg,
@@ -38,8 +38,8 @@ export const Product: FC<ProductProps> = ({
   const attrs = { role: navigationCase ? "menuitem" : undefined, ref, href };
 
   const AnchorComponent = (
-    <Anchor {...attrs} $isLargeImgLoaded={img.isLargeImgLoaded}>
-      <img ref={imgRef} src={img.mobile} alt={productName} />
+    <Anchor {...attrs} $isLargeImgLoaded={isLargeImgLoaded}>
+      <img ref={imgRef} src={mobile} alt={productName} />
       <span className="product-name">{productName}</span>
       <Button as="div" text="SHOP" variant="noBackground" />
     </Anchor>

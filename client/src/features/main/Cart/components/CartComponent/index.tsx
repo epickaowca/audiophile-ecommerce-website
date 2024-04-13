@@ -1,89 +1,57 @@
 import { FC, useEffect, useRef } from "react";
 import { Button } from "../../../../shared/Button";
 import { StyledCart } from "./CartComponent.styled";
-import { PriceDisplay } from "../PriceDisplay";
-import { returnVat } from "../../utils";
-import { CartList } from "../CartList";
+import { Price } from "./components/Price";
+import { AdditionalPricingDetails } from "./components/AdditionalPricingDetails";
+import { ProductList } from "../ProductList";
 import { useNavigate } from "react-router-dom";
 import { useCart } from "../../context";
 import { CartType } from "../../types";
-import { CloseBtn } from "../CloseBtn";
-import { SHIPPING_PRICE } from "../../constants";
+import { CloseBtn } from "./components/CloseBtn";
+import { useEscapeHandler } from "../../../../../hooks/useEscape";
 
 type CartComponentProps = {
   cartType: CartType;
 };
 
 export const CartComponent: FC<CartComponentProps> = ({ cartType }) => {
-  const cartRef = useRef<HTMLDivElement>(null);
-  const { removeAll, toggleCart, productList } = useCart();
+  const ref = useRef<HTMLDivElement>(null);
+  const { removeAll, toggleCart, productList, total } = useCart();
   const navigate = useNavigate();
+
   const isStatic = cartType === "static";
-  const totalProductsPrice = productList.reduce(
-    (accumulator, { price, quantity }) => accumulator + price * quantity,
-    0
-  );
-  const vatValue = returnVat(SHIPPING_PRICE + totalProductsPrice);
+  const { styledComponentId: Cart } = StyledCart;
 
-  const btnProps = {
-    text: isStatic ? "CONTINUE & PAY" : "CHECKOUT",
-    variant: "primary",
-    as: "button",
-    type: isStatic ? "submit" : undefined,
-    onClick: isStatic
-      ? undefined
-      : () => {
-          navigate("/checkout");
-          toggleCart("close");
-        },
-    ariaLabel: isStatic ? undefined : "go to checkout",
-  } as const;
-
+  useEscapeHandler({ ref, onEscape: () => toggleCart("close") });
   useEffect(() => {
-    if (!cartRef.current || cartType !== "modal") return;
-
-    const onEscapeHandler = (e: KeyboardEvent) => {
-      e.key === "Escape" && toggleCart("close");
-    };
-
-    cartRef.current.focus();
-    cartRef.current.addEventListener("keydown", onEscapeHandler);
-    return () => {
-      cartRef.current?.removeEventListener("keydown", onEscapeHandler);
-    };
+    ref.current?.focus();
   }, []);
 
-  const idAttr = {
-    id: isStatic ? undefined : "main-cart",
-  };
-
   return (
-    <StyledCart {...idAttr} ref={cartRef}>
-      <CloseBtn />
+    <StyledCart
+      $className={Cart}
+      id={isStatic ? undefined : "main-cart"}
+      ref={ref}
+    >
+      {!isStatic && <CloseBtn />}
       {productList.length ? (
         <>
           <div className="heading">
             <h2>{isStatic ? "summary" : `cart (${productList.length})`}</h2>
             {!isStatic && <button onClick={removeAll}>Remove all</button>}
           </div>
-          <CartList cartType={cartType} />
-          <div className="price-list">
-            <PriceDisplay name="total" price={totalProductsPrice} />
-            {isStatic && (
-              <>
-                <PriceDisplay name="shipping" price={SHIPPING_PRICE} />
-                <PriceDisplay name="vat" price={vatValue} />
-              </>
-            )}
-          </div>
-          {isStatic && (
-            <PriceDisplay
-              name="grand total"
-              price={vatValue + totalProductsPrice + SHIPPING_PRICE}
-              priceColor="orange"
-            />
-          )}
-          <Button {...btnProps} />
+          <ProductList cartType={cartType} />
+          <Price name="total" price={total} />
+          {isStatic && <AdditionalPricingDetails />}
+          <Button
+            {...btnProps[isStatic ? "static" : "cart"]}
+            variant="primary"
+            as="button"
+            onClick={() => {
+              navigate("/checkout");
+              toggleCart("close");
+            }}
+          />
         </>
       ) : (
         <h1 className="empty-h1">Your cart is empty</h1>
@@ -91,3 +59,15 @@ export const CartComponent: FC<CartComponentProps> = ({ cartType }) => {
     </StyledCart>
   );
 };
+
+const btnProps = {
+  static: {
+    text: "CONTINUE & PAY",
+    type: "submit",
+  },
+  cart: {
+    text: "CHECKOUT",
+    type: "button",
+    ariaLabel: "go to checkout",
+  },
+} as const;

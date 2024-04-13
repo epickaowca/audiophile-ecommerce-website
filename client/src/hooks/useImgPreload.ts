@@ -59,5 +59,6 @@ export const useImgPreload = ({
     }
   }, []);
 
-  return { img };
+  const { isLargeImgLoading, ...state } = img;
+  return state;
 };

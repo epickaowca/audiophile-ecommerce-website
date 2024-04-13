@@ -23,7 +23,7 @@ const largeImg = {
 
 export const MainHeroSection: FC = () => {
   const imgRef = useRef<HTMLImageElement>(null);
-  const { img } = useImgPreload({
+  const { desktop, isLargeImgLoaded, mobile, tablet } = useImgPreload({
     initialImg,
     largeImg,
     imgRef,
@@ -33,10 +33,10 @@ export const MainHeroSection: FC = () => {
     <StyledMainHeroSection aria-label="hero section">
       <div className="bg"></div>
       <div className="mask"></div>
-      <Picture $isLargeImgLoaded={img.isLargeImgLoaded}>
-        <source media={myTheme.media.desktop} srcSet={img.desktop} />
-        <source media={myTheme.media.tablet} srcSet={img.tablet} />
-        <img ref={imgRef} src={img.mobile} alt="hero-image" />
+      <Picture $isLargeImgLoaded={isLargeImgLoaded}>
+        <source media={myTheme.media.desktop} srcSet={desktop} />
+        <source media={myTheme.media.tablet} srcSet={tablet} />
+        <img ref={imgRef} src={mobile} alt="hero-image" />
       </Picture>
       <ProductDescription
         href="/details/XX99-Mark-2"

@@ -48,6 +48,7 @@ app.get("/gallery/:tagName", (req, res) => {
   }
 });
 
+// app.use(express.static("public"));
 const correctPath = path.join(__dirname, "public");
 app.use("/public", express.static(correctPath));
 
