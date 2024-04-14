@@ -1,5 +1,9 @@
 import { Product, UpdateQuantityProps } from "./types";
-import { isProductAlreadyAdded, getTotal } from "../utils";
+import {
+  isProductAlreadyAdded,
+  getTotal,
+  getQuantityUpdatedList,
+} from "./utils";
 
 export function reducer(
   state: {
@@ -21,6 +25,7 @@ export function reducer(
         ? state.productList
         : [...state.productList, payload];
       const total = getTotal(productList);
+
       return {
         ...state,
         isCartOpen: true,
@@ -30,19 +35,9 @@ export function reducer(
     }
 
     case ActionType.UPDATE_QUANTITY: {
-      const productList = state.productList
-        .map((product) => {
-          const isTagMatch = product.tag === payload.tag;
-          if (isTagMatch) {
-            if (payload.quantity === 0) {
-              return undefined;
-            }
-            return { ...product, quantity: payload.quantity };
-          }
-          return product;
-        })
-        .filter((product) => product) as Product[];
+      const productList = getQuantityUpdatedList(state.productList, payload);
       const total = getTotal(productList);
+
       return {
         ...state,
         productList,

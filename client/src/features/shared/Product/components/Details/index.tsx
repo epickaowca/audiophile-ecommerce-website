@@ -19,12 +19,7 @@ export const Details: FC<DetailsProps> = ({ price, cartImg, name, tag }) => {
     <DetailsWrapper>
       <p className="price">$ {priceWithComma(price * quantity)}</p>
       <div className="CTA-container">
-        <QuantitySelector
-          onMinus={() => setQuantity((prev) => prev - 1)}
-          onPlus={() => setQuantity((prev) => prev + 1)}
-          onValueChange={(val) => setQuantity(+val)}
-          value={quantity}
-        />
+        <QuantitySelector setValue={setQuantity} value={quantity} />
         <Button
           as="button"
           text="ADD TO CART"

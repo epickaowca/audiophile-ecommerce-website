@@ -3,19 +3,11 @@ import { QuantitySelector } from "./index";
 import { render } from "../../../../tests/render";
 
 it("should render QuantitySelector with aria label", async () => {
-  const onMinus = jest.fn();
-  const onPlus = jest.fn();
-  const onValueChange = jest.fn();
+  const setValue = jest.fn();
   const ariaLabel = "test";
 
-  const { rerender } = render(
-    <QuantitySelector
-      onMinus={onMinus}
-      onPlus={onPlus}
-      onValueChange={onValueChange}
-      value={5}
-      ariaLabel={ariaLabel}
-    />
+  render(
+    <QuantitySelector setValue={setValue} value={5} ariaLabel={ariaLabel} />
   );
 
   const input = screen.getByLabelText(ariaLabel);
@@ -23,17 +15,8 @@ it("should render QuantitySelector with aria label", async () => {
 });
 
 it("should call onMinus fn", async () => {
-  const onMinus = jest.fn();
-  const onPlus = jest.fn();
-  const onValueChange = jest.fn();
-  const component = (
-    <QuantitySelector
-      onMinus={onMinus}
-      onPlus={onPlus}
-      onValueChange={onValueChange}
-      value={5}
-    />
-  );
+  const setValue = jest.fn();
+  const component = <QuantitySelector setValue={setValue} value={5} />;
   const { rerender } = render(component);
 
   const onMinusBtn = screen.getByText("-");
@@ -42,21 +25,12 @@ it("should call onMinus fn", async () => {
     await onMinusBtn.click();
   });
   rerender(component);
-  expect(onMinus).toHaveBeenCalledTimes(1);
+  expect(setValue).toHaveBeenCalledTimes(1);
 });
 
 it("should call onPlus fn", async () => {
-  const onMinus = jest.fn();
-  const onPlus = jest.fn();
-  const onValueChange = jest.fn();
-  const component = (
-    <QuantitySelector
-      onMinus={onMinus}
-      onPlus={onPlus}
-      onValueChange={onValueChange}
-      value={5}
-    />
-  );
+  const setValue = jest.fn();
+  const component = <QuantitySelector setValue={setValue} value={5} />;
   const { rerender } = render(component);
 
   const onPlusBtn = screen.getByText("+");
@@ -65,22 +39,13 @@ it("should call onPlus fn", async () => {
     await onPlusBtn.click();
   });
   rerender(component);
-  expect(onPlus).toHaveBeenCalledTimes(1);
+  expect(setValue).toHaveBeenCalledTimes(1);
 });
 
 it("should call onValueChange fn", async () => {
   const value = "25";
-  const onMinus = jest.fn();
-  const onPlus = jest.fn();
-  const onValueChange = jest.fn();
-  const component = (
-    <QuantitySelector
-      onMinus={onMinus}
-      onPlus={onPlus}
-      onValueChange={onValueChange}
-      value={5}
-    />
-  );
+  const setValue = jest.fn();
+  const component = <QuantitySelector setValue={setValue} value={5} />;
   const { rerender } = render(component);
 
   const input = screen.getByRole("textbox");
@@ -89,6 +54,6 @@ it("should call onValueChange fn", async () => {
     await fireEvent.change(input, { target: { value } });
   });
   rerender(component);
-  expect(onValueChange).toHaveBeenCalledTimes(1);
-  expect(onValueChange).toHaveBeenCalledWith(value);
+  expect(setValue).toHaveBeenCalledTimes(1);
+  expect(setValue).toHaveBeenCalledWith(value);
 });

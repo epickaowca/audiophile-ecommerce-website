@@ -3,7 +3,9 @@ import { reducer, ActionType } from "./reducer";
 import {
   isProductAlreadyAdded,
   getProductListFromLocalStorage,
-} from "../utils";
+  getTotal,
+  getQuantityUpdatedList,
+} from "./utils";
 import { Product, ContextType, UpdateQuantityProps } from "./types";
 import { LOCAL_STORAGE_PRODUCT_LIST } from "../constants";
 type CartProviderProps = {
@@ -34,7 +36,7 @@ export const CartProvider: FC<CartProviderProps> = ({
   const [{ isCartOpen, productList, total }, dispatch] = useReducer(reducer, {
     isCartOpen: false,
     productList: getProductListFromLocalStorage(),
-    total: 0,
+    total: getTotal(getProductListFromLocalStorage()),
   });
 
   const toggleCart = (props: "open" | "close") => {
@@ -66,6 +68,11 @@ export const CartProvider: FC<CartProviderProps> = ({
       localStorage.setItem(
         LOCAL_STORAGE_PRODUCT_LIST,
         JSON.stringify(productList.filter((e) => e.tag !== payload.tag))
+      );
+    } else {
+      localStorage.setItem(
+        LOCAL_STORAGE_PRODUCT_LIST,
+        JSON.stringify(getQuantityUpdatedList(productList, payload))
       );
     }
 

@@ -1,1 +1,1 @@
-export type CartType = "modal" | "static";
+export type CartType = { cartType: "modal" | "static" };

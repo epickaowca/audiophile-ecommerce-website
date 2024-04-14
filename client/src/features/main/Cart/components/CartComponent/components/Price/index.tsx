@@ -9,9 +9,9 @@ type PriceProps = {
 };
 
 export const Price: FC<PriceProps> = ({ name, price, orangePrice }) => {
-  const { styledComponentId: Price } = StyledPriceDisplay;
+  const { styledComponentId: Price } = StyledPrice;
   return (
-    <StyledPriceDisplay $className={Price}>
+    <StyledPrice $className={Price}>
       <span className={`${Price}_name`}>{name}</span>
       <span
         className={modifiers({
@@ -21,13 +21,13 @@ export const Price: FC<PriceProps> = ({ name, price, orangePrice }) => {
       >
         $ {priceWithComma(price)}
       </span>
-    </StyledPriceDisplay>
+    </StyledPrice>
   );
 };
 
-const StyledPriceDisplay = styled.div<{
+const StyledPrice = styled.div<{
   $className: string;
-}>(({ theme, $className }) => {
+}>(({ theme: { grayDarkText, orangeMedium }, $className }) => {
   return css`
     display: flex;
     justify-content: space-between;
@@ -35,17 +35,17 @@ const StyledPriceDisplay = styled.div<{
 
     .${$className} {
       &_name {
-        color: ${theme.grayDarkText};
+        color: ${grayDarkText};
         font-weight: 500;
         text-transform: uppercase;
       }
+
       &_price {
-        color: "black";
         font-weight: bold;
       }
 
       &_price--orange {
-        color: ${theme.orangeMedium};
+        color: ${orangeMedium};
       }
     }
   `;

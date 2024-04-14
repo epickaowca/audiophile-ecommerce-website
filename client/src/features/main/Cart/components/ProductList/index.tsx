@@ -5,8 +5,7 @@ import { CartType } from "../../types";
 import { useCart } from "../../context";
 import { Product as ProductType } from "../../context/types";
 
-type CartListProps = {
-  cartType: CartType;
+type CartListProps = CartType & {
   customProductList?: ProductType[];
 };
 
@@ -15,22 +14,28 @@ export const ProductList: FC<CartListProps> = ({
   customProductList,
 }) => {
   const { updateQuantity, productList } = useCart();
-  const myProductList = customProductList || productList;
+  const list = customProductList || productList;
   return (
     <StyledProductList>
-      {myProductList.map((product) => (
-        <Product
-          {...product}
-          key={product.tag}
-          cartType={cartType}
-          setQuantity={(quantity) =>
-            updateQuantity({
-              tag: product.tag,
-              quantity,
-            })
-          }
-        />
-      ))}
+      {list.length ? (
+        <>
+          {list.map((product) => (
+            <Product
+              {...product}
+              key={product.tag}
+              cartType={cartType}
+              setQuantity={(quantity) =>
+                updateQuantity({
+                  tag: product.tag,
+                  quantity,
+                })
+              }
+            />
+          ))}
+        </>
+      ) : (
+        <p>You don't have any items added</p>
+      )}
     </StyledProductList>
   );
 };

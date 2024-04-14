@@ -6,45 +6,41 @@ import { CartType } from "../../types";
 
 export { StyledProduct };
 
-type CartProductProps = {
+type ProductProps = CartType & {
   name: string;
   price: number;
   imgSrc: string;
   quantity: number;
   setQuantity: (quantity: number) => void;
-  cartType: CartType;
 };
 
-export const Product: FC<CartProductProps> = ({
-  imgSrc,
-  price,
+export const Product: FC<ProductProps> = ({
   name,
+  price,
+  imgSrc,
   quantity,
   setQuantity,
   cartType,
 }) => {
-  const { styledComponentId: CartProduct } = StyledProduct;
+  const { styledComponentId: Product } = StyledProduct;
+  const total = `$ ${priceWithComma(price * quantity)}`;
 
   return (
-    <StyledProduct $className={CartProduct}>
-      <div className={`${CartProduct}_container`}>
-        <img src={imgSrc} alt={name} className={`${CartProduct}_img`} />
+    <StyledProduct $className={Product}>
+      <div className={`${Product}_container`}>
+        <img src={imgSrc} alt={name} className={`${Product}_img`} />
         <div>
-          <h3 className={`${CartProduct}_name`}>{name}</h3>
-          <span className={`${CartProduct}_price`}>
-            $ {priceWithComma(price * quantity)}
-          </span>
+          <h3 className={`${Product}_name`}>{name}</h3>
+          <span className={`${Product}_price`}>{total}</span>
         </div>
       </div>
       {cartType === "static" ? (
-        <span className="quantity-span">x{quantity}</span>
+        <span>x{quantity}</span>
       ) : (
         <QuantitySelector
-          onMinus={() => setQuantity(quantity - 1)}
-          onPlus={() => setQuantity(quantity + 1)}
-          onValueChange={(value) => setQuantity(+value)}
+          checkoutCase
+          setValue={setQuantity}
           value={quantity}
-          checkoutCase={true}
           ariaLabel={`${name} product quantity`}
         />
       )}

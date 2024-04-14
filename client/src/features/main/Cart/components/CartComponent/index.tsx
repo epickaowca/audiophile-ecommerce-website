@@ -6,68 +6,59 @@ import { AdditionalPricingDetails } from "./components/AdditionalPricingDetails"
 import { ProductList } from "../ProductList";
 import { useNavigate } from "react-router-dom";
 import { useCart } from "../../context";
-import { CartType } from "../../types";
 import { CloseBtn } from "./components/CloseBtn";
 import { useEscapeHandler } from "../../../../../hooks/useEscape";
 
-type CartComponentProps = {
-  cartType: CartType;
-};
-
-export const CartComponent: FC<CartComponentProps> = ({ cartType }) => {
-  const ref = useRef<HTMLDivElement>(null);
-  const { removeAll, toggleCart, productList, total } = useCart();
-  const navigate = useNavigate();
-
-  const isStatic = cartType === "static";
+export const CartStatic: FC = () => {
+  const { total } = useCart();
   const { styledComponentId: Cart } = StyledCart;
 
-  useEscapeHandler({ ref, onEscape: () => toggleCart("close") });
-  useEffect(() => {
-    ref.current?.focus();
-  }, []);
-
   return (
-    <StyledCart
-      $className={Cart}
-      id={isStatic ? undefined : "main-cart"}
-      ref={ref}
-    >
-      {!isStatic && <CloseBtn />}
-      {productList.length ? (
-        <>
-          <div className="heading">
-            <h2>{isStatic ? "summary" : `cart (${productList.length})`}</h2>
-            {!isStatic && <button onClick={removeAll}>Remove all</button>}
-          </div>
-          <ProductList cartType={cartType} />
-          <Price name="total" price={total} />
-          {isStatic && <AdditionalPricingDetails />}
-          <Button
-            {...btnProps[isStatic ? "static" : "cart"]}
-            variant="primary"
-            as="button"
-            onClick={() => {
-              navigate("/checkout");
-              toggleCart("close");
-            }}
-          />
-        </>
-      ) : (
-        <h1 className="empty-h1">Your cart is empty</h1>
-      )}
+    <StyledCart $className={Cart}>
+      <h2 className={`${Cart}_heading`}>summary</h2>
+      <ProductList cartType="static" />
+      <Price name="total" price={total} />
+      <AdditionalPricingDetails />
+      <Button
+        text="CONTINUE & PAY"
+        type="submit"
+        variant="primary"
+        as="button"
+      />
     </StyledCart>
   );
 };
 
-const btnProps = {
-  static: {
-    text: "CONTINUE & PAY",
-    type: "submit",
-  },
-  cart: {
-    text: "CHECKOUT",
-    type: "button",
-    ariaLabel: "go to checkout",
-  },
-} as const;
+export const CartModal: FC = () => {
+  const ref = useRef<HTMLDivElement>(null);
+  const { removeAll, toggleCart, productList, total } = useCart();
+  const navigate = useNavigate();
+  const { styledComponentId: Cart } = StyledCart;
+  const { length } = productList;
+  useEscapeHandler({ ref, onEscape: () => toggleCart("close") });
+
+  return (
+    <StyledCart $className={Cart} id="main-cart" ref={ref}>
+      <CloseBtn />
+      <div className={`${Cart}_headingWrapper`}>
+        <h2 className={`${Cart}_heading`}>{`cart (${length})`}</h2>
+        <button className={`${Cart}_removeBtn`} onClick={removeAll}>
+          Remove all
+        </button>
+      </div>
+      <ProductList cartType={"modal"} />
+      <Price name="total" price={total} />
+      <Button
+        text="CHECKOUT"
+        type="button"
+        variant="primary"
+        as="button"
+        ariaLabel="go to checkout"
+        onClick={() => {
+          navigate("/checkout");
+          toggleCart("close");
+        }}
+      />
+    </StyledCart>
+  );
+};
