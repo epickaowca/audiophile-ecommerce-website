@@ -1,16 +1,17 @@
-import { FC, useEffect, useRef } from "react";
+import { FC, useRef } from "react";
 import { Button } from "../../../../shared/Button";
 import { StyledCart } from "./CartComponent.styled";
 import { Price } from "./components/Price";
 import { AdditionalPricingDetails } from "./components/AdditionalPricingDetails";
 import { ProductList } from "../ProductList";
 import { useNavigate } from "react-router-dom";
-import { useCart } from "../../context";
+import { getTotal, useCart } from "../../context";
 import { CloseBtn } from "./components/CloseBtn";
 import { useEscapeHandler } from "../../../../../hooks/useEscape";
 
 export const CartStatic: FC = () => {
-  const { total } = useCart();
+  const { productList } = useCart();
+  const total = getTotal(productList);
   const { styledComponentId: Cart } = StyledCart;
 
   return (
@@ -31,7 +32,8 @@ export const CartStatic: FC = () => {
 
 export const CartModal: FC = () => {
   const ref = useRef<HTMLDivElement>(null);
-  const { removeAll, toggleCart, productList, total } = useCart();
+  const { removeAll, toggleCart, productList } = useCart();
+  const total = getTotal(productList);
   const navigate = useNavigate();
   const { styledComponentId: Cart } = StyledCart;
   const { length } = productList;

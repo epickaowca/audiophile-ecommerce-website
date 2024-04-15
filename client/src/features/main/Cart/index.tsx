@@ -1,6 +1,6 @@
 import { FC } from "react";
 import { createPortal } from "react-dom";
-import { CartProvider, useCart } from "./context";
+import { CartProvider, useCart, getTotal } from "./context";
 import { Overlay } from "../../shared/Overlay";
 import { CartModal, CartStatic } from "./components/CartComponent";
 import { ProductList, StyledProductList } from "./components/ProductList";
@@ -11,6 +11,7 @@ import { headerHeight } from "../Header";
 import { CartType } from "./types";
 
 export {
+  getTotal,
   ProductList,
   StyledProductList,
   CartProvider,

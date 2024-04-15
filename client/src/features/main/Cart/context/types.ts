@@ -12,7 +12,6 @@ export type UpdateQuantityProps = {
 };
 
 export type ContextType = {
-  total: number;
   isCartOpen: boolean;
   toggleCart: (props: "open" | "close") => void;
   addProduct: (payload: Product) => void;

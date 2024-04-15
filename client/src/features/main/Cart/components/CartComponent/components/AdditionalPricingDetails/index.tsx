@@ -4,9 +4,11 @@ import { useCart } from "../../../../index";
 import { getVat } from "../../../../../../../utils";
 import { Price } from "../Price";
 import { styled } from "styled-components";
+import { getTotal } from "../../../../index";
 
 export const AdditionalPricingDetails: FC = () => {
-  const { total } = useCart();
+  const { productList } = useCart();
+  const total = getTotal(productList);
   const vat = getVat(SHIPPING_PRICE + total);
   return (
     <StyledPriceList>

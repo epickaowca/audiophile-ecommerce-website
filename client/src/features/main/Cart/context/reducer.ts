@@ -9,7 +9,6 @@ export function reducer(
   state: {
     isCartOpen: boolean;
     productList: Product[];
-    total: number;
   },
   { type, payload }: Action
 ) {
@@ -24,24 +23,20 @@ export function reducer(
       const productList = isProductAlreadyAdded(payload, state.productList)
         ? state.productList
         : [...state.productList, payload];
-      const total = getTotal(productList);
 
       return {
         ...state,
         isCartOpen: true,
         productList,
-        total,
       };
     }
 
     case ActionType.UPDATE_QUANTITY: {
       const productList = getQuantityUpdatedList(state.productList, payload);
-      const total = getTotal(productList);
 
       return {
         ...state,
         productList,
-        total,
       };
     }
     case ActionType.REMOVE_ALL: {

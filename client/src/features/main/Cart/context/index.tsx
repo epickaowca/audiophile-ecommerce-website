@@ -12,6 +12,7 @@ type CartProviderProps = {
   children?: ReactNode;
   staticState?: ContextType;
 };
+export { getTotal };
 
 const defaultStateEmpty = {
   total: 0,
@@ -33,11 +34,20 @@ export const CartProvider: FC<CartProviderProps> = ({
   children,
   staticState,
 }) => {
-  const [{ isCartOpen, productList, total }, dispatch] = useReducer(reducer, {
+  const [{ isCartOpen, productList }, dispatch] = useReducer(reducer, {
     isCartOpen: false,
     productList: getProductListFromLocalStorage(),
-    total: getTotal(getProductListFromLocalStorage()),
   });
+
+  useEffect(
+    function onListUpdate() {
+      localStorage.setItem(
+        LOCAL_STORAGE_PRODUCT_LIST,
+        JSON.stringify(productList)
+      );
+    },
+    [productList]
+  );
 
   const toggleCart = (props: "open" | "close") => {
     const isOpen = props === "open";
@@ -49,13 +59,6 @@ export const CartProvider: FC<CartProviderProps> = ({
   };
 
   const addProduct = (payload: Product) => {
-    if (!isProductAlreadyAdded(payload, productList)) {
-      localStorage.setItem(
-        LOCAL_STORAGE_PRODUCT_LIST,
-        JSON.stringify([...productList, payload])
-      );
-    }
-
     window.scroll(0, 0);
     dispatch({
       type: ActionType.ADD_PRODUCT,
@@ -64,18 +67,6 @@ export const CartProvider: FC<CartProviderProps> = ({
   };
 
   const updateQuantity = (payload: UpdateQuantityProps) => {
-    if (payload.quantity === 0) {
-      localStorage.setItem(
-        LOCAL_STORAGE_PRODUCT_LIST,
-        JSON.stringify(productList.filter((e) => e.tag !== payload.tag))
-      );
-    } else {
-      localStorage.setItem(
-        LOCAL_STORAGE_PRODUCT_LIST,
-        JSON.stringify(getQuantityUpdatedList(productList, payload))
-      );
-    }
-
     dispatch({
       type: ActionType.UPDATE_QUANTITY,
       payload,
@@ -83,7 +74,6 @@ export const CartProvider: FC<CartProviderProps> = ({
   };
 
   const removeAll = () => {
-    localStorage.setItem(LOCAL_STORAGE_PRODUCT_LIST, JSON.stringify([]));
     dispatch({
       type: ActionType.REMOVE_ALL,
       payload: {},
@@ -91,7 +81,6 @@ export const CartProvider: FC<CartProviderProps> = ({
   };
 
   const value = staticState || {
-    total,
     isCartOpen,
     productList,
     toggleCart,

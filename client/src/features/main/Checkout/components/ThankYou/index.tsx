@@ -2,7 +2,7 @@ import { FC, useEffect, useRef } from "react";
 import { StyledThankYou } from "./ThankYou.styled";
 import confirmIcon from "../../assets/icon-order-confirmation.svg";
 import { Button } from "../../../../shared/Button";
-import { ProductList, useCart, SHIPPING_PRICE } from "../../../Cart";
+import { ProductList, useCart, SHIPPING_PRICE, getTotal } from "../../../Cart";
 import { createPortal } from "react-dom";
 import { Overlay } from "../../../../shared/Overlay";
 import { useNavigate } from "react-router-dom";
@@ -25,10 +25,10 @@ export const ThankYou: FC = () => {
 };
 
 const ThankYouComponent: FC = () => {
-  const { productList, removeAll, total } = useCart();
+  const { productList, removeAll } = useCart();
   const productListSnapshot = useRef<Product[]>(productList);
-  const totalSnapshot = useRef<number>(total);
-  const vat = getVat(SHIPPING_PRICE + totalSnapshot.current);
+  const total = getTotal(productListSnapshot.current);
+  const vat = getVat(SHIPPING_PRICE + total);
   const { styledComponentId: ThankYou } = StyledThankYou;
 
   useEffect(() => {
@@ -58,9 +58,7 @@ const ThankYouComponent: FC = () => {
         />
         <div className={`${ThankYou}_grandTotal`}>
           <span>Grand Total</span>
-          <span>
-            $ {priceWithComma(totalSnapshot.current + SHIPPING_PRICE + vat)}
-          </span>
+          <span>$ {priceWithComma(total + SHIPPING_PRICE + vat)}</span>
         </div>
       </div>
       <Button as="link" href="/" text="BACK TO HOME" variant="primary" />
