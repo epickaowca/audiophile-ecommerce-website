@@ -9,12 +9,12 @@ import earphonesImg from "./assets/image-category-thumbnail-earphones.png";
 import headphonesImg from "./assets/image-category-thumbnail-headphones.png";
 
 type ProductCategoriesProps = {
-  autoFocusFirstCategory?: boolean;
+  autoFocus?: boolean;
   navigationCase?: boolean;
 };
 
 export const ProductCategories: FC<ProductCategoriesProps> = ({
-  autoFocusFirstCategory,
+  autoFocus,
   navigationCase,
 }) => {
   const attrs = navigationCase
@@ -32,7 +32,7 @@ export const ProductCategories: FC<ProductCategoriesProps> = ({
     <StyledProductCategories {...attrs}>
       <Product
         {...productAttrs}
-        autoFocus={autoFocusFirstCategory}
+        autoFocus={autoFocus}
         initialImg={{ mobile: headphonesImgMicro }}
         largeImg={{ mobile: headphonesImg }}
         productName="headphones"

@@ -30,6 +30,8 @@ export const CartStatic: FC = () => {
   );
 };
 
+export const cartId = "main-cart";
+
 export const CartModal: FC = () => {
   const ref = useRef<HTMLDivElement>(null);
   const { removeAll, toggleCart, productList } = useCart();
@@ -40,7 +42,7 @@ export const CartModal: FC = () => {
   useEscapeHandler({ ref, onEscape: () => toggleCart("close") });
 
   return (
-    <StyledCart $className={Cart} id="main-cart" ref={ref}>
+    <StyledCart $className={Cart} id={cartId} ref={ref}>
       <CloseBtn />
       <div className={`${Cart}_headingWrapper`}>
         <h2 className={`${Cart}_heading`}>{`cart (${length})`}</h2>

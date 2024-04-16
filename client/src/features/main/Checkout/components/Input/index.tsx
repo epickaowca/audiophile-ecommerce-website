@@ -1,5 +1,5 @@
 import { FC, useId } from "react";
-import { Wrapper } from "./Input.styled";
+import { StyledInput } from "./Input.styled";
 import { UseFormRegister } from "react-hook-form";
 import { FormInput } from "../../types";
 
@@ -12,21 +12,25 @@ type InputProps = {
 
 export const Input: FC<InputProps> = ({
   label,
-  placeholder,
   register,
+  placeholder,
   name,
 }) => {
   const id = useId();
+  const { styledComponentId: Input } = StyledInput;
   return (
-    <Wrapper>
-      <label htmlFor={id}>{label}</label>
+    <StyledInput $className={Input}>
+      <label className={`${Input}_label`} htmlFor={id}>
+        {label}
+      </label>
       <input
+        className={`${Input}_input`}
         {...register(name)}
         required
+        type="text"
         id={id}
         placeholder={placeholder}
-        type="text"
       />
-    </Wrapper>
+    </StyledInput>
   );
 };

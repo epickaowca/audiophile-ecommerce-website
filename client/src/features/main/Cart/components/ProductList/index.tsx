@@ -6,15 +6,12 @@ import { useCart } from "../../context";
 import { Product as ProductType } from "../../context/types";
 
 type CartListProps = CartType & {
-  customProductList?: ProductType[];
+  customList?: ProductType[];
 };
 
-export const ProductList: FC<CartListProps> = ({
-  cartType,
-  customProductList,
-}) => {
+export const ProductList: FC<CartListProps> = ({ cartType, customList }) => {
   const { updateQuantity, productList } = useCart();
-  const list = customProductList || productList;
+  const list = customList || productList;
   return (
     <StyledProductList>
       {list.length ? (

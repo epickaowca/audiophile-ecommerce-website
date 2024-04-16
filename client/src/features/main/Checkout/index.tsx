@@ -1,6 +1,6 @@
 import { FC, useState } from "react";
 import { Cart } from "../Cart";
-import { CartWrapper, StyledCheckout } from "./Checkout.styled";
+import { StyledCheckout } from "./Checkout.styled";
 import { Form } from "./components/Form";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { FormInput } from "./types";
@@ -15,6 +15,8 @@ const phrasesArr = [
   "Tune into your inner harmony",
 ];
 
+const phrase = phrasesArr[Math.floor(Math.random() * phrasesArr.length)];
+
 export const Checkout: FC = () => {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const { register, handleSubmit } = useForm<FormInput>();
@@ -22,19 +24,19 @@ export const Checkout: FC = () => {
     console.log(data);
     setIsSubmitted(true);
   };
-
+  const { styledComponentId: Checkout } = StyledCheckout;
   return (
     <>
       {isSubmitted && <ThankYou />}
-      <StyledCheckout>
-        <form onSubmit={handleSubmit(onSubmit)}>
+      <StyledCheckout $className={Checkout}>
+        <form className={`${Checkout}_form`} onSubmit={handleSubmit(onSubmit)}>
           <Form register={register} />
-          <CartWrapper>
-            <div className="black-box">
-              <p>{phrasesArr[Math.floor(Math.random() * phrasesArr.length)]}</p>
+          <div className={`${Checkout}_cartWrapper`}>
+            <div className={`${Checkout}_phraseWrapper`}>
+              <p className={`${Checkout}_phrase`}>{phrase}</p>
             </div>
             <Cart cartType="static" />
-          </CartWrapper>
+          </div>
         </form>
       </StyledCheckout>
     </>

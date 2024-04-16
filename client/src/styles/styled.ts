@@ -12,7 +12,6 @@ export const myTheme = {
   grayLight: "#F1F1F1",
   grayLighter: "#FAFAFA",
   grayDarkText: "rgba(0,0,0,.5)",
-  overlayZIndex: 99,
   media,
 } as const;
 

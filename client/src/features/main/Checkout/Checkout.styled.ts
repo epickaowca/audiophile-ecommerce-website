@@ -1,66 +1,73 @@
 import { styled, css } from "styled-components";
 
-export const CartWrapper = styled.div(({ theme }) => {
-  return css`
-    background-color: white;
-    border-radius: 10px;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    max-width: 360px;
-    height: 100%;
-    overflow: hidden;
-    & > .black-box {
-      display: none;
-    }
+export const StyledCheckout = styled.div<{ $className: string }>(
+  ({ theme: { media, grayDark }, $className }) => {
+    return css`
+      width: 90%;
+      margin: 50px auto;
 
-    @media ${theme.media.tablet} {
-      max-width: unset;
-      justify-content: space-between;
-      align-items: stretch;
-      & > .black-box {
-        width: 100%;
-        min-height: 100%;
-        background-color: ${theme.grayDark};
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        & > p {
-          text-align: center;
-          font-size: 2rem;
-          color: white;
-          max-width: 300px;
+      .${$className} {
+        &_form {
+          display: flex;
+          flex-direction: column;
+          gap: 35px;
+          align-items: center;
+        }
+
+        &_cartWrapper {
+          width: 100%;
+          display: flex;
+          justify-content: center;
+        }
+
+        &_phraseWrapper {
+          display: none;
         }
       }
-    }
 
-    @media ${theme.media.desktop} {
-      max-width: 360px;
-      & > .black-box {
-        display: none;
+      @media ${media.tablet} {
+        .${$className} {
+          &_cartWrapper {
+            border-radius: 10px;
+            overflow: hidden;
+            background-color: white;
+          }
+
+          &_phraseWrapper {
+            width: 100%;
+            background-color: ${grayDark};
+            display: grid;
+            place-items: center;
+          }
+
+          &_phrase {
+            text-align: center;
+            font-size: 2rem;
+            color: white;
+            max-width: 300px;
+          }
+        }
       }
-    }
-  `;
-});
 
-export const StyledCheckout = styled.div(({ theme }) => {
-  return css`
-    width: 90%;
-    margin: 50px auto;
-    & > form {
-      display: flex;
-      flex-direction: column;
-      gap: 35px;
-      align-items: center;
-    }
+      @media ${media.desktop} {
+        max-width: 1300px;
+        margin: 100px auto;
 
-    @media ${theme.media.desktop} {
-      max-width: 1300px;
-      margin: 100px auto;
-      & > form {
-        flex-direction: row;
-        align-items: flex-start;
+        .${$className} {
+          &_phraseWrapper {
+            display: none;
+          }
+
+          &_cartWrapper {
+            max-width: 360px;
+          }
+
+          &_form {
+            flex-direction: row;
+            align-items: flex-start;
+          }
+        }
       }
-    }
-  `;
-});
+    `;
+  }
+);

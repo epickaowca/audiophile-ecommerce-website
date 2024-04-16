@@ -1,6 +1,8 @@
-export type NavigationProps = {
-  isNavOpen: boolean;
+export type StyledNavProps = {
+  $headerHeight: string;
+  $isNavOpen: boolean;
+};
+
+export type NavigationProps = StyledNavProps & {
   closeNav: () => void;
-  headerHeight: string;
-  className?: string;
 };

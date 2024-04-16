@@ -33,7 +33,7 @@ export const Product: FC<ProductProps> = ({
     if (autoFocus) {
       ref.current?.focus();
     }
-  }, []);
+  }, [autoFocus]);
 
   const attrs = { role: navigationCase ? "menuitem" : undefined, ref, href };
 

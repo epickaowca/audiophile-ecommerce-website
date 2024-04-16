@@ -1,8 +1,9 @@
 import { styled, css } from "styled-components";
 import { StyledProductList, StyledProduct } from "../../../Cart";
+import { overlayZIndex } from "../../../../shared/Overlay";
 
 export const StyledThankYou = styled.div<{ $className: string }>(
-  ({ theme, $className }) => {
+  ({ theme: { media, grayDarkText, grayLight }, $className }) => {
     return css`
       width: 95%;
       max-width: 560px;
@@ -11,7 +12,7 @@ export const StyledThankYou = styled.div<{ $className: string }>(
       left: 50%;
       top: 15%;
       transform: translateX(-50%);
-      z-index: ${theme.overlayZIndex + 1};
+      z-index: ${overlayZIndex + 1};
       border-radius: 10px;
       overflow: hidden;
       padding: 25px;
@@ -30,7 +31,7 @@ export const StyledThankYou = styled.div<{ $className: string }>(
 
         &_description {
           font-weight: 500;
-          color: ${theme.grayDarkText};
+          color: ${grayDarkText};
         }
 
         &_grandTotal {
@@ -59,33 +60,26 @@ export const StyledThankYou = styled.div<{ $className: string }>(
 
       ${StyledProductList} {
         padding: 30px;
-        background-color: ${theme.grayLight};
+        background-color: ${grayLight};
       }
 
       ${StyledProduct} {
-        & > .product {
+        &_container {
           gap: 10px;
-          & > .description {
-            & > h3 {
-              font-size: 0.9rem;
-              margin-bottom: 0;
-              line-height: 0.9rem;
-            }
-          }
+        }
+
+        &_name {
+          font-size: 0.9rem;
+          margin-bottom: 0;
+          line-height: 0.9rem;
         }
       }
 
-      @media ${theme.media.tablet} {
+      @media ${media.tablet} {
         .${$className} {
           &_summaryWrapper {
             display: flex;
             width: 100%;
-
-            & > div {
-              &:nth-child(1) {
-                flex: 2;
-              }
-            }
           }
 
           &_grandTotal {
@@ -93,6 +87,10 @@ export const StyledThankYou = styled.div<{ $className: string }>(
             display: flex;
             justify-content: center;
           }
+        }
+
+        ${StyledProductList} {
+          flex: 2;
         }
       }
     `;

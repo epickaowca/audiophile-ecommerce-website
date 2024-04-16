@@ -1,5 +1,5 @@
 import { fireEvent } from "@testing-library/react";
-import { StyledNavigation } from "./index";
+import { Navigation } from "./index";
 import { render } from "../../../../../../tests/render";
 
 window.scrollTo = jest.fn();
@@ -7,7 +7,7 @@ window.scrollTo = jest.fn();
 it("should call closeNav on escape", async () => {
   const closeNav = jest.fn();
   const { container } = render(
-    <StyledNavigation closeNav={closeNav} headerHeight="50" isNavOpen={true} />
+    <Navigation closeNav={closeNav} $headerHeight="50" $isNavOpen={true} />
   );
 
   fireEvent.keyDown(container.querySelector(".productCategoriesWrapper")!, {

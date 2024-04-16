@@ -14,12 +14,7 @@ export const Headline: FC = () => {
 };
 
 const StyledHeadline = styled.div<{ $className: string }>(
-  ({
-    $className,
-    theme: {
-      media: { tablet },
-    },
-  }) => {
+  ({ $className, theme: { media } }) => {
     return css`
       width: 100%;
       height: 140px;
@@ -36,7 +31,7 @@ const StyledHeadline = styled.div<{ $className: string }>(
         }
       }
 
-      @media ${tablet} {
+      @media ${media.tablet} {
         height: 220px;
 
         .${$className} {

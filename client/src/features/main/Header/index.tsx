@@ -1,13 +1,13 @@
 import React, { FC, useState, useRef, useEffect } from "react";
-import { StyledNavigation, navId } from "./components/Navigation";
-import { StyledHeader, Wrapper } from "./Header.styled";
-import cartIcon from "./assets/icon-cart.svg";
-import hamburgerIcon from "./assets/icon-hamburger.svg";
+import { Navigation, navId } from "./components/Navigation";
+import { StyledHeader } from "./Header.styled";
 import { Overlay } from "../../shared/Overlay";
 import logo from "../../../assets/shared/logo.svg";
 import { NavList } from "./components/NavList";
 import { Headline } from "./components/Headline";
-import { useCart } from "../Cart";
+import { useCart, cartId } from "../Cart";
+import { ButtonIcon } from "./components/ButtonIcon";
+import { modifiers } from "../../../utils";
 
 type HeaderProps = {
   transparentBg?: boolean;
@@ -32,7 +32,6 @@ export const Header: FC<HeaderProps> = React.memo(
     };
 
     const btnHandler = (open: "cart" | "nav") => {
-      console.log("hi");
       if (isNavOpen || isCartOpen) {
         isNavOpen && closeNav();
         isCartOpen && toggleCart("close");
@@ -54,47 +53,42 @@ export const Header: FC<HeaderProps> = React.memo(
       },
       [isCartOpen]
     );
-
+    const { styledComponentId: Header } = StyledHeader;
     return (
       <>
-        <StyledHeader $transparentBg={transparentBg} $isNavOpen={isOverlay}>
-          <Wrapper>
-            <div className="left-side">
-              <button
-                ref={hamburgerBtn}
-                className="menu"
-                aria-label="Menu"
-                aria-expanded={isNavOpen}
-                aria-controls={navId}
-                onClick={() => btnHandler("nav")}
-              >
-                <img src={hamburgerIcon} alt="hamburgerIcon" />
-              </button>
-              <img
-                width="143px"
-                height="25px"
-                className="logo"
-                alt="logo"
-                src={logo}
-              />
-            </div>
-            <StyledNavigation
-              headerHeight={headerHeight}
-              closeNav={closeNav}
-              isNavOpen={isNavOpen}
+        <StyledHeader
+          $className={Header}
+          $transparentBg={transparentBg}
+          $isNavOpen={isOverlay}
+        >
+          <div className={`${Header}_wrapper`}>
+            <ButtonIcon
+              className={modifiers({
+                baseClass: `${Header}_icon`,
+                modifier: "menu",
+              })}
+              btnIcon="menu"
+              aria-controls={navId}
+              aria-expanded={isNavOpen}
+              onClick={() => btnHandler("nav")}
             />
-            <div className="cart">
-              <button
-                ref={cartBtn}
-                aria-label="Cart"
-                aria-controls="main-cart"
-                aria-expanded={isCartOpen}
-                onClick={() => btnHandler("cart")}
-              >
-                <img src={cartIcon} alt="cartIcon" />
-              </button>
-            </div>
-          </Wrapper>
+            <img className={`${Header}_logo`} alt="logo" src={logo} />
+            <Navigation
+              $headerHeight={headerHeight}
+              $isNavOpen={isNavOpen}
+              closeNav={closeNav}
+            />
+            <ButtonIcon
+              className={modifiers({
+                baseClass: `${Header}_icon`,
+                modifier: "cart",
+              })}
+              btnIcon="cart"
+              aria-controls={cartId}
+              aria-expanded={isCartOpen}
+              onClick={() => btnHandler("cart")}
+            />
+          </div>
 
           {isNavOpen && <Overlay displayOnDesktop={false} onClick={closeNav} />}
         </StyledHeader>

@@ -26,8 +26,8 @@ export const ThankYou: FC = () => {
 
 const ThankYouComponent: FC = () => {
   const { productList, removeAll } = useCart();
-  const productListSnapshot = useRef<Product[]>(productList);
-  const total = getTotal(productListSnapshot.current);
+  const { current: list } = useRef<Product[]>(productList);
+  const total = getTotal(list);
   const vat = getVat(SHIPPING_PRICE + total);
   const { styledComponentId: ThankYou } = StyledThankYou;
 
@@ -43,19 +43,12 @@ const ThankYouComponent: FC = () => {
         src={confirmIcon}
         alt="confirm-icon"
       />
-      <h2 className={`${ThankYou}_title`}>
-        Thank You
-        <br />
-        For Your Order
-      </h2>
+      <h2 className={`${ThankYou}_title`}>Thank You For Your Order</h2>
       <p className={`${ThankYou}_description`}>
         You will receive an email confirmation shortly.
       </p>
       <div className={`${ThankYou}_summaryWrapper`}>
-        <ProductList
-          cartType="static"
-          customProductList={productListSnapshot.current}
-        />
+        <ProductList cartType="static" customList={list} />
         <div className={`${ThankYou}_grandTotal`}>
           <span>Grand Total</span>
           <span>$ {priceWithComma(total + SHIPPING_PRICE + vat)}</span>

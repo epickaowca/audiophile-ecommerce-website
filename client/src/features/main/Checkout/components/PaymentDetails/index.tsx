@@ -1,10 +1,11 @@
 import { FC, useState } from "react";
-import { Row } from "../Form";
-import { Fieldset } from "./PaymentDetails.styled";
+import { StyledRow } from "../Form";
+import { StyledFieldset } from "./PaymentDetails.styled";
 import cashIcon from "../../assets/icon-cash-on-delivery.svg";
 import { UseFormRegister } from "react-hook-form";
 import { FormInput } from "../../types";
 import { Input } from "../Input";
+import { InputRadio } from "../InputRadio";
 
 type PaymentDetailsProps = {
   register: UseFormRegister<FormInput>;
@@ -12,37 +13,28 @@ type PaymentDetailsProps = {
 
 export const PaymentDetails: FC<PaymentDetailsProps> = ({ register }) => {
   const [state, setState] = useState("e-Money");
+  const { styledComponentId: Fieldset } = StyledFieldset;
 
+  const inputRadioProps = {
+    name: "paymentMethod",
+    onChange: (e: any) => setState(e.target.value),
+    register,
+  } as const;
   return (
     <>
-      <h2>Payment Details</h2>
-      <Row>
-        <Fieldset>
-          <h2>Payment Method</h2>
-          <div className="btns-wrapper">
-            <label>
-              <input
-                {...register("paymentMethod")}
-                type="radio"
-                value="e-Money"
-                checked={state === "e-Money"}
-                onChange={(e) => setState(e.target.value)}
-              />
+      <StyledRow>
+        <StyledFieldset $className={Fieldset}>
+          <h2 className={`${Fieldset}_title`}>Payment Method</h2>
+          <div className={`${Fieldset}_radioBtnsContainer`}>
+            <InputRadio {...inputRadioProps} value="e-Money" defaultChecked>
               e-Money
-            </label>
-            <label>
-              <input
-                {...register("paymentMethod")}
-                type="radio"
-                value="cash"
-                checked={state === "cash"}
-                onChange={(e) => setState(e.target.value)}
-              />
+            </InputRadio>
+            <InputRadio {...inputRadioProps} value="cash">
               Cash on Delivery
-            </label>
+            </InputRadio>
           </div>
-        </Fieldset>
-      </Row>
+        </StyledFieldset>
+      </StyledRow>
       {state === "cash" ? (
         <div>
           <img src={cashIcon} alt="cash-icon" />
@@ -53,7 +45,7 @@ export const PaymentDetails: FC<PaymentDetailsProps> = ({ register }) => {
           </p>
         </div>
       ) : (
-        <Row>
+        <StyledRow>
           <Input
             register={register}
             name="e-MoneyNumber"
@@ -66,7 +58,7 @@ export const PaymentDetails: FC<PaymentDetailsProps> = ({ register }) => {
             label="e-Money PIN"
             placeholder="6891"
           />
-        </Row>
+        </StyledRow>
       )}
     </>
   );

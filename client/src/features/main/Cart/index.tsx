@@ -1,8 +1,8 @@
 import { FC } from "react";
 import { createPortal } from "react-dom";
 import { CartProvider, useCart, getTotal } from "./context";
-import { Overlay } from "../../shared/Overlay";
-import { CartModal, CartStatic } from "./components/CartComponent";
+import { Overlay, overlayZIndex } from "../../shared/Overlay";
+import { CartModal, CartStatic, cartId } from "./components/CartComponent";
 import { ProductList, StyledProductList } from "./components/ProductList";
 import { StyledProduct } from "./components/Product";
 import { SHIPPING_PRICE } from "./constants";
@@ -18,6 +18,7 @@ export {
   useCart,
   StyledProduct,
   SHIPPING_PRICE,
+  cartId,
 };
 
 export const Cart: FC<CartType> = ({ cartType }) => {
@@ -43,7 +44,7 @@ export const Cart: FC<CartType> = ({ cartType }) => {
 };
 
 export const ModalCartWrapper = styled.div<{ $isCartOpen: boolean }>(
-  ({ theme: { overlayZIndex, media }, $isCartOpen }) => {
+  ({ theme: { media }, $isCartOpen }) => {
     return css`
       z-index: ${$isCartOpen ? overlayZIndex + 1 : "initial"};
       position: absolute;

@@ -1,7 +1,9 @@
 import { FC, useEffect } from "react";
 import { createPortal } from "react-dom";
-import { StyledOverlay } from "./Overlay.styled";
+import { StyledOverlay, overlayZIndex } from "./Overlay.styled";
 import { toggleBodyOverflow } from "./utils";
+
+export { overlayZIndex };
 
 type OverlayProps = {
   onClick?: () => void;
