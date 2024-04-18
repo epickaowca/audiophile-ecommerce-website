@@ -6,7 +6,7 @@ import desktop from "./assets/desktop.jpg";
 import tablet from "./assets/tablet.jpg";
 import mobile from "./assets/mobile.jpg";
 import { StyledAudioGear } from "./AudioGear.styled";
-import { media } from "../../../styles/styled";
+import { media } from "../../../styled";
 import { useImgPreload } from "../../../hooks/useImgPreload";
 
 const initialImg = {

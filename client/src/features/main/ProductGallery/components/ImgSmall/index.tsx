@@ -1,6 +1,6 @@
 import { FC } from "react";
 import { styled, css } from "styled-components";
-import { myTheme } from "../../../../../styles/styled";
+import { myTheme } from "../../../../../styled";
 import { Image } from "../../../../../types";
 
 type ImgSmallProps = {

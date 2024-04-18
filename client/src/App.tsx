@@ -27,6 +27,12 @@ const Details = lazy(() =>
   })
 );
 
+const ErrorPage = lazy(() =>
+  import("./features/main/ErrorPage").then((module) => {
+    return { default: module.ErrorPage };
+  })
+);
+
 const App: FC = () => {
   useEffect(() => {
     document.getElementById("loader")?.remove();
@@ -41,7 +47,10 @@ const App: FC = () => {
             <Route path="/category/:id" element={<Category />} />
             <Route path="/details/:id" element={<Details />} />
             <Route path="/checkout" element={<Checkout />} />
-            <Route path="*" element={<h1>Page not found</h1>} />
+            <Route
+              path="*"
+              element={<ErrorPage message="This page does not exist" />}
+            />
           </Route>
         </Routes>
       </BrowserRouter>

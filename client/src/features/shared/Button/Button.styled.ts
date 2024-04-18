@@ -1,5 +1,5 @@
 import { styled, css } from "styled-components";
-import { myTheme } from "../../../styles/styled";
+import { myTheme } from "../../../styled";
 import { Variant } from "./types";
 
 export const StyledButton = styled.button<{

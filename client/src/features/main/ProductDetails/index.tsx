@@ -45,7 +45,7 @@ export const ProductDetails: FC<ProductDetailsProps> = ({ dataLoaded }) => {
       aria-busy="false"
     >
       {loading ? (
-        <SpinLoader heightInPx={450} />
+        <SpinLoader height="450px" />
       ) : error ? (
         <ErrorPage message="error loading product" />
       ) : resData ? (

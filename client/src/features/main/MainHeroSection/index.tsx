@@ -6,7 +6,7 @@ import desktopMicro from "./assets/micro/desktop.jpg";
 import mobile from "./assets/mobile.jpg";
 import tablet from "./assets/tablet.jpg";
 import desktop from "./assets/desktop.jpg";
-import { media } from "../../../styles/styled";
+import { media } from "../../../styled";
 import { useImgPreload } from "../../../hooks/useImgPreload";
 import { StyledMainHeroSection } from "./MainHeroSection.styled";
 import { modifiers } from "../../../utils";

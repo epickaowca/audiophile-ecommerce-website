@@ -1,11 +1,12 @@
 import { FC, useRef } from "react";
 import { ProductDescription } from "../ProductDescription";
-import { myTheme } from "../../../styles/styled";
-import { StyledProductsList as SPL } from "./ProductsList.styled";
+import { myTheme } from "../../../styled";
+import { StyledProduct } from "./Product.styled";
 import { useImgPreload } from "../../../hooks/useImgPreload";
 import { Image } from "../../../types";
 import { Details } from "./components/Details";
 import { ProductDescriptionProps } from "../ProductDescription";
+import { modifiers } from "../../../utils";
 
 type CategoryProductProps = ProductDescriptionProps & {
   initialImg: Image;
@@ -14,7 +15,7 @@ type CategoryProductProps = ProductDescriptionProps & {
   detailCase?: { price: number; maxQuantity: number; cartImg: string };
 };
 
-export const StyledProductsList = SPL;
+export { StyledProduct };
 
 export const Product: FC<CategoryProductProps> = ({
   initialImg,
@@ -36,14 +37,25 @@ export const Product: FC<CategoryProductProps> = ({
     ...rest,
   } as const;
 
+  const { styledComponentId: Product } = StyledProduct;
   return (
-    <StyledProductsList $detailCase={!!detailCase}>
-      <picture>
+    <StyledProduct $className={Product} $detailCase={!!detailCase}>
+      <picture
+        className={modifiers({
+          baseClass: `${Product}_picture`,
+          modifier: !isLargeImgLoaded && "blur",
+        })}
+      >
         <source media={myTheme.media.desktop} srcSet={desktop} />
         <source media={myTheme.media.tablet} srcSet={tablet} />
-        <img ref={imgRef} src={mobile} alt={`${rest.name} ${rest.category}`} />
+        <img
+          className={`${Product}_img`}
+          ref={imgRef}
+          src={mobile}
+          alt={`${rest.name} ${rest.category}`}
+        />
       </picture>
-      <div className="description-wrapper">
+      <div>
         <ProductDescription {...ProductDescriptionProps} />
         {detailCase && (
           <Details
@@ -54,6 +66,6 @@ export const Product: FC<CategoryProductProps> = ({
           />
         )}
       </div>
-    </StyledProductsList>
+    </StyledProduct>
   );
 };

@@ -2,24 +2,24 @@ import { FC } from "react";
 import { styled, css } from "styled-components";
 
 type SpinLoaderProps = {
-  heightInPx?: number;
+  height?: string;
 };
 
-export const SpinLoader: FC<SpinLoaderProps> = ({ heightInPx }) => {
-  if (heightInPx) {
-    return (
-      <Wrapper $heightInPx={heightInPx}>
-        <div aria-label="Loading..." className="spin-loader"></div>
-      </Wrapper>
-    );
+export const SpinLoader: FC<SpinLoaderProps> = ({ height }) => {
+  const loadingDiv = (
+    <div aria-label="Loading..." className="spin-loader"></div>
+  );
+
+  if (height) {
+    return <Wrapper $height={height}>{loadingDiv}</Wrapper>;
   } else {
-    return <div aria-label="Loading..." className="spin-loader"></div>;
+    return loadingDiv;
   }
 };
 
-const Wrapper = styled.div<{ $heightInPx: number }>(({ $heightInPx }) => {
+const Wrapper = styled.div<{ $height: string }>(({ $height }) => {
   return css`
     position: relative;
-    height: ${`${$heightInPx}px`};
+    height: ${$height};
   `;
 });

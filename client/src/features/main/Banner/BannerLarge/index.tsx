@@ -1,7 +1,7 @@
 import { FC, useRef } from "react";
 import { ProductDescription } from "../../../shared/ProductDescription";
 import { StyledBanner } from "./BannerLarge.styled";
-import { media } from "../../../../styles/styled";
+import { media } from "../../../../styled";
 import { useImgPreload } from "../../../../hooks/useImgPreload";
 import desktop from "./assets/desktop.png";
 import tablet from "./assets/tablet.png";

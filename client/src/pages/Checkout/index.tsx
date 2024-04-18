@@ -7,7 +7,7 @@ import { createGlobalStyle, css } from "styled-components";
 export const Checkout: FC = () => {
   return (
     <>
-      <CheckoutStyle />
+      <CheckoutGlobalStyle />
       <Header />
       <CheckoutComponent />
       <Footer />
@@ -15,7 +15,7 @@ export const Checkout: FC = () => {
   );
 };
 
-export const CheckoutStyle = createGlobalStyle(
+export const CheckoutGlobalStyle = createGlobalStyle(
   ({ theme }) => css`
     body {
       background-color: ${theme.grayLight};

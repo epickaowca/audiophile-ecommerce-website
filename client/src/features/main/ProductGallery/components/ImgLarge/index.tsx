@@ -1,5 +1,5 @@
 import { FC, useRef } from "react";
-import { myTheme } from "../../../../../styles/styled";
+import { myTheme } from "../../../../../styled";
 import { useImgPreload } from "../../../../../hooks/useImgPreload";
 import { Image } from "../../../../../types";
 import { styled, css } from "styled-components";

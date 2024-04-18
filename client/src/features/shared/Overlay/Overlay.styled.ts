@@ -15,6 +15,7 @@ export const StyledOverlay = styled.div<{
     height: 100%;
     background-color: rgba(0, 0, 0, 0.5);
     z-index: ${overlayZIndex};
+
     @media ${media.desktop} {
       display: ${$displayOnDesktop ? "block" : "none"};
     }

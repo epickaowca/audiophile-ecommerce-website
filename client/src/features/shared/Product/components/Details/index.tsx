@@ -1,5 +1,5 @@
 import { FC, useState } from "react";
-import { DetailsWrapper } from "./Details.styled";
+import { StyledDetails } from "./Details.styled";
 import { QuantitySelector } from "../../../QuantitySelector";
 import { Button } from "../../../Button";
 import { priceWithComma } from "../../../../../utils";
@@ -15,10 +15,12 @@ type DetailsProps = {
 export const Details: FC<DetailsProps> = ({ price, cartImg, name, tag }) => {
   const [quantity, setQuantity] = useState(1);
   const { addProduct } = useCart();
+
+  const { styledComponentId: Details } = StyledDetails;
   return (
-    <DetailsWrapper>
-      <p className="price">$ {priceWithComma(price * quantity)}</p>
-      <div className="CTA-container">
+    <StyledDetails $className={Details}>
+      <p className={`${Details}_price`}>$ {priceWithComma(price * quantity)}</p>
+      <div className={`${Details}_btnsContainer`}>
         <QuantitySelector setValue={setQuantity} value={quantity} />
         <Button
           as="button"
@@ -36,6 +38,6 @@ export const Details: FC<DetailsProps> = ({ price, cartImg, name, tag }) => {
           }
         />
       </div>
-    </DetailsWrapper>
+    </StyledDetails>
   );
 };

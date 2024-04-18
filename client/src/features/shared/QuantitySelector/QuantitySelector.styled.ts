@@ -1,16 +1,19 @@
 import { styled, css } from "styled-components";
 
-export const StyledQuantitySelector = styled.div<{ $checkoutCase: boolean }>(
-  ({ theme, $checkoutCase }) => {
-    return css`
-      background-color: ${theme.grayLight};
-      width: ${$checkoutCase ? "100px" : "120px"};
-      height: ${$checkoutCase ? "35px" : "52px"};
-      display: flex;
-      align-items: center;
-      font-weight: bold;
+export const StyledQuantitySelector = styled.div<{
+  $className: string;
+  $small: boolean;
+}>(({ theme, $small, $className }) => {
+  return css`
+    background-color: ${theme.grayLight};
+    width: ${$small ? "100px" : "120px"};
+    height: ${$small ? "35px" : "52px"};
+    display: flex;
+    align-items: center;
+    font-weight: bold;
 
-      > input {
+    .${$className} {
+      &_input {
         min-width: 0;
         flex: 1;
         background-color: transparent;
@@ -19,7 +22,7 @@ export const StyledQuantitySelector = styled.div<{ $checkoutCase: boolean }>(
         font-weight: bold;
       }
 
-      > button {
+      &_button {
         flex: 2;
         background-color: transparent;
         border: none;
@@ -32,6 +35,6 @@ export const StyledQuantitySelector = styled.div<{ $checkoutCase: boolean }>(
           color: ${theme.orangeMedium};
         }
       }
-    `;
-  }
-);
+    }
+  `;
+});

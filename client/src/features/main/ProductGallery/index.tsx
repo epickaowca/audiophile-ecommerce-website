@@ -15,7 +15,7 @@ export const ProductGallery: FC = () => {
   );
 
   if (loading) {
-    <SpinLoader heightInPx={500} />;
+    <SpinLoader height="500px" />;
   }
   if (error) {
     return <ErrorPage message="error loading product" />;

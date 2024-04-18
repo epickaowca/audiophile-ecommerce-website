@@ -2,7 +2,6 @@ export const priceWithComma = (price: number) => {
   return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 };
 
-//
 export const getVat = (price: number) => {
   return Math.ceil(price * 0.23);
 };

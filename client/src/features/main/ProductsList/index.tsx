@@ -1,5 +1,5 @@
 import { FC, useEffect, useRef } from "react";
-import { Product, StyledProductsList } from "../../shared/Product";
+import { Product, StyledProduct } from "../../shared/Product";
 import { useParams } from "react-router-dom";
 import { useAsync } from "../../../hooks/useAsync";
 import { getCategoryList } from "./services/category";
@@ -45,7 +45,7 @@ export const ProductList: FC<ProductListProps> = ({ dataLoaded }) => {
       aria-busy="false"
     >
       {loading ? (
-        <SpinLoader heightInPx={450} />
+        <SpinLoader height="450px" />
       ) : error ? (
         <ErrorPage message="error loading products" />
       ) : (
@@ -77,7 +77,7 @@ const Section = styled.section(({ theme: { media } }) => {
     }
 
     @media ${media.desktop} {
-      ${StyledProductsList}:nth-child(even) {
+      ${StyledProduct}:nth-child(even) {
         flex-direction: row-reverse;
       }
     }
