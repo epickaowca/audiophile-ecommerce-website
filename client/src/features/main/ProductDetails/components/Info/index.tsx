@@ -10,24 +10,23 @@ type InfoProps = {
 };
 
 export const Info: FC<InfoProps> = ({ features, includes }) => {
+  const { styledComponentId: Info } = StyledInfo;
   return (
-    <StyledInfo>
-      <div className="box features">
-        <h2>FEATURES</h2>
+    <StyledInfo $className={Info}>
+      <div className={`${Info}_featuresWrapper`}>
+        <h2 className={`${Info}_featuresTitle`}>FEATURES</h2>
         {features.split("\n\n").map((feature, index) => (
           <p key={index}>{feature}</p>
         ))}
       </div>
-      <div className="box includes">
-        <h2>IN THE BOX</h2>
-        <div className="includes_wrapper">
-          {includes.map((box) => (
-            <div key={box.item}>
-              <span className="quantity">{box.quantity}x</span>
-              <span className="item">{box.item}</span>
-            </div>
-          ))}
-        </div>
+      <div className={`${Info}_includesWrapper`}>
+        <h2 className={`${Info}_includesTitle`}>IN THE BOX</h2>
+        {includes.map(({ item, quantity }) => (
+          <div key={item} className={`${Info}_include`}>
+            <span>{quantity}x</span>
+            <span>{item}</span>
+          </div>
+        ))}
       </div>
     </StyledInfo>
   );

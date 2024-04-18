@@ -37,7 +37,7 @@ const color = {
 };
 
 const bgColor = {
-  primary: { default: myTheme.orangeMedium, hover: myTheme.orangeLight },
+  primary: { default: myTheme.orangeMedium, hover: "#FBAF85" },
   secondary: { default: "transparent", hover: "black" },
   noBackground: { default: "transparent", hover: "transparent" },
   black: { default: "black", hover: "#4C4C4C" },

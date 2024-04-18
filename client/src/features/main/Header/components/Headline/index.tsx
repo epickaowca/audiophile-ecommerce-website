@@ -21,7 +21,6 @@ const StyledHeadline = styled.div<{ $className: string }>(
       display: grid;
       place-items: center;
       background-color: #000;
-      border-top: 1px solid rgba(255, 255, 255, 0.15);
 
       .${$className} {
         &_title {

@@ -36,7 +36,7 @@ export const ProductGallery: FC = () => {
   );
 };
 
-const Wrapper = styled.div(({ theme }) => {
+const Wrapper = styled.div(({ theme: { media } }) => {
   return css`
     width: 90%;
     margin: auto;
@@ -46,13 +46,13 @@ const Wrapper = styled.div(({ theme }) => {
     flex-direction: column;
     gap: 25px;
 
-    @media ${theme.media.tablet} {
+    @media ${media.tablet} {
       flex-direction: row;
       gap: 20px;
       height: 420px;
     }
 
-    @media ${theme.media.desktop} {
+    @media ${media.desktop} {
       margin-top: 120px;
       gap: 30px;
       max-width: 1300px;

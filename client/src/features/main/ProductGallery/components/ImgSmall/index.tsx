@@ -9,58 +9,74 @@ type ImgSmallProps = {
 };
 
 export const ImgSmall: FC<ImgSmallProps> = ({ img1, img2 }) => {
+  const { styledComponentId: Wrapper } = ImgWrapper;
   return (
-    <Wrapper>
-      <picture>
+    <ImgWrapper $className={Wrapper}>
+      <picture className={`${Wrapper}_picture`}>
         <source media={myTheme.media.desktop} srcSet={img1.desktop} />
         <source media={myTheme.media.tablet} srcSet={img1.tablet} />
-        <img src={img1.mobile} alt="gallery-img-1" />
+        <img
+          className={`${Wrapper}_img`}
+          src={img1.mobile}
+          alt="gallery-img-1"
+        />
       </picture>
-      <picture>
+      <picture className={`${Wrapper}_picture`}>
         <source media={myTheme.media.desktop} srcSet={img2.desktop} />
         <source media={myTheme.media.tablet} srcSet={img2.tablet} />
-        <img src={img2.mobile} alt="gallery-img-2" />
+        <img
+          className={`${Wrapper}_img`}
+          src={img2.mobile}
+          alt="gallery-img-2"
+        />
       </picture>
-    </Wrapper>
+    </ImgWrapper>
   );
 };
 
-const Wrapper = styled.div(({ theme }) => {
-  return css`
-    display: flex;
-    flex-direction: column;
-    gap: 25px;
-    height: 420px;
-    & > picture {
-      height: 50%;
-      width: 100%;
-      overflow: hidden;
-      border-radius: 10px;
+const ImgWrapper = styled.div<{ $className: string }>(
+  ({ theme: { grayLight, media }, $className }) => {
+    return css`
       display: flex;
-      justify-content: center;
-      align-items: center;
-      & > img {
-        min-width: 365px;
-        width: 100%;
-        min-height: 100%;
-        background-color: ${theme.grayLight};
-      }
-    }
+      flex-direction: column;
+      gap: 25px;
+      height: 420px;
 
-    @media ${theme.media.tablet} {
-      gap: 20px;
-      flex: 4;
-      min-width: 280px;
-      height: 100%;
-      & > picture {
-        & > img {
-          min-width: unset;
+      .${$className} {
+        &_picture {
+          height: 50%;
+          width: 100%;
+          overflow: hidden;
+          border-radius: 10px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+
+        &_img {
+          min-width: 365px;
+          width: 100%;
+          min-height: 100%;
+          background-color: ${grayLight};
         }
       }
-    }
 
-    @media ${theme.media.desktop} {
-      gap: 30px;
-    }
-  `;
-});
+      @media ${media.tablet} {
+        gap: 20px;
+        flex: 4;
+        min-width: 280px;
+        height: 100%;
+
+        .${$className} {
+          &_img {
+            min-width: unset;
+          }
+        }
+      }
+
+      @media ${media.desktop} {
+        gap: 30px;
+      }
+    `;
+  }
+);

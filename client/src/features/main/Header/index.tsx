@@ -10,90 +10,72 @@ import { ButtonIcon } from "./components/ButtonIcon";
 import { modifiers } from "../../../utils";
 
 type HeaderProps = {
-  transparentBg?: boolean;
+  heroBgColor?: boolean;
   displayHeadline?: boolean;
 };
 
 export { NavList };
 export const headerHeight = "91px";
 
-export const Header: FC<HeaderProps> = React.memo(
-  ({ transparentBg, displayHeadline }) => {
-    const hamburgerBtn = useRef<HTMLButtonElement>(null);
-    const cartBtn = useRef<HTMLButtonElement>(null);
-    const [isNavOpen, setIsNavOpen] = useState(false);
-    const { toggleCart, isCartOpen } = useCart();
-    const isOverlay = isNavOpen;
-    const initialRender = useRef(true);
+export const Header: FC<HeaderProps> = ({ heroBgColor, displayHeadline }) => {
+  const [isNavOpen, setIsNavOpen] = useState(false);
+  const { toggleCart, isCartOpen } = useCart();
+  const isOverlay = isNavOpen;
 
-    const closeNav = () => {
-      setIsNavOpen(false);
-      hamburgerBtn.current?.focus();
-    };
+  const btnHandler = (open: "cart" | "nav") => {
+    if (isNavOpen || isCartOpen) {
+      isNavOpen && setIsNavOpen(false);
+      isCartOpen && toggleCart("close");
+    } else {
+      open === "cart" ? toggleCart("open") : setIsNavOpen(true);
+    }
+  };
 
-    const btnHandler = (open: "cart" | "nav") => {
-      if (isNavOpen || isCartOpen) {
-        isNavOpen && closeNav();
-        isCartOpen && toggleCart("close");
-      } else {
-        open === "cart" ? toggleCart("open") : setIsNavOpen(true);
-      }
-    };
+  const { styledComponentId: Header } = StyledHeader;
+  return (
+    <>
+      <StyledHeader
+        $className={Header}
+        $heroBgColor={heroBgColor}
+        $isNavOpen={isOverlay}
+      >
+        <div className={`${Header}_wrapper`}>
+          <ButtonIcon
+            className={modifiers({
+              baseClass: `${Header}_icon`,
+              modifier: "menu",
+            })}
+            btnIcon="menu"
+            aria-controls={navId}
+            aria-expanded={isNavOpen}
+            onClick={() => btnHandler("nav")}
+          />
+          <img className={`${Header}_logo`} alt="logo" src={logo} />
+          <Navigation
+            $headerHeight={headerHeight}
+            $isNavOpen={isNavOpen}
+            closeNav={() => setIsNavOpen(false)}
+          />
+          <ButtonIcon
+            className={modifiers({
+              baseClass: `${Header}_icon`,
+              modifier: "cart",
+            })}
+            btnIcon="cart"
+            aria-controls={cartId}
+            aria-expanded={isCartOpen}
+            onClick={() => btnHandler("cart")}
+          />
+        </div>
 
-    useEffect(
-      function onCartClose() {
-        if (initialRender.current) {
-          initialRender.current = false;
-          return;
-        }
-
-        if (!isCartOpen) {
-          cartBtn.current?.focus();
-        }
-      },
-      [isCartOpen]
-    );
-    const { styledComponentId: Header } = StyledHeader;
-    return (
-      <>
-        <StyledHeader
-          $className={Header}
-          $transparentBg={transparentBg}
-          $isNavOpen={isOverlay}
-        >
-          <div className={`${Header}_wrapper`}>
-            <ButtonIcon
-              className={modifiers({
-                baseClass: `${Header}_icon`,
-                modifier: "menu",
-              })}
-              btnIcon="menu"
-              aria-controls={navId}
-              aria-expanded={isNavOpen}
-              onClick={() => btnHandler("nav")}
-            />
-            <img className={`${Header}_logo`} alt="logo" src={logo} />
-            <Navigation
-              $headerHeight={headerHeight}
-              $isNavOpen={isNavOpen}
-              closeNav={closeNav}
-            />
-            <ButtonIcon
-              className={modifiers({
-                baseClass: `${Header}_icon`,
-                modifier: "cart",
-              })}
-              btnIcon="cart"
-              aria-controls={cartId}
-              aria-expanded={isCartOpen}
-              onClick={() => btnHandler("cart")}
-            />
-          </div>
-
-          {isNavOpen && <Overlay displayOnDesktop={false} onClick={closeNav} />}
-        </StyledHeader>
-        {displayHeadline && <Headline />}
-      </>
-    );
-  }
-);
+        {isNavOpen && (
+          <Overlay
+            displayOnDesktop={false}
+            onClick={() => setIsNavOpen(false)}
+          />
+        )}
+      </StyledHeader>
+      {displayHeadline && <Headline />}
+    </>
+  );
+};

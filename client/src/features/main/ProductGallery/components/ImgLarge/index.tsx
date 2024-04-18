@@ -17,19 +17,25 @@ export const ImgLarge: FC<ImgLargeProps> = ({ initialImg, largeImg }) => {
     largeImg,
   });
 
+  const { styledComponentId: Picture } = StyledPicture;
   return (
-    <Picture $isLargeImgLoaded={isLargeImgLoaded}>
+    <StyledPicture $className={Picture} $blur={!isLargeImgLoaded}>
       <source media={myTheme.media.desktop} srcSet={desktop} />
       <source media={myTheme.media.tablet} srcSet={tablet} />
-      <img ref={imgRef} src={mobile} alt="gallery-img-3" />
-    </Picture>
+      <img
+        className={`${Picture}_img`}
+        ref={imgRef}
+        src={mobile}
+        alt="gallery-img-3"
+      />
+    </StyledPicture>
   );
 };
 
-const Picture = styled.picture<{ $isLargeImgLoaded: boolean }>(
-  ({ $isLargeImgLoaded, theme }) => {
+const StyledPicture = styled.picture<{ $className: string; $blur: boolean }>(
+  ({ $blur, theme, $className }) => {
     return css`
-      filter: ${$isLargeImgLoaded ? "none" : "blur(4px)"};
+      filter: ${$blur ? "blur(4px)" : "none"};
       width: 100%;
       height: 420px;
       overflow: hidden;
@@ -37,16 +43,23 @@ const Picture = styled.picture<{ $isLargeImgLoaded: boolean }>(
       display: flex;
       justify-content: center;
       align-items: center;
-      & > img {
-        min-width: 400px;
-        width: 100%;
-        min-height: 100%;
+
+      .${$className} {
+        &_img {
+          min-width: 400px;
+          width: 100%;
+          min-height: 100%;
+        }
       }
+
       @media ${theme.media.tablet} {
         flex: 6;
         height: 100%;
-        & > img {
-          min-width: unset;
+
+        .${$className} {
+          &_img {
+            min-width: unset;
+          }
         }
       }
     `;

@@ -15,9 +15,10 @@ export const Home: FC = () => {
   useEffect(() => {
     setIsCriticalResLoaded(true);
   }, []);
+
   return (
     <Wrapper>
-      <Header transparentBg={true} />
+      <Header heroBgColor />
       <MainHeroSection />
       <ProductCategories />
       <Suspense>{isCriticalResLoaded && <Chunk />}</Suspense>

@@ -69,10 +69,10 @@ export const ProductDetails: FC<ProductDetailsProps> = ({ dataLoaded }) => {
   );
 };
 
-const Section = styled.section(({ theme }) => {
+const Section = styled.section(({ theme: { media } }) => {
   return css`
     margin-top: 50px;
-    @media ${theme.media.desktop} {
+    @media ${media.desktop} {
       margin-top: 80px;
     }
   `;

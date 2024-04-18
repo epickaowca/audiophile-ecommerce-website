@@ -1,7 +1,7 @@
 import { styled, css } from "styled-components";
 
 export const StyledCheckout = styled.div<{ $className: string }>(
-  ({ theme: { media, grayDark }, $className }) => {
+  ({ theme: { media }, $className }) => {
     return css`
       width: 90%;
       margin: 50px auto;
@@ -35,7 +35,7 @@ export const StyledCheckout = styled.div<{ $className: string }>(
 
           &_phraseWrapper {
             width: 100%;
-            background-color: ${grayDark};
+            background-color: #101010;
             display: grid;
             place-items: center;
           }

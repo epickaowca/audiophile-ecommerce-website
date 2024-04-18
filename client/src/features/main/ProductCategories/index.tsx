@@ -1,12 +1,12 @@
 import { FC } from "react";
 import { Product } from "./components/Product";
 import { styled, css } from "styled-components";
-import speakersImgMicro from "./assets/micro/image-category-thumbnail-speakers.png";
-import earphonesImgMicro from "./assets/micro/image-category-thumbnail-earphones.png";
-import headphonesImgMicro from "./assets/micro/image-category-thumbnail-headphones.png";
-import speakersImg from "./assets/image-category-thumbnail-speakers.png";
-import earphonesImg from "./assets/image-category-thumbnail-earphones.png";
-import headphonesImg from "./assets/image-category-thumbnail-headphones.png";
+import speakersImgMicro from "./assets/micro/speakers.png";
+import earphonesImgMicro from "./assets/micro/earphones.png";
+import headphonesImgMicro from "./assets/micro/headphones.png";
+import speakersImg from "./assets/speakers.png";
+import earphonesImg from "./assets/earphones.png";
+import headphonesImg from "./assets/headphones.png";
 
 type ProductCategoriesProps = {
   autoFocus?: boolean;
@@ -18,10 +18,10 @@ export const ProductCategories: FC<ProductCategoriesProps> = ({
   navigationCase,
 }) => {
   const attrs = navigationCase
-    ? { role: "menu" }
+    ? { role: "menubar", as: "ul" }
     : {
         "aria-label": "Product categories",
-        as: navigationCase ? "ul" : "section",
+        // as: navigationCase ? "ul" : "section",
       };
 
   const productAttrs = {
@@ -72,6 +72,7 @@ export const StyledProductCategories = styled.section(
         flex-direction: row;
         gap: 15px;
       }
+
       @media ${media.desktop} {
         max-width: 1300px;
         padding: 0 50px;

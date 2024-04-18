@@ -7,11 +7,10 @@ export const media = {
 
 export const myTheme = {
   orangeMedium: "#D87D4A",
-  orangeLight: "#FBAF85",
   grayDark: "#101010",
   grayLight: "#F1F1F1",
-  grayLighter: "#FAFAFA",
   grayDarkText: "rgba(0,0,0,.5)",
+  heroBgColor: "#101010",
   media,
 } as const;
 
@@ -27,7 +26,7 @@ export const GlobalStyle = createGlobalStyle(
       padding: 0;
       font-family: "Manrope", sans-serif;
       overflow-x: hidden;
-      background-color: ${theme.grayLighter};
+      background-color: #fafafa;
     }
 
     #root {

@@ -18,6 +18,7 @@ export const ProductList: FC<ProductListProps> = ({ dataLoaded }) => {
     [id]
   );
   const sectionRef = useRef<HTMLElement>(null);
+
   useEffect(
     function onDataLoaded() {
       if (resData) {
@@ -64,19 +65,19 @@ export const ProductList: FC<ProductListProps> = ({ dataLoaded }) => {
   );
 };
 
-const Section = styled.section(({ theme }) => {
+const Section = styled.section(({ theme: { media } }) => {
   return css`
     padding: 60px 0;
     display: flex;
     flex-direction: column;
     gap: 150px;
 
-    @media ${theme.media.tablet} {
+    @media ${media.tablet} {
       padding: 100px 0;
     }
 
-    @media ${theme.media.desktop} {
-      & > ${StyledProductsList}:nth-child(even) {
+    @media ${media.desktop} {
+      ${StyledProductsList}:nth-child(even) {
         flex-direction: row-reverse;
       }
     }

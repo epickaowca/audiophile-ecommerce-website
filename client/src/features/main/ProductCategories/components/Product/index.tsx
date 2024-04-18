@@ -1,7 +1,7 @@
 import { FC, useEffect, useRef, useCallback } from "react";
 import { Button } from "../../../../shared/Button";
 import { Image, ProductCategories } from "../../../../../types";
-import { Anchor, Li } from "./Product.styled";
+import { StyledProduct, Li } from "./Product.styled";
 import { useImgPreload } from "../../../../../hooks/useImgPreload";
 
 type ProductProps = {
@@ -35,15 +35,25 @@ export const Product: FC<ProductProps> = ({
     }
   }, [autoFocus]);
 
-  const attrs = { role: navigationCase ? "menuitem" : undefined, ref, href };
+  const attrs = { ref, href };
+  const { styledComponentId: Product } = StyledProduct;
 
-  const AnchorComponent = (
-    <Anchor {...attrs} $isLargeImgLoaded={isLargeImgLoaded}>
-      <img ref={imgRef} src={mobile} alt={productName} />
-      <span className="product-name">{productName}</span>
+  const ProductComponent = (
+    <StyledProduct {...attrs} $className={Product} $blur={!isLargeImgLoaded}>
+      <img
+        className={`${Product}_img`}
+        ref={imgRef}
+        src={mobile}
+        alt={productName}
+      />
+      <span className={`${Product}_name`}>{productName}</span>
       <Button as="div" text="SHOP" variant="noBackground" />
-    </Anchor>
+    </StyledProduct>
   );
 
-  return navigationCase ? <Li>{AnchorComponent}</Li> : AnchorComponent;
+  return navigationCase ? (
+    <Li role="menuitem">{ProductComponent}</Li>
+  ) : (
+    ProductComponent
+  );
 };

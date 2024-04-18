@@ -1,14 +1,15 @@
 import { FC, useRef } from "react";
 import { ProductDescription } from "../../shared/ProductDescription";
-import mobileMicro from "./assets/micro/image-hero-mobile.jpg";
-import tabletMicro from "./assets/micro/image-hero-tablet.jpg";
-import desktopMicro from "./assets/micro/image-hero-desktop.jpg";
-import mobile from "./assets/image-hero-mobile.jpg";
-import tablet from "./assets/image-hero-tablet.jpg";
-import desktop from "./assets/image-hero-desktop.jpg";
-import { myTheme } from "../../../styles/styled";
+import mobileMicro from "./assets/micro/mobile.jpg";
+import tabletMicro from "./assets/micro/tablet.jpg";
+import desktopMicro from "./assets/micro/desktop.jpg";
+import mobile from "./assets/mobile.jpg";
+import tablet from "./assets/tablet.jpg";
+import desktop from "./assets/desktop.jpg";
+import { media } from "../../../styles/styled";
 import { useImgPreload } from "../../../hooks/useImgPreload";
-import { StyledMainHeroSection, Picture } from "./MainHeroSection.styled";
+import { StyledMainHeroSection } from "./MainHeroSection.styled";
+import { modifiers } from "../../../utils";
 
 const initialImg = {
   mobile: mobileMicro,
@@ -28,23 +29,33 @@ export const MainHeroSection: FC = () => {
     largeImg,
     imgRef,
   });
+  const { styledComponentId: Hero } = StyledMainHeroSection;
 
   return (
-    <StyledMainHeroSection aria-label="hero section">
-      <div className="bg"></div>
-      <div className="mask"></div>
-      <Picture $isLargeImgLoaded={isLargeImgLoaded}>
-        <source media={myTheme.media.desktop} srcSet={desktop} />
-        <source media={myTheme.media.tablet} srcSet={tablet} />
-        <img ref={imgRef} src={mobile} alt="hero-image" />
-      </Picture>
+    <StyledMainHeroSection $className={Hero} aria-label="hero section">
+      <div className={`${Hero}_bg`}></div>
+      <picture
+        className={modifiers({
+          baseClass: `${Hero}_picture`,
+          modifier: !isLargeImgLoaded && "blur",
+        })}
+      >
+        <source media={media.desktop} srcSet={desktop} />
+        <source media={media.tablet} srcSet={tablet} />
+        <img
+          className={`${Hero}_img`}
+          ref={imgRef}
+          src={mobile}
+          alt="hero-image"
+        />
+      </picture>
       <ProductDescription
         href="/details/XX99-Mark-2"
         ariaLabel="SEE XX99 Mark II"
-        isNew={true}
         name="XX99 Mark II"
         category="headphones"
         description="Experience natural, lifelike audio and exceptional build quality made for the passionate music enthusiast."
+        isNew
       />
     </StyledMainHeroSection>
   );
