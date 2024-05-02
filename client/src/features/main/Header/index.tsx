@@ -2,7 +2,7 @@ import React, { FC, useState, useRef, useEffect } from "react";
 import { Navigation, navId } from "./components/Navigation";
 import { StyledHeader } from "./Header.styled";
 import { Overlay } from "../../shared/Overlay";
-import logo from "../../../assets/shared/logo.svg";
+import logo from "../../../assets/logo.svg";
 import { NavList } from "./components/NavList";
 import { Headline } from "./components/Headline";
 import { useCart, cartId } from "../Cart";
