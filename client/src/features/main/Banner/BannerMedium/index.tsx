@@ -54,7 +54,7 @@ export const BannerMedium: FC = () => {
           className={`${Banner}_img`}
           ref={imgRef}
           src={mobile}
-          alt="ZX7 product image"
+          alt="YX1 product image"
         />
       </picture>
     </StyledBanner>
