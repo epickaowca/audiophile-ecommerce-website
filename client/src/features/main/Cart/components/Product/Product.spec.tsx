@@ -1,7 +1,7 @@
 import { screen } from "@testing-library/react";
 import { Product } from "./index";
 import { render } from "../../../../../../tests/render";
-import { stateWithProductsTest } from "../../../../../../tests/Mocks/cartProvider";
+import { stateWithProductsTest } from "../../../../../../tests/mocks/cartProvider";
 import { priceWithComma } from "../../../../../utils";
 
 const product = stateWithProductsTest.productList[0];

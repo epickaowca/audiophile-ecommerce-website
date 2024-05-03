@@ -48,9 +48,14 @@ app.get("/gallery/:tagName", (req, res) => {
   }
 });
 
-// app.use(express.static("public"));
-const correctPath = path.join(__dirname, "public");
-app.use("/public", express.static(correctPath));
+const env = process.env.NODE_ENV || "development";
+
+if (env === "development") {
+  app.use(express.static("public"));
+} else {
+  const correctPath = path.join(__dirname, "public");
+  app.use("/public", express.static(correctPath));
+}
 
 app.listen(PORT, () => {
   console.log(`server is running on ${PORT}`);

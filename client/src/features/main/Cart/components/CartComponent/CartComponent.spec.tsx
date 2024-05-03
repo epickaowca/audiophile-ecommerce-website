@@ -1,7 +1,7 @@
 import { screen } from "@testing-library/react";
 import { CartModal } from "./index";
 import { render } from "../../../../../../tests/render";
-import { stateWithProductsTest } from "../../../../../../tests/Mocks/cartProvider";
+import { stateWithProductsTest } from "../../../../../../tests/mocks/cartProvider";
 
 it("should render empty cart", async () => {
   render(<CartModal />);

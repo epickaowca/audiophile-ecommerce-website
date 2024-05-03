@@ -32,7 +32,6 @@ export const ProductDescription: FC<ProductDescriptionProps & ButtonProps> = ({
       {isNew && <span className={`${Product}_newProduct`}>NEW PRODUCT</span>}
       <h1 className={`${Product}_title`}>
         {name}
-        {` `}
         {!withoutBr && <br />}
         {category}
       </h1>
