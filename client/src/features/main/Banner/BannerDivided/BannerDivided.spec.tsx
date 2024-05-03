@@ -14,6 +14,7 @@ it("displays ProductDescription with correct props", () => {
   expect(screen.getByText("ZX7")).toBeInTheDocument();
   expect(screen.getByText("secondary")).toBeInTheDocument();
   expect(screen.getByText("ZX7 speaker")).toBeInTheDocument();
+  expect(screen.getByText("speaker")).toBeInTheDocument();
   expect(screen.getByText("/details/ZX7")).toBeInTheDocument();
   expect(screen.getByText("withoutBr:true")).toBeInTheDocument();
 });
