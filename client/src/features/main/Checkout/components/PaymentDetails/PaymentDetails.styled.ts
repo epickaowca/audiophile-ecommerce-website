@@ -1,7 +1,7 @@
 import { styled, css } from "styled-components";
 
 export const StyledFieldset = styled.fieldset<{ $className: string }>(
-  ({ theme, $className }) => {
+  ({ theme: { media }, $className }) => {
     return css`
       border: none;
 
@@ -18,7 +18,7 @@ export const StyledFieldset = styled.fieldset<{ $className: string }>(
         }
       }
 
-      @media ${theme.media.tablet} {
+      @media ${media.tablet} {
         display: flex;
         width: 100%;
         gap: 25px;

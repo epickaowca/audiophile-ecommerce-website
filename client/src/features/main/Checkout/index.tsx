@@ -24,6 +24,7 @@ export const Checkout: FC = () => {
     console.log(data);
     setIsSubmitted(true);
   };
+
   const { styledComponentId: Checkout } = StyledCheckout;
   return (
     <>

@@ -20,6 +20,7 @@ export const PaymentDetails: FC<PaymentDetailsProps> = ({ register }) => {
     onChange: (e: any) => setState(e.target.value),
     register,
   } as const;
+
   return (
     <>
       <StyledRow>
