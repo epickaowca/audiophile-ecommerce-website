@@ -1,19 +1,17 @@
 import { screen } from "@testing-library/react";
 import { CloseBtn } from "./index";
 import { render } from "../../../../../../../../tests/render";
-import { stateWithProductsTest } from "../../../../../../../../tests/mocks/cartProvider";
+import { toggleCart } from "../../../../../../../../tests/constants";
 
-it("should render close icon", async () => {
+it("displays close icon", async () => {
   render(<CloseBtn />);
   const icon = screen.getByAltText("close icon");
   expect(icon).toBeInTheDocument();
 });
 
-it("should render close button", async () => {
-  render(<CloseBtn />, stateWithProductsTest);
-  const button = screen.getByRole("button");
-  expect(button).toBeInTheDocument();
+it("clicking close icon calls toggleCart", async () => {
+  render(<CloseBtn />);
 
-  await button.click();
-  expect(stateWithProductsTest.toggleCart).toHaveBeenCalledWith("close");
+  await screen.getByRole("button", { name: "close icon" }).click();
+  expect(toggleCart).toHaveBeenCalledWith("close");
 });

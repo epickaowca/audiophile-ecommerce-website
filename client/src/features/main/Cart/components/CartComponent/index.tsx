@@ -50,14 +50,13 @@ export const CartModal: FC = () => {
           Remove all
         </button>
       </div>
-      <ProductList cartType={"modal"} />
+      <ProductList cartType="modal" />
       <Price name="total" price={total} />
       <Button
         text="CHECKOUT"
         type="button"
         variant="primary"
         as="button"
-        ariaLabel="go to checkout"
         onClick={() => {
           navigate("/checkout");
           toggleCart("close");

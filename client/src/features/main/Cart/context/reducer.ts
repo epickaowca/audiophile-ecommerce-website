@@ -1,9 +1,5 @@
 import { Product, UpdateQuantityProps } from "./types";
-import {
-  isProductAlreadyAdded,
-  getTotal,
-  getQuantityUpdatedList,
-} from "./utils";
+import { isProductAlreadyAdded, getQuantityUpdatedList } from "./utils";
 
 export function reducer(
   state: {

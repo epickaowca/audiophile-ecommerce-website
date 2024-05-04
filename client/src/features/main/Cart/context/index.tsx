@@ -1,16 +1,11 @@
 import React, { FC, useContext, useReducer, ReactNode, useEffect } from "react";
 import { reducer, ActionType } from "./reducer";
-import {
-  isProductAlreadyAdded,
-  getProductListFromLocalStorage,
-  getTotal,
-  getQuantityUpdatedList,
-} from "./utils";
+import { getProductListFromLocalStorage, getTotal } from "./utils";
 import { Product, ContextType, UpdateQuantityProps } from "./types";
 import { LOCAL_STORAGE_PRODUCT_LIST } from "../constants";
+
 type CartProviderProps = {
   children?: ReactNode;
-  staticState?: ContextType;
 };
 export { getTotal };
 
@@ -30,10 +25,7 @@ export const useCart = () => {
   return useContext(Context);
 };
 
-export const CartProvider: FC<CartProviderProps> = ({
-  children,
-  staticState,
-}) => {
+export const CartProvider: FC<CartProviderProps> = ({ children }) => {
   const [{ isCartOpen, productList }, dispatch] = useReducer(reducer, {
     isCartOpen: false,
     productList: getProductListFromLocalStorage(),
@@ -80,14 +72,18 @@ export const CartProvider: FC<CartProviderProps> = ({
     });
   };
 
-  const value = staticState || {
-    isCartOpen,
-    productList,
-    toggleCart,
-    addProduct,
-    updateQuantity,
-    removeAll,
-  };
-
-  return <Context.Provider value={value}>{children}</Context.Provider>;
+  return (
+    <Context.Provider
+      value={{
+        isCartOpen,
+        productList,
+        toggleCart,
+        addProduct,
+        updateQuantity,
+        removeAll,
+      }}
+    >
+      {children}
+    </Context.Provider>
+  );
 };

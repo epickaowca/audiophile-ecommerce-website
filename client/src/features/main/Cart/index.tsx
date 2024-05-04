@@ -36,7 +36,7 @@ export const Cart: FC<CartType> = ({ cartType }) => {
 
     return createPortal(
       isCartOpen ? component : <></>,
-      document.getElementById("root")!
+      document.querySelector("body")!
     );
   }
 

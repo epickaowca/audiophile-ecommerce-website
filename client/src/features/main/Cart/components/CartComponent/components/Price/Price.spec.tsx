@@ -6,10 +6,8 @@ import { priceWithComma } from "../../../../../../../utils";
 const name = "test name";
 const price = 15;
 
-it("should render name and price", async () => {
+it("displays name and price", async () => {
   render(<Price name={name} price={price} />);
-  const priceEl = screen.getByText(`$ ${priceWithComma(price)}`);
-  const nameEl = screen.getByText(name);
-  expect(priceEl).toBeInTheDocument();
-  expect(nameEl).toBeInTheDocument();
+  expect(screen.getByText(`$ ${priceWithComma(price)}`)).toBeInTheDocument();
+  expect(screen.getByText(name)).toBeInTheDocument();
 });
