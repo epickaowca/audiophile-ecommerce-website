@@ -2,19 +2,42 @@ import { screen } from "@testing-library/react";
 import { Product } from "./index";
 import { render } from "../../../../../../tests/render";
 
-it("should render Product", async () => {
-  const props = {
-    href: "hrefTest",
-    initialImg: { mobile: "imgTestInit" },
-    largeImg: { mobile: "imgTestLarge" },
-    productName: "headphones",
-  } as const;
+const props = {
+  href: "hrefTest",
+  initialImg: { mobile: "imgTestInit" },
+  largeImg: { mobile: "imgTestLarge" },
+  productName: "headphones",
+} as const;
 
+it("displays product img", async () => {
   render(<Product {...props} />);
-  const img = screen.getByAltText(props.productName);
-  const h1 = screen.getByText(props.productName);
+  expect(screen.getByAltText(props.productName)).toHaveAttribute(
+    "src",
+    props.initialImg.mobile
+  );
+});
 
-  expect(img).toBeInTheDocument();
-  expect(img).toHaveAttribute("src", props.initialImg.mobile);
-  expect(h1).toBeInTheDocument();
+it("displays product name", async () => {
+  render(<Product {...props} />);
+  expect(screen.getByText(props.productName)).toBeInTheDocument();
+});
+
+it("displays shop button", async () => {
+  render(<Product {...props} />);
+  expect(screen.getByText("SHOP")).toBeInTheDocument();
+});
+
+it("displays product as menuitem", async () => {
+  render(<Product {...props} navigationCase />);
+  expect(screen.getByRole("menuitem")).toBeInTheDocument();
+});
+
+it("displays not focused link", async () => {
+  render(<Product {...props} />);
+  expect(screen.getByRole("link")).not.toHaveFocus();
+});
+
+it("displays focused link", async () => {
+  render(<Product {...props} autoFocus />);
+  expect(screen.getByRole("link")).toHaveFocus();
 });
