@@ -2,12 +2,12 @@ import { screen } from "@testing-library/react";
 import { ErrorPage } from "./index";
 import { render } from "../../../../tests/render";
 
-it("should render Error Page", async () => {
+it("displays error description", async () => {
   render(<ErrorPage />);
-  const somethingWrong = screen.getByText("something wrong");
-  const link = screen.getByText("Go back to home");
+  expect(screen.getByText("something wrong")).toBeInTheDocument();
+});
 
-  expect(somethingWrong).toBeInTheDocument();
-  expect(link).toBeInTheDocument();
-  expect(link).toHaveAttribute("href", "/");
+it("displays go back home link", async () => {
+  render(<ErrorPage />);
+  expect(screen.getByText("Go back to home")).toHaveAttribute("href", "/");
 });
