@@ -1,4 +1,4 @@
-import { FC, useEffect, useRef } from "react";
+import { FC, useEffect } from "react";
 import { Product } from "../../shared/Product";
 import { styled, css } from "styled-components";
 import { getProductDetails } from "./services/details";
@@ -17,7 +17,6 @@ export const ProductDetails: FC<ProductDetailsProps> = ({ dataLoaded }) => {
   const { error, loading, resData } = useAsync(() =>
     getProductDetails({ tagName: id! })
   );
-  const sectionRef = useRef<HTMLElement>(null);
 
   useEffect(
     function onDataLoaded() {
@@ -28,21 +27,11 @@ export const ProductDetails: FC<ProductDetailsProps> = ({ dataLoaded }) => {
     [resData]
   );
 
-  useEffect(
-    function onLoading() {
-      if (sectionRef.current) {
-        sectionRef.current.ariaBusy = loading.toString();
-      }
-    },
-    [loading]
-  );
-
   return (
     <Section
-      ref={sectionRef}
       aria-label="product details"
       aria-live="polite"
-      aria-busy="false"
+      aria-busy={loading}
     >
       {loading ? (
         <SpinLoader height="450px" />
@@ -63,7 +52,7 @@ export const ProductDetails: FC<ProductDetailsProps> = ({ dataLoaded }) => {
           <Info {...resData} />
         </>
       ) : (
-        <></>
+        <h1>Error - there is no data on response</h1>
       )}
     </Section>
   );

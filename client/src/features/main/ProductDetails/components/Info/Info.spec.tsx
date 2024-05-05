@@ -10,15 +10,11 @@ it("should render Info", async () => {
 
   render(<Info {...props} />);
 
-  const featuresHeader = screen.getByText("FEATURES");
-  const includesHeader = screen.getByText("IN THE BOX");
-  const features = screen.getByText(props.features);
-  const includesItem = screen.getByText(props.includes[0].item);
-  const includesQuantity = screen.getByText(`${props.includes[0].quantity}x`);
-
-  expect(featuresHeader).toBeInTheDocument();
-  expect(includesHeader).toBeInTheDocument();
-  expect(features).toBeInTheDocument();
-  expect(includesItem).toBeInTheDocument();
-  expect(includesQuantity).toBeInTheDocument();
+  expect(screen.getByText("FEATURES")).toBeInTheDocument();
+  expect(screen.getByText(props.features)).toBeInTheDocument();
+  expect(screen.getByText("IN THE BOX")).toBeInTheDocument();
+  expect(screen.getByText(props.includes[0].item)).toBeInTheDocument();
+  expect(
+    screen.getByText(`${props.includes[0].quantity}x`)
+  ).toBeInTheDocument();
 });
