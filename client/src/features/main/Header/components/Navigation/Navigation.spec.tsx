@@ -1,19 +1,32 @@
-import { fireEvent } from "@testing-library/react";
-import { Navigation } from "./index";
+import { screen } from "@testing-library/react";
 import { render } from "../../../../../../tests/render";
+import { Navigation, navId } from "./index";
 
-window.scrollTo = jest.fn();
+jest.mock("../NavList", () => ({
+  NavList: jest.fn(() => <h1>NavList</h1>),
+}));
 
-it("should call closeNav on escape", async () => {
-  const closeNav = jest.fn();
-  const { container } = render(
-    <Navigation closeNav={closeNav} $headerHeight="50" $isNavOpen={true} />
-  );
+jest.mock("../../../ProductCategories", () => ({
+  ProductCategories: jest.fn(() => <h1>ProductCategories</h1>),
+}));
 
-  fireEvent.keyDown(container.querySelector(".productCategoriesWrapper")!, {
-    key: "Escape",
-    code: "Escape",
-  });
+const defaultProps = {
+  closeNav: jest.fn(),
+  $headerHeight: "50",
+  $isNavOpen: true,
+};
 
-  expect(closeNav).toHaveBeenCalledTimes(1);
+it("displays NavList", async () => {
+  render(<Navigation {...defaultProps} />);
+  expect(screen.getByText("NavList")).toBeInTheDocument();
+});
+
+it("displays ProductCategories", async () => {
+  render(<Navigation {...defaultProps} />);
+  expect(screen.getByText("ProductCategories")).toBeInTheDocument();
+});
+
+it("displays navigation with id", async () => {
+  render(<Navigation {...defaultProps} />);
+  expect(screen.getByRole("navigation")).toHaveAttribute("id", navId);
 });

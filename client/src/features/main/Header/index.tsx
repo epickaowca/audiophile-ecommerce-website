@@ -1,4 +1,4 @@
-import React, { FC, useState, useRef, useEffect } from "react";
+import { FC, useState } from "react";
 import { Navigation, navId } from "./components/Navigation";
 import { StyledHeader } from "./Header.styled";
 import { Overlay } from "../../shared/Overlay";
@@ -19,7 +19,7 @@ export const headerHeight = "91px";
 
 export const Header: FC<HeaderProps> = ({ heroBgColor, displayHeadline }) => {
   const [isNavOpen, setIsNavOpen] = useState(false);
-  const { toggleCart, isCartOpen } = useCart();
+  const { isCartOpen, toggleCart } = useCart();
   const isOverlay = isNavOpen;
 
   const btnHandler = (open: "cart" | "nav") => {
@@ -27,6 +27,7 @@ export const Header: FC<HeaderProps> = ({ heroBgColor, displayHeadline }) => {
       isNavOpen && setIsNavOpen(false);
       isCartOpen && toggleCart("close");
     } else {
+      console.log("hi");
       open === "cart" ? toggleCart("open") : setIsNavOpen(true);
     }
   };

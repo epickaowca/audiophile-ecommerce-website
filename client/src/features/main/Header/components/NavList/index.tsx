@@ -1,9 +1,9 @@
 import { FC } from "react";
 import { useLocation, Link } from "react-router-dom";
-import { StyledNavList as SNL } from "./NavList.styled";
+import { StyledNavList } from "./NavList.styled";
 import { modifiers } from "../../../../../utils";
 
-export const StyledNavList = SNL;
+export { StyledNavList };
 
 export const menuItems = [
   { label: "home", to: "/" },
