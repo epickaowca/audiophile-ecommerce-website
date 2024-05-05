@@ -14,29 +14,32 @@ export const ProductGallery: FC = () => {
     getProductGallery({ tagName: id! })
   );
 
-  if (loading) {
-    <SpinLoader height="500px" />;
-  }
-  if (error) {
-    return <ErrorPage message="error loading product" />;
-  }
-
   return (
-    <Wrapper>
-      {resData && (
-        <>
-          <ImgSmall {...resData} />
-          <ImgLarge
-            initialImg={resData.img3.micro}
-            largeImg={resData.img3.large}
-          />
-        </>
+    <Section
+      aria-label="product gallery"
+      aria-live="polite"
+      aria-busy={loading}
+    >
+      {loading ? (
+        <SpinLoader height="500px" />
+      ) : error ? (
+        <ErrorPage message="error loading product" />
+      ) : (
+        resData && (
+          <>
+            <ImgSmall {...resData} />
+            <ImgLarge
+              initialImg={resData.img3.micro}
+              largeImg={resData.img3.large}
+            />
+          </>
+        )
       )}
-    </Wrapper>
+    </Section>
   );
 };
 
-const Wrapper = styled.div(({ theme: { media } }) => {
+const Section = styled.section(({ theme: { media } }) => {
   return css`
     width: 90%;
     margin: auto;

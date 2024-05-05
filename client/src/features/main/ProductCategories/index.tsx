@@ -20,7 +20,7 @@ export const ProductCategories: FC<ProductCategoriesProps> = ({
   const attrs = navigationCase
     ? { role: "menubar", as: "ul" }
     : {
-        "aria-label": "Product categories",
+        "aria-label": "product categories",
       };
 
   const productAttrs = {

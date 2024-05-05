@@ -19,6 +19,7 @@ export const SpinLoader: FC<SpinLoaderProps> = ({ height }) => {
 
 const Wrapper = styled.div<{ $height: string }>(({ $height }) => {
   return css`
+    margin: auto;
     position: relative;
     height: ${$height};
   `;

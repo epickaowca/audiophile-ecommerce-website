@@ -33,7 +33,7 @@ export const ImgLarge: FC<ImgLargeProps> = ({ initialImg, largeImg }) => {
 };
 
 const StyledPicture = styled.picture<{ $className: string; $blur: boolean }>(
-  ({ $blur, theme, $className }) => {
+  ({ $blur, theme: { media, grayLight }, $className }) => {
     return css`
       filter: ${$blur ? "blur(4px)" : "none"};
       width: 100%;
@@ -49,10 +49,11 @@ const StyledPicture = styled.picture<{ $className: string; $blur: boolean }>(
           min-width: 400px;
           width: 100%;
           min-height: 100%;
+          background-color: ${grayLight};
         }
       }
 
-      @media ${theme.media.tablet} {
+      @media ${media.tablet} {
         flex: 6;
         height: 100%;
 
