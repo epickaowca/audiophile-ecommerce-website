@@ -1,4 +1,4 @@
-import { FC, useEffect, useRef } from "react";
+import { FC, useEffect } from "react";
 import { Product, StyledProduct } from "../../shared/Product";
 import { useParams } from "react-router-dom";
 import { useAsync } from "../../../hooks/useAsync";
@@ -17,7 +17,6 @@ export const ProductList: FC<ProductListProps> = ({ dataLoaded }) => {
     () => getCategoryList({ categoryName: id! }),
     [id]
   );
-  const sectionRef = useRef<HTMLElement>(null);
 
   useEffect(
     function onDataLoaded() {
@@ -28,21 +27,11 @@ export const ProductList: FC<ProductListProps> = ({ dataLoaded }) => {
     [resData]
   );
 
-  useEffect(
-    function onLoading() {
-      if (sectionRef.current) {
-        sectionRef.current.ariaBusy = loading.toString();
-      }
-    },
-    [loading]
-  );
-
   return (
     <Section
-      ref={sectionRef}
       aria-label="list of products"
       aria-live="polite"
-      aria-busy="false"
+      aria-busy={loading}
     >
       {loading ? (
         <SpinLoader height="450px" />
