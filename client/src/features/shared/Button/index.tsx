@@ -15,11 +15,8 @@ export const Button: FC<ButtonProps> = ({
   href,
   type,
 }) => {
-  const ref = useRef<HTMLButtonElement>(null);
-
   const isLink = as === "link";
   const attr = {
-    ref,
     onClick,
     $variant: variant,
     "aria-label": ariaLabel,

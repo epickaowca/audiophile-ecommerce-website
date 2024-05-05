@@ -4,24 +4,39 @@ import { render } from "../../../../tests/render";
 
 const text = "text test";
 
-it("should render button", async () => {
+it("displays button", async () => {
   render(<Button as="button" text={text} />);
-  const button = screen.getByRole("button");
-  expect(button).toBeInTheDocument();
-  expect(button).toHaveTextContent(text);
+  expect(screen.getByRole("button")).toHaveTextContent(text);
 });
 
-it("should render div", async () => {
+it("displays aria-label", async () => {
+  const ariaLabel = "test button";
+  render(<Button as="button" text={text} ariaLabel={ariaLabel} />);
+  expect(screen.getByRole("button")).toHaveAttribute("aria-label", ariaLabel);
+});
+
+it("displays type", async () => {
+  const type = "submit";
+  render(<Button as="button" text={text} type={type} />);
+  expect(screen.getByRole("button")).toHaveAttribute("type", type);
+});
+
+it("calls onClick handler after clicking button", async () => {
+  const onClick = jest.fn();
+  render(<Button as="button" text={text} onClick={onClick} />);
+  screen.getByRole("button").click();
+  expect(onClick).toHaveBeenCalled();
+});
+
+it("displays button as div", async () => {
   render(<Button as="div" text={text} />);
-  const div = screen.getByText(text);
-  expect(div).toBeInTheDocument();
+  expect(screen.getByText(text)).toBeInTheDocument();
 });
 
-it("should render link", async () => {
+it("displays button as link", async () => {
   const href = "#hrefText";
   render(<Button as="link" text={text} href={href} />);
   const link = screen.getByRole("link");
-  expect(link).toBeInTheDocument();
   expect(link).toHaveTextContent(text);
   expect(link).toHaveAttribute("href", `/${href}`);
 });
