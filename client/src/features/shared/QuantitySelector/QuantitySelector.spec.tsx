@@ -1,59 +1,30 @@
-import { screen, act, fireEvent } from "@testing-library/react";
+import { screen, act, fireEvent, waitFor } from "@testing-library/react";
 import { QuantitySelector } from "./index";
 import { render } from "../../../../tests/render";
 
-it("should render QuantitySelector with aria label", async () => {
-  const setValue = jest.fn();
+const defaultProps = { setValue: jest.fn(), value: 5 };
+
+it("displays input with aria label", () => {
   const ariaLabel = "test";
-
-  render(
-    <QuantitySelector setValue={setValue} value={5} ariaLabel={ariaLabel} />
-  );
-
-  const input = screen.getByLabelText(ariaLabel);
-  expect(input).toBeInTheDocument();
+  render(<QuantitySelector {...defaultProps} ariaLabel={ariaLabel} />);
+  expect(screen.getByLabelText(ariaLabel)).toBeInTheDocument();
 });
 
-it("should call onMinus fn", async () => {
-  const setValue = jest.fn();
-  const component = <QuantitySelector setValue={setValue} value={5} />;
-  const { rerender } = render(component);
-
-  const onMinusBtn = screen.getByText("-");
-
-  await act(async () => {
-    await onMinusBtn.click();
-  });
-  rerender(component);
-  expect(setValue).toHaveBeenCalledTimes(1);
+it("calls onMinus handler after clicking minus button", () => {
+  render(<QuantitySelector {...defaultProps} />);
+  screen.getByText("-").click();
+  expect(defaultProps.setValue).toHaveBeenCalledWith(defaultProps.value - 1);
 });
 
-it("should call onPlus fn", async () => {
-  const setValue = jest.fn();
-  const component = <QuantitySelector setValue={setValue} value={5} />;
-  const { rerender } = render(component);
-
-  const onPlusBtn = screen.getByText("+");
-
-  await act(async () => {
-    await onPlusBtn.click();
-  });
-  rerender(component);
-  expect(setValue).toHaveBeenCalledTimes(1);
+it("calls onPlus handler after clicking minus button", () => {
+  render(<QuantitySelector {...defaultProps} />);
+  screen.getByText("+").click();
+  expect(defaultProps.setValue).toHaveBeenCalledWith(defaultProps.value + 1);
 });
 
-it("should call onValueChange fn", async () => {
-  const value = "25";
-  const setValue = jest.fn();
-  const component = <QuantitySelector setValue={setValue} value={5} />;
-  const { rerender } = render(component);
-
-  const input = screen.getByRole("textbox");
-
-  await act(async () => {
-    await fireEvent.change(input, { target: { value } });
-  });
-  rerender(component);
-  expect(setValue).toHaveBeenCalledTimes(1);
-  expect(setValue).toHaveBeenCalledWith(value);
+it("calls onValueChange handler after changing input value", () => {
+  const value = 25;
+  render(<QuantitySelector {...defaultProps} />);
+  fireEvent.change(screen.getByRole("textbox"), { target: { value } });
+  expect(defaultProps.setValue).toHaveBeenCalledWith(value);
 });
