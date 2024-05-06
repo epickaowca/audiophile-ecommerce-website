@@ -2,36 +2,40 @@ import { screen } from "@testing-library/react";
 import { ProductDescription } from "./index";
 import { render } from "../../../../tests/render";
 
-const baseProps = {
-  category: "earphones",
+const defaultProps = {
   name: "XY1",
+  category: "earphones",
 } as const;
 
-it("should render category and name", async () => {
-  render(<ProductDescription {...baseProps} />);
-  const category = screen.getByText(baseProps.category);
-  const name = screen.getByText(baseProps.name);
-  expect(category).toBeInTheDocument();
-  expect(name).toBeInTheDocument();
+it("displays name and category", async () => {
+  render(<ProductDescription {...defaultProps} />);
+  expect(screen.getByRole("heading", { level: 1 })).toHaveTextContent(
+    `${defaultProps.name}${defaultProps.category}`
+  );
 });
 
-it("should render isNew text", async () => {
-  render(<ProductDescription {...baseProps} isNew={true} />);
-  const newProduct = screen.getByText("NEW PRODUCT");
-  expect(newProduct).toBeInTheDocument();
+it("displays description", async () => {
+  const description = "description test";
+  render(<ProductDescription {...defaultProps} description={description} />);
+  expect(screen.getByText(description)).toBeInTheDocument();
 });
 
-it("should render description text", async () => {
-  const descriptionText = "description test";
-  render(<ProductDescription {...baseProps} description={descriptionText} />);
-  const description = screen.getByText(descriptionText);
-  expect(description).toBeInTheDocument();
+it("displays NEW PRODUCT text", async () => {
+  render(<ProductDescription {...defaultProps} isNew={true} />);
+  expect(screen.getByText("NEW PRODUCT")).toBeInTheDocument();
 });
 
-it("should render link", async () => {
+it("displays link button", async () => {
   const href = "#test";
-  render(<ProductDescription {...baseProps} href={href} />);
-  const link = screen.getByRole("link");
-  expect(link).toBeInTheDocument();
-  expect(link).toHaveAttribute("href", `/${href}`);
+  render(<ProductDescription {...defaultProps} href={href} />);
+  expect(screen.getByRole("link")).toHaveAttribute("href", `/${href}`);
+});
+
+it("displays ariaLabel on button", async () => {
+  const href = "#test";
+  const ariaLabel = "button";
+  render(
+    <ProductDescription {...defaultProps} href={href} ariaLabel={ariaLabel} />
+  );
+  expect(screen.getByRole("link")).toHaveAttribute("aria-label", ariaLabel);
 });
