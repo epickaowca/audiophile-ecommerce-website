@@ -1,6 +1,6 @@
 import { screen } from "@testing-library/react";
 import { ProductDescription } from "./index";
-import { render } from "../../../../tests/render";
+import { render } from "@tests/render";
 
 const defaultProps = {
   name: "XY1",

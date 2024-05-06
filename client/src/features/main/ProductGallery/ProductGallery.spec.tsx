@@ -1,5 +1,5 @@
 import { screen, waitFor } from "@testing-library/react";
-import { render } from "../../../../tests/render";
+import { render } from "@tests/render";
 import { ProductGallery } from "./index";
 import { getProductGallery } from "./services/gallery";
 

@@ -1,9 +1,9 @@
 import { FC, useState } from "react";
 import { StyledDetails } from "./Details.styled";
-import { QuantitySelector } from "../../../QuantitySelector";
-import { Button } from "../../../Button";
-import { priceWithComma } from "../../../../../utils";
-import { useCart } from "../../../../main/Cart";
+import { QuantitySelector } from "@root/features/shared/QuantitySelector";
+import { Button } from "@root/features/shared/Button";
+import { priceWithComma } from "@root/utils";
+import { useCart } from "@root/features/main/Cart";
 
 type DetailsProps = {
   cartImg: string;

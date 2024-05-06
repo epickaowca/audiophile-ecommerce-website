@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { createPortal } from "react-dom";
 import { CartProvider, useCart, getTotal } from "./context";
-import { Overlay, overlayZIndex } from "../../shared/Overlay";
+import { Overlay, overlayZIndex } from "@root/features/shared/Overlay";
 import { CartModal, CartStatic, cartId } from "./components/CartComponent";
 import { ProductList, StyledProductList } from "./components/ProductList";
 import { StyledProduct } from "./components/Product";

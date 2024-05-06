@@ -1,12 +1,12 @@
 import { FC, useEffect } from "react";
-import { Product } from "../../shared/Product";
+import { Product } from "@root/features/shared/Product";
 import { styled, css } from "styled-components";
 import { getProductDetails } from "./services/details";
-import { useAsync } from "../../../hooks/useAsync";
+import { useAsync } from "@root/hooks/useAsync";
 import { useParams } from "react-router-dom";
-import { ErrorPage } from "../ErrorPage";
+import { ErrorPage } from "@root/features/main/ErrorPage";
 import { Info } from "./components/Info";
-import { SpinLoader } from "../../shared/SpinLoader";
+import { SpinLoader } from "@root/features/shared/SpinLoader";
 
 type ProductDetailsProps = {
   dataLoaded: () => void;

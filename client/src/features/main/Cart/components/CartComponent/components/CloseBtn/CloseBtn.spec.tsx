@@ -1,7 +1,7 @@
 import { screen } from "@testing-library/react";
 import { CloseBtn } from "./index";
-import { render } from "../../../../../../../../tests/render";
-import { toggleCart } from "../../../../../../../../tests/constants";
+import { render } from "@tests/render";
+import { toggleCart } from "@tests/constants";
 
 it("displays close icon", async () => {
   render(<CloseBtn />);

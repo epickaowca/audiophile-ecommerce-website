@@ -1,6 +1,6 @@
 import { FC, lazy, Suspense, useState } from "react";
-import { ProductDetails } from "../../features/main/ProductDetails";
-import { Header } from "../../features/main/Header";
+import { ProductDetails } from "@root/features/main/ProductDetails";
+import { Header } from "@root/features/main/Header";
 
 const Chunk = lazy(() =>
   import("./Chunk").then((m) => ({

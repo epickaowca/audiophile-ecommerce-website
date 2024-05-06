@@ -1,6 +1,6 @@
 import { screen } from "@testing-library/react";
 import { ErrorPage } from "./index";
-import { render } from "../../../../tests/render";
+import { render } from "@tests/render";
 
 it("displays error description", async () => {
   render(<ErrorPage />);

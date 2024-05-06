@@ -1,9 +1,9 @@
 import { screen } from "@testing-library/react";
-import { render } from "../../../../../../../../tests/render";
+import { render } from "@tests/render";
+import { productListTotal } from "@tests/constants";
 import { AdditionalPricingDetails } from "./index";
-import { productListTotal } from "../../../../../../../../tests/constants";
-import { SHIPPING_PRICE } from "../../../../index";
-import { getVat } from "../../../../../../../utils";
+import { SHIPPING_PRICE } from "../../../../constants";
+import { getVat } from "@root/utils";
 
 const vat = getVat(SHIPPING_PRICE + productListTotal);
 const grandTotal = vat + productListTotal + SHIPPING_PRICE;

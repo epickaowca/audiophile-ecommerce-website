@@ -1,9 +1,9 @@
 import { screen } from "@testing-library/react";
 import { Details } from "./index";
-import { render } from "../../../../../../tests/render";
-import { useCart } from "../../../../main/Cart";
+import { render } from "@tests/render";
+import { useCart } from "@root/features/main/Cart";
 
-jest.mock("../../../QuantitySelector", () => ({
+jest.mock("@root/features/shared/QuantitySelector", () => ({
   QuantitySelector: jest.fn(() => <h1>QuantitySelector</h1>),
 }));
 

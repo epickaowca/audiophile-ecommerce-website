@@ -1,4 +1,4 @@
-import { render } from "../../../../tests/render";
+import { render } from "@tests/render";
 import { screen } from "@testing-library/react";
 import { Cart } from "./index";
 import { useCart } from "./context";

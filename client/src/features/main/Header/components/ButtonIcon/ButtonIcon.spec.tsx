@@ -1,5 +1,5 @@
 import { ButtonIcon } from "./index";
-import { render } from "../../../../../../tests/render";
+import { render } from "@tests/render";
 import { screen } from "@testing-library/react";
 
 const onClick = jest.fn();

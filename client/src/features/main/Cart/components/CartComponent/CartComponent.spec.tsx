@@ -1,12 +1,12 @@
 import { screen } from "@testing-library/react";
 import { CartModal, CartStatic } from "./index";
-import { render } from "../../../../../../tests/render";
+import { render } from "@tests/render";
 import {
   productListTotal,
   productList,
   removeAll,
   toggleCart,
-} from "../../../../../../tests/constants";
+} from "@tests/constants";
 
 jest.mock("../ProductList", () => ({
   ProductList: jest.fn(({ cartType }) => <h1>productList:{cartType}</h1>),

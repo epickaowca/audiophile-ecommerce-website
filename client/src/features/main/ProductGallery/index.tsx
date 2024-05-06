@@ -1,10 +1,10 @@
 import { FC } from "react";
-import { SpinLoader } from "../../shared/SpinLoader";
+import { SpinLoader } from "@root/features/shared/SpinLoader";
 import { styled, css } from "styled-components";
 import { getProductGallery } from "./services/gallery";
-import { useAsync } from "../../../hooks/useAsync";
+import { useAsync } from "@root/hooks/useAsync";
 import { useParams } from "react-router-dom";
-import { ErrorPage } from "../ErrorPage";
+import { ErrorPage } from "@root/features/main/ErrorPage";
 import { ImgLarge } from "./components/ImgLarge";
 import { ImgSmall } from "./components/ImgSmall";
 

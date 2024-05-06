@@ -2,12 +2,12 @@ import { FC, useState } from "react";
 import { Navigation, navId } from "./components/Navigation";
 import { StyledHeader } from "./Header.styled";
 import { Overlay } from "../../shared/Overlay";
-import logo from "../../../assets/logo.svg";
+import logo from "@root/assets/logo.svg";
 import { NavList } from "./components/NavList";
 import { Headline } from "./components/Headline";
 import { useCart, cartId } from "../Cart";
 import { ButtonIcon } from "./components/ButtonIcon";
-import { modifiers } from "../../../utils";
+import { modifiers } from "@root/utils";
 
 type HeaderProps = {
   heroBgColor?: boolean;

@@ -1,7 +1,7 @@
 import { StyledNavProps } from "./types";
 import { styled, css } from "styled-components";
 import { StyledNavList } from "../NavList";
-import { StyledProductCategories } from "../../../ProductCategories";
+import { StyledProductCategories } from "@root/features/main/ProductCategories";
 
 export const StyledNav = styled.nav<StyledNavProps>(
   ({ theme: { media }, $isNavOpen, $headerHeight }) => {

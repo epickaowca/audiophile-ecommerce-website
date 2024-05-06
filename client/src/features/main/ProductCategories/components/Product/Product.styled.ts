@@ -1,5 +1,5 @@
 import { styled, css } from "styled-components";
-import { StyledButton } from "../../../../shared/Button";
+import { StyledButton } from "@root/features/shared/Button";
 
 export const Li = styled.li`
   list-style-type: none;

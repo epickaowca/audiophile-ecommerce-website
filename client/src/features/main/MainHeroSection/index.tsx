@@ -1,15 +1,15 @@
 import { FC, useRef } from "react";
-import { ProductDescription } from "../../shared/ProductDescription";
+import { ProductDescription } from "@root/features/shared/ProductDescription";
 import mobileMicro from "./assets/micro/mobile.jpg";
 import tabletMicro from "./assets/micro/tablet.jpg";
 import desktopMicro from "./assets/micro/desktop.jpg";
 import mobile from "./assets/mobile.jpg";
 import tablet from "./assets/tablet.jpg";
 import desktop from "./assets/desktop.jpg";
-import { media } from "../../../styled";
-import { useImgPreload } from "../../../hooks/useImgPreload";
+import { media } from "@root/styled";
+import { useImgPreload } from "@root/hooks/useImgPreload";
 import { StyledMainHeroSection } from "./MainHeroSection.styled";
-import { modifiers } from "../../../utils";
+import { modifiers } from "@root/utils";
 
 const initialImg = {
   mobile: mobileMicro,

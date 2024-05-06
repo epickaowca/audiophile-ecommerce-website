@@ -1,5 +1,5 @@
 import { screen } from "@testing-library/react";
-import { render } from "../../../../tests/render";
+import { render } from "@tests/render";
 import { ProductCategories } from "./index";
 
 jest.mock("./components/Product", () => ({

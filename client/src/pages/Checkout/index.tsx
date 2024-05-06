@@ -1,7 +1,7 @@
 import { FC } from "react";
-import { Header } from "../../features/main/Header";
-import { Footer } from "../../features/main/Footer";
-import { Checkout as CheckoutComponent } from "../../features/main/Checkout";
+import { Header } from "@root/features/main/Header";
+import { Footer } from "@root/features/main/Footer";
+import { Checkout as CheckoutComponent } from "@root/features/main/Checkout";
 import { createGlobalStyle, css } from "styled-components";
 
 export const Checkout: FC = () => {

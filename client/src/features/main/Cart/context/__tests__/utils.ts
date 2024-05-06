@@ -1,7 +1,4 @@
-import {
-  productList,
-  productListTotal,
-} from "../../../../../../tests/constants";
+import { productList, productListTotal } from "@tests/constants";
 import {
   getQuantityUpdatedList,
   getTotal,

@@ -1,5 +1,5 @@
-import { makeRequest } from "../../../../services/makeRequest";
-import { Image, ProductCategory } from "../../../../types";
+import { makeRequest } from "@root/services/makeRequest";
+import { Image, ProductCategory } from "@root/types";
 
 export const getCategoryList: GetCategoryList = ({ categoryName }) => {
   return makeRequest(`/category/${categoryName}`, {

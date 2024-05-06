@@ -1,7 +1,7 @@
 import { screen } from "@testing-library/react";
 import { ProductList } from "./index";
-import { productList } from "../../../../../../tests/constants";
-import { render } from "../../../../../../tests/render";
+import { productList } from "@tests/constants";
+import { render } from "@tests/render";
 import { useCart } from "../../context";
 
 const mockedUseCart = useCart as jest.Mock<any>;

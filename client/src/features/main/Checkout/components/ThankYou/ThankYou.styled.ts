@@ -1,6 +1,6 @@
 import { styled, css } from "styled-components";
-import { StyledProductList, StyledProduct } from "../../../Cart";
-import { overlayZIndex } from "../../../../shared/Overlay";
+import { StyledProductList, StyledProduct } from "@root/features/main/Cart";
+import { overlayZIndex } from "@root/features/shared/Overlay";
 
 export const StyledThankYou = styled.div<{ $className: string }>(
   ({ theme: { media, grayDarkText, grayLight }, $className }) => {

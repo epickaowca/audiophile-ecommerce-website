@@ -1,7 +1,7 @@
 import { FC } from "react";
-import { Button, Variant } from "../Button";
+import { Button, Variant } from "@root/features/shared/Button";
 import { StyledProductDescription } from "./ProductDescription.styled";
-import { ProductCategory } from "../../../types";
+import { ProductCategory } from "@root/types";
 export { StyledProductDescription };
 
 type ButtonProps = {

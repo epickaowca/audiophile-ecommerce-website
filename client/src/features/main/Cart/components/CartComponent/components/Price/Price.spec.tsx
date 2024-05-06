@@ -1,7 +1,7 @@
 import { screen } from "@testing-library/react";
 import { Price } from "./index";
-import { render } from "../../../../../../../../tests/render";
-import { priceWithComma } from "../../../../../../../utils";
+import { render } from "@tests/render";
+import { priceWithComma } from "@root/utils";
 
 const name = "test name";
 const price = 15;

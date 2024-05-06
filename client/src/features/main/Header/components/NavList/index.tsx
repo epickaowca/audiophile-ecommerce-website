@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { useLocation, Link } from "react-router-dom";
 import { StyledNavList } from "./NavList.styled";
-import { modifiers } from "../../../../../utils";
+import { modifiers } from "@root/utils";
 
 export { StyledNavList };
 

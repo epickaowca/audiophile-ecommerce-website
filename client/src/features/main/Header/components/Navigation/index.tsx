@@ -1,9 +1,9 @@
 import { FC, useRef } from "react";
-import { ProductCategories } from "../../../ProductCategories";
+import { ProductCategories } from "@root/features/main/ProductCategories";
 import { NavList } from "../NavList";
 import { NavigationProps } from "./types";
 import { StyledNav } from "./Navigation.styled";
-import { useEscapeHandler } from "../../../../../hooks/useEscape";
+import { useEscapeHandler } from "@root/hooks/useEscape";
 
 export const navId = "main-menu";
 

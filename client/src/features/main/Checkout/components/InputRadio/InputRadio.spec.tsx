@@ -1,6 +1,6 @@
 import { fireEvent, screen } from "@testing-library/react";
 import { InputRadio } from "./index";
-import { render } from "../../../../../../tests/render";
+import { render } from "@tests/render";
 
 const value = "testValue";
 const onChange = jest.fn();

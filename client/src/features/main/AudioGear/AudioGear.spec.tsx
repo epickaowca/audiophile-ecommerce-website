@@ -1,6 +1,6 @@
 import { screen } from "@testing-library/react";
 import { AudioGear } from "./index";
-import { render } from "../../../../tests/render";
+import { render } from "@tests/render";
 
 it("displays title", async () => {
   render(<AudioGear />);

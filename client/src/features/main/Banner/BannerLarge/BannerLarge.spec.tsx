@@ -1,8 +1,8 @@
 import { BannerLarge } from "./index";
-import { render } from "../../../../../tests/render";
+import { render } from "@tests/render";
 import { screen } from "@testing-library/react";
 
-jest.mock("../../../shared/ProductDescription");
+jest.mock("@root/features/shared/ProductDescription");
 
 it("displays banner img", () => {
   render(<BannerLarge />);

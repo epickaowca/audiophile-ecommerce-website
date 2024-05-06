@@ -1,5 +1,5 @@
 import { FC } from "react";
-import logo from "../../../assets/logo.svg";
+import logo from "@root/assets/logo.svg";
 import facebook from "./assets/icon-facebook.svg";
 import instagram from "./assets/icon-instagram.svg";
 import twitter from "./assets/icon-twitter.svg";

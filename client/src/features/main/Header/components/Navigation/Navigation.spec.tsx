@@ -1,12 +1,12 @@
 import { screen } from "@testing-library/react";
-import { render } from "../../../../../../tests/render";
+import { render } from "@tests/render";
 import { Navigation, navId } from "./index";
 
 jest.mock("../NavList", () => ({
   NavList: jest.fn(() => <h1>NavList</h1>),
 }));
 
-jest.mock("../../../ProductCategories", () => ({
+jest.mock("@root/features/main/ProductCategories", () => ({
   ProductCategories: jest.fn(() => <h1>ProductCategories</h1>),
 }));
 

@@ -1,5 +1,5 @@
 import { styled, css } from "styled-components";
-import { StyledProductDescription } from "../ProductDescription";
+import { StyledProductDescription } from "@root/features/shared/ProductDescription";
 
 export const StyledProduct = styled.div<{
   $detailCase?: boolean;

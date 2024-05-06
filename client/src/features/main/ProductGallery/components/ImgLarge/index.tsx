@@ -1,7 +1,7 @@
 import { FC, useRef } from "react";
-import { myTheme } from "../../../../../styled";
-import { useImgPreload } from "../../../../../hooks/useImgPreload";
-import { Image } from "../../../../../types";
+import { myTheme } from "@root/styled";
+import { useImgPreload } from "@root/hooks/useImgPreload";
+import { Image } from "@root/types";
 import { styled, css } from "styled-components";
 
 type ImgLargeProps = {

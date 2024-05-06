@@ -1,6 +1,6 @@
 import { styled, css } from "styled-components";
 import { headerHeight } from "./index";
-import { overlayZIndex } from "../../shared/Overlay";
+import { overlayZIndex } from "@root/features/shared/Overlay";
 
 export const StyledHeader = styled.header<{
   $heroBgColor?: boolean;

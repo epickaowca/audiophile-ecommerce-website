@@ -1,5 +1,5 @@
 import { styled, css } from "styled-components";
-import { StyledProductDescription } from "../../../shared/ProductDescription";
+import { StyledProductDescription } from "@root/features/shared/ProductDescription";
 
 export const StyledBanner = styled.div<{ $className: string }>(
   ({ theme: { grayLight, media }, $className }) => {

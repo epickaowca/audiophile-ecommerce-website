@@ -1,8 +1,8 @@
 import { screen } from "@testing-library/react";
 import { MainHeroSection } from "./index";
-import { render } from "../../../../tests/render";
+import { render } from "@tests/render";
 
-jest.mock("../../shared/ProductDescription");
+jest.mock("@root/features/shared/ProductDescription");
 
 it("displays hero image", () => {
   render(<MainHeroSection />);

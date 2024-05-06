@@ -1,12 +1,12 @@
 import { screen } from "@testing-library/react";
 import { ThankYou } from "./index";
-import { render } from "../../../../../../tests/render";
-import { productListTotal } from "../../../../../../tests/constants";
-import { SHIPPING_PRICE } from "../../../Cart";
-import { getVat } from "../../../../../utils";
+import { render } from "@tests/render";
+import { productListTotal } from "@tests/constants";
+import { SHIPPING_PRICE } from "@root/features/main/Cart";
+import { getVat } from "@root/utils";
 
-jest.mock("../../../Cart", () => ({
-  ...jest.requireActual("../../../Cart"),
+jest.mock("@root/features/main/Cart", () => ({
+  ...jest.requireActual("@root/features/main/Cart"),
   ProductList: jest.fn(({ cartType }) => <h1>productList:{cartType}</h1>),
 }));
 

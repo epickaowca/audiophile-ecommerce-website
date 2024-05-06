@@ -1,15 +1,15 @@
 import { FC, useRef } from "react";
 import { ProductDescription } from "../../../shared/ProductDescription";
 import { StyledBanner } from "./BannerDivided.styled";
-import { media } from "../../../../styled";
-import { useImgPreload } from "../../../../hooks/useImgPreload";
+import { media } from "@root/styled";
+import { useImgPreload } from "@root/hooks/useImgPreload";
 import desktop from "./assets/desktop.jpg";
 import tablet from "./assets/tablet.jpg";
 import mobile from "./assets/mobile.jpg";
 import desktopMicro from "./assets/micro/desktop.jpg";
 import tabletMicro from "./assets/micro/tablet.jpg";
 import mobileMicro from "./assets/micro/mobile.jpg";
-import { modifiers } from "../../../../utils";
+import { modifiers } from "@root/utils";
 
 const largeImg = {
   desktop,

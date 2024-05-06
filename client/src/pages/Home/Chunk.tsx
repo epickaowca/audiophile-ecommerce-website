@@ -1,12 +1,12 @@
-import { AudioGear } from "../../features/main/AudioGear";
-import { Footer } from "../../features/main/Footer";
+import { AudioGear } from "@root/features/main/AudioGear";
+import { Footer } from "@root/features/main/Footer";
 import { FC } from "react";
 import { styled, css } from "styled-components";
 import {
   BannerDivided,
   BannerLarge,
   BannerMedium,
-} from "../../features/main/Banner";
+} from "@root/features/main/Banner";
 
 export const Chunk: FC = () => {
   return (

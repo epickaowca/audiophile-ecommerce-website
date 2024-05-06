@@ -1,13 +1,13 @@
 import { FC, useEffect, useRef } from "react";
 import { StyledThankYou } from "./ThankYou.styled";
 import confirmIcon from "../../assets/icon-order-confirmation.svg";
-import { Button } from "../../../../shared/Button";
+import { Button } from "@root/features/shared/Button";
 import { ProductList, useCart, SHIPPING_PRICE, getTotal } from "../../../Cart";
 import { createPortal } from "react-dom";
-import { Overlay } from "../../../../shared/Overlay";
+import { Overlay } from "@root/features/shared/Overlay";
 import { useNavigate } from "react-router-dom";
 import { Product } from "../../../Cart/context/types";
-import { priceWithComma, getVat } from "../../../../../utils";
+import { priceWithComma, getVat } from "@root/utils";
 
 export const ThankYou: FC = () => {
   const navigate = useNavigate();

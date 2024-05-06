@@ -1,6 +1,6 @@
 import { screen } from "@testing-library/react";
 import { Button } from "./index";
-import { render } from "../../../../tests/render";
+import { render } from "@tests/render";
 
 const text = "text test";
 

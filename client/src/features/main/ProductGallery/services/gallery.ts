@@ -1,5 +1,5 @@
-import { makeRequest } from "../../../../services/makeRequest";
-import { Image } from "../../../../types";
+import { makeRequest } from "@root/services/makeRequest";
+import { Image } from "@root/types";
 
 export const getProductGallery: GetProductGallery = ({ tagName }) => {
   return makeRequest(`/gallery/${tagName}`, {

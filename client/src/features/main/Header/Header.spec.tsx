@@ -1,11 +1,11 @@
 import { Header } from "./index";
-import { screen, waitFor } from "@testing-library/react";
-import { render } from "../../../../tests/render";
-import { useCart } from "../Cart";
+import { screen } from "@testing-library/react";
+import { render } from "@tests/render";
+import { useCart } from "@root/features/main/Cart";
 
 const mockedUseCart = useCart as jest.Mock<any>;
 
-jest.mock("../../shared/Overlay", () => ({
+jest.mock("@root/features/shared/Overlay", () => ({
   Overlay: jest.fn(() => <h1>Overlay</h1>),
 }));
 

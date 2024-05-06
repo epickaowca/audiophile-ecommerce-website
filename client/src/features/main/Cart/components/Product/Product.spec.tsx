@@ -1,10 +1,10 @@
 import { screen } from "@testing-library/react";
 import { Product } from "./index";
-import { render } from "../../../../../../tests/render";
-import { productList } from "../../../../../../tests/constants";
-import { priceWithComma } from "../../../../../utils";
+import { render } from "@tests/render";
+import { productList } from "@tests/constants";
+import { priceWithComma } from "@root/utils";
 
-jest.mock("../../../../shared/QuantitySelector", () => ({
+jest.mock("@root/features/shared/QuantitySelector", () => ({
   QuantitySelector: jest.fn(({ checkoutCase, value, ariaLabel, setValue }) => {
     setValue("test");
     return (

@@ -1,6 +1,6 @@
 import { toggleBodyOverflow } from "./utils";
 import { screen } from "@testing-library/react";
-import { render } from "../../../../tests/render";
+import { render } from "@tests/render";
 import { Overlay } from "./index";
 
 jest.mock("./utils", () => ({

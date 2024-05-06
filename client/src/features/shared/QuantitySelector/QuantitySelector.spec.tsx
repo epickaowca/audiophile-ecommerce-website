@@ -1,6 +1,6 @@
 import { screen, act, fireEvent, waitFor } from "@testing-library/react";
 import { QuantitySelector } from "./index";
-import { render } from "../../../../tests/render";
+import { render } from "@tests/render";
 
 const defaultProps = { setValue: jest.fn(), value: 5 };
 

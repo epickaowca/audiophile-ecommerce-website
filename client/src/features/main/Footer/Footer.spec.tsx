@@ -1,6 +1,6 @@
 import { screen } from "@testing-library/react";
 import { Footer } from "./index";
-import { render } from "../../../../tests/render";
+import { render } from "@tests/render";
 
 jest.mock("../Header", () => ({
   NavList: jest.fn(() => <h1>nav list</h1>),

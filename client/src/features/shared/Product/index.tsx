@@ -1,12 +1,12 @@
 import { FC, useRef } from "react";
-import { ProductDescription } from "../ProductDescription";
-import { myTheme } from "../../../styled";
+import { ProductDescription } from "@root/features/shared/ProductDescription";
+import { myTheme } from "@root/styled";
 import { StyledProduct } from "./Product.styled";
-import { useImgPreload } from "../../../hooks/useImgPreload";
-import { Image } from "../../../types";
+import { useImgPreload } from "@root/hooks/useImgPreload";
+import { Image } from "@root/types";
 import { Details } from "./components/Details";
 import { ProductDescriptionProps } from "../ProductDescription";
-import { modifiers } from "../../../utils";
+import { modifiers } from "@root/utils";
 
 type CategoryProductProps = ProductDescriptionProps & {
   initialImg: Image;

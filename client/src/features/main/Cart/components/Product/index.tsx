@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { StyledProduct } from "./Product.styled";
-import { priceWithComma } from "../../../../../utils";
-import { QuantitySelector } from "../../../../shared/QuantitySelector";
+import { priceWithComma } from "@root/utils";
+import { QuantitySelector } from "@root/features/shared/QuantitySelector";
 import { CartType } from "../../types";
 
 export { StyledProduct };

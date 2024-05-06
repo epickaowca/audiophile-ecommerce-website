@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { SHIPPING_PRICE } from "../../../../constants";
-import { useCart, getTotal } from "../../../../index";
-import { getVat } from "../../../../../../../utils";
+import { useCart, getTotal } from "../../../../context";
+import { getVat } from "@root/utils";
 import { Price } from "../Price";
 import { styled } from "styled-components";
 

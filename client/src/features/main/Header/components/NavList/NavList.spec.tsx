@@ -1,6 +1,6 @@
 import { screen } from "@testing-library/react";
 import { NavList, menuItems } from "./index";
-import { render } from "../../../../../../tests/render";
+import { render } from "@tests/render";
 
 it("displays list of links", async () => {
   render(<NavList />);

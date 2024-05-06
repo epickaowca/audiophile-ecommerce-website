@@ -1,4 +1,4 @@
-import { render } from "../../../../tests/render";
+import { render } from "@tests/render";
 import { screen, waitFor } from "@testing-library/react";
 import { Checkout } from "./index";
 import { Form } from "./components/Form";

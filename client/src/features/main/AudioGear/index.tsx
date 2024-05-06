@@ -6,8 +6,8 @@ import desktop from "./assets/desktop.jpg";
 import tablet from "./assets/tablet.jpg";
 import mobile from "./assets/mobile.jpg";
 import { StyledAudioGear } from "./AudioGear.styled";
-import { media } from "../../../styled";
-import { useImgPreload } from "../../../hooks/useImgPreload";
+import { media } from "@root/styled";
+import { useImgPreload } from "@root/hooks/useImgPreload";
 
 const initialImg = {
   mobile: mobileMicro,

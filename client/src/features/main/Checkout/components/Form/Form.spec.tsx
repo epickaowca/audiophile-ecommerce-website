@@ -1,6 +1,6 @@
 import { screen } from "@testing-library/react";
 import { Form } from "./index";
-import { render } from "../../../../../../tests/render";
+import { render } from "@tests/render";
 
 jest.mock("../PaymentDetails", () => ({
   PaymentDetails: jest.fn(() => <h1>PaymentDetails</h1>),

@@ -1,4 +1,4 @@
-import { StyledProductDescription } from "../../shared/ProductDescription";
+import { StyledProductDescription } from "@root/features/shared/ProductDescription";
 import { styled, css } from "styled-components";
 
 export const StyledMainHeroSection = styled.section<{ $className: string }>(

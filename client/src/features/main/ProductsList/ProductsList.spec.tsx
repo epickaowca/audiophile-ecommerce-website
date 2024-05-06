@@ -1,4 +1,4 @@
-import { render } from "../../../../tests/render";
+import { render } from "@tests/render";
 import { screen, waitFor } from "@testing-library/dom";
 import { ProductList } from "./index";
 import { getCategoryList } from "./services/category";

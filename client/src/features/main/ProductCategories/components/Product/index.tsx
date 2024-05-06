@@ -1,8 +1,8 @@
-import { FC, useEffect, useRef, useCallback } from "react";
-import { Button } from "../../../../shared/Button";
-import { Image, ProductCategories } from "../../../../../types";
+import { FC, useEffect, useRef } from "react";
+import { Button } from "@root/features/shared/Button";
+import { Image, ProductCategories } from "@root/types";
 import { StyledProduct, Li } from "./Product.styled";
-import { useImgPreload } from "../../../../../hooks/useImgPreload";
+import { useImgPreload } from "@root/hooks/useImgPreload";
 
 type ProductProps = {
   initialImg: Image;

@@ -1,5 +1,5 @@
 import { BannerDivided } from "./index";
-import { render } from "../../../../../tests/render";
+import { render } from "@tests/render";
 import { screen } from "@testing-library/react";
 
 jest.mock("../../../shared/ProductDescription");

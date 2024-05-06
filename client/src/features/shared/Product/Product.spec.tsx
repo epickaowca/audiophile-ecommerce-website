@@ -1,8 +1,8 @@
 import { screen } from "@testing-library/react";
 import { Product } from "./index";
-import { render } from "../../../../tests/render";
+import { render } from "@tests/render";
 
-jest.mock("../ProductDescription");
+jest.mock("@root/features/shared/ProductDescription");
 jest.mock("./components/Details", () => ({
   Details: jest.fn(() => <h1>Details</h1>),
 }));

@@ -1,5 +1,5 @@
 import { FC, useRef } from "react";
-import { Button } from "../../../../shared/Button";
+import { Button } from "@root/features/shared/Button";
 import { StyledCart } from "./CartComponent.styled";
 import { Price } from "./components/Price";
 import { AdditionalPricingDetails } from "./components/AdditionalPricingDetails";
@@ -7,7 +7,7 @@ import { ProductList } from "../ProductList";
 import { useNavigate } from "react-router-dom";
 import { getTotal, useCart } from "../../context";
 import { CloseBtn } from "./components/CloseBtn";
-import { useEscapeHandler } from "../../../../../hooks/useEscape";
+import { useEscapeHandler } from "@root/hooks/useEscape";
 
 export const CartStatic: FC = () => {
   const { productList } = useCart();

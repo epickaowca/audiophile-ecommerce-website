@@ -1,6 +1,6 @@
 import { screen } from "@testing-library/react";
 import { Input } from "./index";
-import { render } from "../../../../../../tests/render";
+import { render } from "@tests/render";
 
 const label = "labelTest";
 const placeholder = "placeholderTest";

@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { priceWithComma, modifiers } from "../../../../../../../utils";
+import { priceWithComma, modifiers } from "@root/utils";
 import { styled, css } from "styled-components";
 
 type PriceProps = {
