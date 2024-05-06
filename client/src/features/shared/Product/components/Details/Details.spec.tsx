@@ -1,12 +1,39 @@
 import { screen } from "@testing-library/react";
 import { Details } from "./index";
 import { render } from "../../../../../../tests/render";
+import { useCart } from "../../../../main/Cart";
+
+jest.mock("../../../QuantitySelector", () => ({
+  QuantitySelector: jest.fn(() => <h1>QuantitySelector</h1>),
+}));
+
+const defaultProps = {
+  cartImg: "cartImgTest",
+  name: "test",
+  price: 50,
+  tag: "XX99-Mark-2",
+};
 
 it("should render price", async () => {
-  render(
-    <Details cartImg="cartImgTest" name="test" price={50} tag="XX99-Mark-2" />
-  );
+  render(<Details {...defaultProps} />);
+  expect(screen.getByText("$ 50")).toBeInTheDocument();
+});
 
-  const price = screen.getByText("$ 50");
-  expect(price).toBeInTheDocument();
+it("displays QuantitySelector", async () => {
+  render(<Details {...defaultProps} />);
+  expect(screen.getByText("QuantitySelector")).toBeInTheDocument();
+});
+
+it("calls addProduct after button click", async () => {
+  const { name, price, tag } = defaultProps;
+  const { addProduct } = useCart();
+  render(<Details {...defaultProps} />);
+  await screen.getByText("ADD TO CART").click();
+  expect(addProduct).toHaveBeenCalledWith({
+    imgSrc: defaultProps.cartImg,
+    name,
+    price,
+    quantity: 1,
+    tag,
+  });
 });
