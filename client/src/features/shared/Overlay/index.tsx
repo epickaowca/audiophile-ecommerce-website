@@ -23,6 +23,7 @@ export const Overlay: FC<OverlayProps> = ({
 
   return createPortal(
     <StyledOverlay
+      aria-label="overlay"
       onClick={onClick}
       $cursorPointer={!!onClick}
       $displayOnDesktop={displayOnDesktop}
