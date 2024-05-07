@@ -9,13 +9,13 @@ type useImagePreloadProps = {
 
 export const useImgPreload = ({
   largeImg,
-  initialImg,
+  initialImg: { mobile, tablet, desktop },
   imgRef,
 }: useImagePreloadProps) => {
   const [img, setImg] = useState({
-    mobile: initialImg.mobile,
-    tablet: initialImg.tablet,
-    desktop: initialImg.desktop,
+    mobile,
+    tablet,
+    desktop,
     isLargeImgLoading: false,
     isLargeImgLoaded: false,
   });

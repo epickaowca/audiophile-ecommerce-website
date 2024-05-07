@@ -20,7 +20,7 @@ declare module "styled-components" {
 }
 
 export const GlobalStyle = createGlobalStyle(
-  ({ theme }) => css`
+  ({ theme: { media } }) => css`
     body {
       margin: 0;
       padding: 0;
@@ -46,7 +46,7 @@ export const GlobalStyle = createGlobalStyle(
       overflow-y: hidden;
     }
 
-    @media ${theme.media.desktop} {
+    @media ${media.desktop} {
       .overflow-y-hidden-mobile {
         overflow-y: auto;
       }

@@ -16,9 +16,9 @@ export const Checkout: FC = () => {
 };
 
 export const CheckoutGlobalStyle = createGlobalStyle(
-  ({ theme }) => css`
+  ({ theme: { grayLight } }) => css`
     body {
-      background-color: ${theme.grayLight};
+      background-color: ${grayLight};
     }
   `
 );
