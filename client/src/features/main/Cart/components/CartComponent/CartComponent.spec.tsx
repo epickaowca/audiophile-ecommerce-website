@@ -8,8 +8,11 @@ import {
   toggleCart,
 } from "@tests/constants";
 
+const ProductListProps = jest.fn();
 jest.mock("../ProductList", () => ({
-  ProductList: jest.fn(({ cartType }) => <h1>productList:{cartType}</h1>),
+  ProductList: jest.fn((props) => {
+    ProductListProps(props);
+  }),
 }));
 
 jest.mock("./components/AdditionalPricingDetails", () => ({
@@ -28,8 +31,8 @@ jest.mock("react-router-dom", () => ({
 
 it("displays static cart", () => {
   render(<CartStatic />);
+  expect(ProductListProps).toHaveBeenCalledWith({});
   expect(screen.getByText("summary")).toBeInTheDocument();
-  expect(screen.getByText("productList:static")).toBeInTheDocument();
   expect(screen.getByText("total")).toBeInTheDocument();
   expect(screen.getByText(`$ ${productListTotal}`)).toBeInTheDocument();
   expect(screen.getByText("AdditionalPricingDetails")).toBeInTheDocument();
