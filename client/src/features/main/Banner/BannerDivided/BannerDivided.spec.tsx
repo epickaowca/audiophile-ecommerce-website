@@ -2,7 +2,13 @@ import { BannerDivided } from "./index";
 import { render } from "@tests/render";
 import { screen } from "@testing-library/react";
 
-jest.mock("../../../shared/ProductDescription");
+const ProductDescriptionProps = jest.fn();
+jest.mock("@root/features/shared/ProductDescription", () => ({
+  ...jest.requireActual("@root/features/shared/ProductDescription"),
+  ProductDescription: jest.fn((props) => {
+    ProductDescriptionProps(props);
+  }),
+}));
 
 it("displays banner img", () => {
   render(<BannerDivided />);
@@ -11,10 +17,12 @@ it("displays banner img", () => {
 
 it("displays ProductDescription with correct props", () => {
   render(<BannerDivided />);
-  expect(screen.getByText("ZX7")).toBeInTheDocument();
-  expect(screen.getByText("secondary")).toBeInTheDocument();
-  expect(screen.getByText("ZX7 speaker")).toBeInTheDocument();
-  expect(screen.getByText("speaker")).toBeInTheDocument();
-  expect(screen.getByText("/details/ZX7")).toBeInTheDocument();
-  expect(screen.getByText("withoutBr:true")).toBeInTheDocument();
+  expect(ProductDescriptionProps).toHaveBeenCalledWith({
+    ariaLabel: "ZX7 speaker",
+    category: "speaker",
+    href: "/details/ZX7",
+    name: "ZX7",
+    variant: "secondary",
+    withoutBr: true,
+  });
 });

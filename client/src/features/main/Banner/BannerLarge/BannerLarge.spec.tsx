@@ -2,7 +2,13 @@ import { BannerLarge } from "./index";
 import { render } from "@tests/render";
 import { screen } from "@testing-library/react";
 
-jest.mock("@root/features/shared/ProductDescription");
+const ProductDescriptionProps = jest.fn();
+jest.mock("@root/features/shared/ProductDescription", () => ({
+  ...jest.requireActual("@root/features/shared/ProductDescription"),
+  ProductDescription: jest.fn((props) => {
+    ProductDescriptionProps(props);
+  }),
+}));
 
 it("displays banner img", () => {
   render(<BannerLarge />);
@@ -11,14 +17,14 @@ it("displays banner img", () => {
 
 it("displays ProductDescription with correct props", () => {
   render(<BannerLarge />);
-  expect(screen.getByText("ZX9")).toBeInTheDocument();
-  expect(screen.getByText("black")).toBeInTheDocument();
-  expect(screen.getByText("ZX9 speaker")).toBeInTheDocument();
-  expect(screen.getByText("speaker")).toBeInTheDocument();
-  expect(screen.getByText("/details/ZX9")).toBeInTheDocument();
-  expect(
-    screen.getByText(
-      "Upgrade to premium speakers that are phenomenally built to deliver truly remarkable sound."
-    )
-  ).toBeInTheDocument();
+
+  expect(ProductDescriptionProps).toHaveBeenCalledWith({
+    ariaLabel: "ZX9 speaker",
+    category: "speaker",
+    description:
+      "Upgrade to premium speakers that are phenomenally built to deliver truly remarkable sound.",
+    href: "/details/ZX9",
+    name: "ZX9",
+    variant: "black",
+  });
 });

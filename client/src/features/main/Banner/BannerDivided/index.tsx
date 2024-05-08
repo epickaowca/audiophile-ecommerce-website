@@ -1,5 +1,5 @@
 import { FC, useRef } from "react";
-import { ProductDescription } from "../../../shared/ProductDescription";
+import { ProductDescription } from "@root/features/shared/ProductDescription";
 import { StyledBanner } from "./BannerDivided.styled";
 import { media } from "@root/styled";
 import { useImgPreload } from "@root/hooks/useImgPreload";
