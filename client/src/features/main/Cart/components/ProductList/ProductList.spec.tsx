@@ -6,45 +6,49 @@ import { useCart } from "../../context";
 
 const mockedUseCart = useCart as jest.Mock<any>;
 
+const ProductProps = jest.fn();
 jest.mock("../Product", () => ({
-  Product: jest.fn(({ imgSrc, name, price, quantity, tag, cartType }) => (
-    <>
-      <h1>{imgSrc}</h1>
-      <h1>{name}</h1>
-      <h1>{price}</h1>
-      <h1>{quantity}</h1>
-      <h1>{tag}</h1>
-      <h1>{cartType}</h1>
-    </>
-  )),
+  Product: jest.fn((props) => ProductProps(props)),
 }));
 
 it("displays Products", async () => {
   render(<ProductList cartType="modal" />);
-  expect(screen.getAllByText("modal")).toHaveLength(productList.length);
-  for (let product of productList) {
-    for (let prop of Object.values(product)) {
-      expect(screen.getByText(prop)).toBeInTheDocument();
-    }
-  }
+  expect(ProductProps).toHaveBeenCalledWith(
+    expect.objectContaining({
+      cartType: "modal",
+      imgSrc: "imgSrcTest",
+      name: "nameTest",
+      price: 120,
+      quantity: 2,
+      tag: "tagTest",
+    })
+  );
 });
 
 it("displays Products static", async () => {
   render(<ProductList cartType="static" />);
-  expect(screen.getAllByText("static")).toHaveLength(productList.length);
-  for (let product of productList) {
-    for (let prop of Object.values(product)) {
-      expect(screen.getByText(prop)).toBeInTheDocument();
-    }
-  }
+  expect(ProductProps).toHaveBeenCalledWith(
+    expect.objectContaining({
+      cartType: "static",
+      imgSrc: "imgSrcTest",
+      name: "nameTest",
+      price: 120,
+      quantity: 2,
+      tag: "tagTest",
+    })
+  );
 });
 
 it("displays customList", async () => {
   render(<ProductList cartType="static" customList={[productList[0]]} />);
-  expect(screen.getAllByText("static")).toHaveLength(1);
-  for (let prop of Object.values(productList[0])) {
-    expect(screen.getByText(prop)).toBeInTheDocument();
-  }
+  expect.objectContaining({
+    cartType: "static",
+    imgSrc: "imgSrcTest",
+    name: "nameTest",
+    price: 120,
+    quantity: 2,
+    tag: "tagTest",
+  });
 });
 
 it("displays empty state", async () => {

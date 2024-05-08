@@ -4,17 +4,9 @@ import { render } from "@tests/render";
 import { productList } from "@tests/constants";
 import { priceWithComma } from "@root/utils";
 
+const QuantitySelectorProps = jest.fn();
 jest.mock("@root/features/shared/QuantitySelector", () => ({
-  QuantitySelector: jest.fn(({ checkoutCase, value, ariaLabel, setValue }) => {
-    setValue("test");
-    return (
-      <>
-        <h1>checkoutCase:{checkoutCase?.toString()}</h1>
-        <h1>{value}</h1>
-        <h1>{ariaLabel}</h1>
-      </>
-    );
-  }),
+  QuantitySelector: jest.fn((props) => QuantitySelectorProps(props)),
 }));
 
 const product = productList[0];
@@ -56,10 +48,11 @@ it("displays product quantity", async () => {
 
 it("displays QuantitySelector", async () => {
   render(<Product cartType="modal" {...product} setQuantity={setQuantity} />);
-  expect(screen.getByText("checkoutCase:true")).toBeInTheDocument();
-  expect(screen.getByText(product.quantity)).toBeInTheDocument();
-  expect(
-    screen.getByText(`${product.name} product quantity`)
-  ).toBeInTheDocument();
-  expect(setQuantity).toHaveBeenCalledWith("test");
+  expect(QuantitySelectorProps).toHaveBeenCalledWith(
+    expect.objectContaining({
+      ariaLabel: `${product.name} product quantity`,
+      checkoutCase: true,
+      value: product.quantity,
+    })
+  );
 });

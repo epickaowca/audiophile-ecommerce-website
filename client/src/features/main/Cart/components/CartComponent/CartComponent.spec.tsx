@@ -10,17 +10,17 @@ import {
 
 const ProductListProps = jest.fn();
 jest.mock("../ProductList", () => ({
-  ProductList: jest.fn((props) => {
-    ProductListProps(props);
-  }),
+  ProductList: jest.fn((props) => ProductListProps(props)),
 }));
 
 jest.mock("./components/AdditionalPricingDetails", () => ({
-  AdditionalPricingDetails: jest.fn(() => <h1>AdditionalPricingDetails</h1>),
+  AdditionalPricingDetails: jest.fn(() => (
+    <div data-testId="AdditionalPricingDetails"></div>
+  )),
 }));
 
 jest.mock("./components/CloseBtn", () => ({
-  CloseBtn: jest.fn(() => <h1>CloseBtn</h1>),
+  CloseBtn: jest.fn(() => <div data-testId="CloseBtn"></div>),
 }));
 
 const navigate = jest.fn();
@@ -31,11 +31,11 @@ jest.mock("react-router-dom", () => ({
 
 it("displays static cart", () => {
   render(<CartStatic />);
-  expect(ProductListProps).toHaveBeenCalledWith({});
+  expect(ProductListProps).toHaveBeenCalledWith({ cartType: "static" });
   expect(screen.getByText("summary")).toBeInTheDocument();
   expect(screen.getByText("total")).toBeInTheDocument();
   expect(screen.getByText(`$ ${productListTotal}`)).toBeInTheDocument();
-  expect(screen.getByText("AdditionalPricingDetails")).toBeInTheDocument();
+  expect(screen.getByTestId("AdditionalPricingDetails")).toBeInTheDocument();
   expect(
     screen.getByRole("button", { name: "CONTINUE & PAY" })
   ).toBeInTheDocument();
@@ -43,9 +43,9 @@ it("displays static cart", () => {
 
 it("displays modal cart", () => {
   render(<CartModal />);
-  expect(screen.getByText("CloseBtn")).toBeInTheDocument();
+  expect(screen.getByTestId("CloseBtn")).toBeInTheDocument();
   expect(screen.getByText(`cart (${productList.length})`)).toBeInTheDocument();
-  expect(screen.getByText("productList:modal")).toBeInTheDocument();
+  expect(ProductListProps).toHaveBeenCalledWith({ cartType: "modal" });
   expect(screen.getByText("total")).toBeInTheDocument();
   expect(screen.getByText(`$ ${productListTotal}`)).toBeInTheDocument();
 });
