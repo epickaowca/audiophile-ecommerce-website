@@ -6,16 +6,12 @@ import { useCart } from "@root/features/main/Cart";
 const mockedUseCart = useCart as jest.Mock<any>;
 
 jest.mock("@root/features/shared/Overlay", () => ({
-  Overlay: jest.fn(() => <h1>Overlay</h1>),
+  Overlay: jest.fn(() => <div data-testId="Overlay"></div>),
 }));
 
+const NavigationProps = jest.fn();
 jest.mock("./components/Navigation", () => ({
-  Navigation: jest.fn(({ $isNavOpen }) => (
-    <>
-      <h1>Navigation</h1>
-      <h1>$isNavOpen:{$isNavOpen?.toString()}</h1>
-    </>
-  )),
+  Navigation: jest.fn((props) => NavigationProps(props)),
 }));
 
 jest.mock("./components/Headline", () => ({
@@ -28,11 +24,6 @@ it("displays icon button", () => {
   expect(screen.getByAltText("cartIcon")).toBeInTheDocument();
 });
 
-it("displays Navigation", () => {
-  render(<Header />);
-  expect(screen.getByText("Navigation")).toBeInTheDocument();
-});
-
 it("displays Headline", () => {
   render(<Header displayHeadline />);
   expect(screen.getByText("Headline")).toBeInTheDocument();
@@ -40,8 +31,13 @@ it("displays Headline", () => {
 
 it("does not display Navigation by default", () => {
   render(<Header displayHeadline />);
-  expect(screen.getByText("$isNavOpen:false")).toBeInTheDocument();
-  expect(screen.queryByText("Overlay")).toBeNull();
+  expect(NavigationProps).toHaveBeenCalledWith(
+    expect.objectContaining({
+      $headerHeight: "91px",
+      $isNavOpen: false,
+    })
+  );
+  expect(screen.queryByTestId("Overlay")).toBeNull();
   expect(screen.getByAltText("menuIcon").closest("button")).toHaveAttribute(
     "aria-expanded",
     "false"
@@ -53,8 +49,13 @@ it("displays Navigation after clicking hamburger button", async () => {
   const hamburgerButton = screen.getByAltText("menuIcon").closest("button");
   await hamburgerButton?.click();
 
-  expect(screen.getByText("Overlay")).toBeInTheDocument();
-  expect(screen.getByText("$isNavOpen:true")).toBeInTheDocument();
+  expect(screen.getByTestId("Overlay")).toBeInTheDocument();
+  expect(NavigationProps).toHaveBeenCalledWith(
+    expect.objectContaining({
+      $headerHeight: "91px",
+      $isNavOpen: true,
+    })
+  );
   expect(hamburgerButton).toHaveAttribute("aria-expanded", "true");
 });
 
