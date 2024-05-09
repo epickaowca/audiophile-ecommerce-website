@@ -2,9 +2,14 @@ import { screen } from "@testing-library/react";
 import { Product } from "./index";
 import { render } from "@tests/render";
 
-jest.mock("@root/features/shared/ProductDescription");
+const ProductDescriptionProps = jest.fn();
+jest.mock("@root/features/shared/ProductDescription", () => ({
+  ...jest.requireActual("@root/features/shared/ProductDescription"),
+  ProductDescription: jest.fn((props) => ProductDescriptionProps(props)),
+}));
+
 jest.mock("./components/Details", () => ({
-  Details: jest.fn(() => <h1>Details</h1>),
+  Details: jest.fn(() => <div data-testId="Details"></div>),
 }));
 
 const defaultProps = {
@@ -25,14 +30,17 @@ it("displays product img", async () => {
 
 it("displays ProductDescription", async () => {
   render(<Product {...defaultProps} />);
-  expect(screen.getByText(`SEE ${defaultProps.name}`)).toBeInTheDocument();
-  expect(screen.getByText(defaultProps.name)).toBeInTheDocument();
-  expect(screen.getByText(defaultProps.category)).toBeInTheDocument();
+  expect(ProductDescriptionProps).toHaveBeenCalledWith({
+    ariaLabel: `SEE ${defaultProps.name}`,
+    category: defaultProps.category,
+    href: `/details/${defaultProps.tag}`,
+    name: defaultProps.name,
+  });
 });
 
 it("does not display Details by default", async () => {
   render(<Product {...defaultProps} />);
-  expect(screen.queryByText("Details")).toBeNull();
+  expect(screen.queryByTestId("Details")).toBeNull();
 });
 
 it("displays Details", async () => {
@@ -42,5 +50,5 @@ it("displays Details", async () => {
       detailCase={{ cartImg: "", maxQuantity: 4, price: 50 }}
     />
   );
-  expect(screen.getByText("Details")).toBeInTheDocument();
+  expect(screen.getByTestId("Details")).toBeInTheDocument();
 });
