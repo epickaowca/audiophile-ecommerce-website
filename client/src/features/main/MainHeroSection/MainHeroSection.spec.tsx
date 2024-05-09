@@ -2,7 +2,11 @@ import { screen } from "@testing-library/react";
 import { MainHeroSection } from "./index";
 import { render } from "@tests/render";
 
-jest.mock("@root/features/shared/ProductDescription");
+const ProductDescriptionProps = jest.fn();
+jest.mock("@root/features/shared/ProductDescription", () => ({
+  ...jest.requireActual("@root/features/shared/ProductDescription"),
+  ProductDescription: jest.fn((props) => ProductDescriptionProps(props)),
+}));
 
 it("displays hero image", () => {
   render(<MainHeroSection />);
@@ -11,14 +15,13 @@ it("displays hero image", () => {
 
 it("displays product description", () => {
   render(<MainHeroSection />);
-  expect(screen.getByText("/details/XX99-Mark-2")).toBeInTheDocument();
-  expect(screen.getByText("SEE XX99 Mark II")).toBeInTheDocument();
-  expect(screen.getByText("XX99 Mark II")).toBeInTheDocument();
-  expect(screen.getByText("headphones")).toBeInTheDocument();
-  expect(
-    screen.getByText(
-      "Experience natural, lifelike audio and exceptional build quality made for the passionate music enthusiast."
-    )
-  ).toBeInTheDocument();
-  expect(screen.getByText("isNew:true")).toBeInTheDocument();
+  expect(ProductDescriptionProps).toHaveBeenCalledWith({
+    ariaLabel: "SEE XX99 Mark II",
+    category: "headphones",
+    description:
+      "Experience natural, lifelike audio and exceptional build quality made for the passionate music enthusiast.",
+    href: "/details/XX99-Mark-2",
+    isNew: true,
+    name: "XX99 Mark II",
+  });
 });
