@@ -4,7 +4,7 @@ import { render } from "@tests/render";
 import { useCart } from "@root/features/main/Cart";
 
 jest.mock("@root/features/shared/QuantitySelector", () => ({
-  QuantitySelector: jest.fn(() => <h1>QuantitySelector</h1>),
+  QuantitySelector: jest.fn(() => <div data-testId="QuantitySelector"></div>),
 }));
 
 const defaultProps = {
@@ -21,7 +21,7 @@ it("should render price", async () => {
 
 it("displays QuantitySelector", async () => {
   render(<Details {...defaultProps} />);
-  expect(screen.getByText("QuantitySelector")).toBeInTheDocument();
+  expect(screen.getByTestId("QuantitySelector")).toBeInTheDocument();
 });
 
 it("calls addProduct after button click", async () => {
