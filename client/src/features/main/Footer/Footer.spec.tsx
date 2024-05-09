@@ -3,7 +3,7 @@ import { Footer } from "./index";
 import { render } from "@tests/render";
 
 jest.mock("../Header", () => ({
-  NavList: jest.fn(() => <h1>nav list</h1>),
+  NavList: jest.fn(() => <div data-testId="NavList"></div>),
 }));
 
 it("displays description", async () => {
@@ -31,5 +31,5 @@ it("displays social icons", async () => {
 
 it("displays nav list", async () => {
   render(<Footer />);
-  expect(screen.getByText("nav list")).toBeInTheDocument();
+  expect(screen.getByTestId("NavList")).toBeInTheDocument();
 });
