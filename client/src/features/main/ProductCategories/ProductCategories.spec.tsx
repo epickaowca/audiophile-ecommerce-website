@@ -10,6 +10,14 @@ jest.mock("./components/Product", () => ({
   }),
 }));
 
+it("displays first Product focused", () => {
+  render(<ProductCategories autoFocus />);
+  expect(ProductProps).toHaveBeenNthCalledWith(
+    1,
+    expect.objectContaining({ autoFocus: true })
+  );
+});
+
 it("displays Products", () => {
   render(<ProductCategories />);
   expect(screen.getAllByTestId("Product")).toHaveLength(3);
@@ -34,14 +42,6 @@ it("displays Product with props", () => {
       href: "/category/earphones",
       productName: "earphones",
     })
-  );
-});
-
-it("displays first Product focused", () => {
-  render(<ProductCategories autoFocus />);
-  expect(ProductProps).toHaveBeenNthCalledWith(
-    1,
-    expect.objectContaining({ autoFocus: true })
   );
 });
 
