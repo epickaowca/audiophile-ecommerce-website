@@ -6,11 +6,11 @@ import { getProductGallery } from "./services/gallery";
 const mockedGetProductGallery = getProductGallery as jest.Mock<any>;
 
 jest.mock("./components/ImgLarge", () => ({
-  ImgLarge: jest.fn(() => <h1>ImgLarge</h1>),
+  ImgLarge: jest.fn(() => <div data-testId="ImgLarge"></div>),
 }));
 
 jest.mock("./components/ImgSmall", () => ({
-  ImgSmall: jest.fn(() => <h1>ImgSmall</h1>),
+  ImgSmall: jest.fn(() => <div data-testId="ImgSmall"></div>),
 }));
 
 jest.mock("./services/gallery");
@@ -18,8 +18,8 @@ jest.mock("./services/gallery");
 it("displays image components", async () => {
   render(<ProductGallery />);
   await waitFor(async () => {
-    expect(screen.getByText("ImgSmall")).toBeInTheDocument();
-    expect(screen.getByText("ImgLarge")).toBeInTheDocument();
+    expect(screen.getByTestId("ImgSmall")).toBeInTheDocument();
+    expect(screen.getByTestId("ImgLarge")).toBeInTheDocument();
   });
 });
 
