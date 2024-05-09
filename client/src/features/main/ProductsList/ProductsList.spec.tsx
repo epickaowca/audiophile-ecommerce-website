@@ -6,7 +6,7 @@ import { getCategoryList } from "./services/category";
 const mockedGetCategoryList = getCategoryList as jest.Mock<any>;
 
 jest.mock("../../shared/Product", () => ({
-  Product: jest.fn(() => <h1>Product</h1>),
+  Product: jest.fn(() => <div data-testId="Product"></div>),
 }));
 
 jest.mock("./services/category");
@@ -14,7 +14,7 @@ jest.mock("./services/category");
 it("displays Product", async () => {
   render(<ProductList dataLoaded={jest.fn()} />);
   await waitFor(async () => {
-    expect(screen.getByText("Product")).toBeInTheDocument();
+    expect(screen.getByTestId("Product")).toBeInTheDocument();
   });
 });
 
