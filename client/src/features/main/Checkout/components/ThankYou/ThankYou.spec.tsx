@@ -1,13 +1,14 @@
 import { screen } from "@testing-library/react";
 import { ThankYou } from "./index";
 import { render } from "@tests/render";
-import { productListTotal } from "@tests/constants";
+import { productListTotal, productList } from "@tests/constants";
 import { SHIPPING_PRICE } from "@root/features/main/Cart";
 import { getVat } from "@root/utils";
 
+const ProductListProps = jest.fn();
 jest.mock("@root/features/main/Cart", () => ({
   ...jest.requireActual("@root/features/main/Cart"),
-  ProductList: jest.fn(({ cartType }) => <h1>productList:{cartType}</h1>),
+  ProductList: jest.fn((props) => ProductListProps(props)),
 }));
 
 it("displays confirm icon", () => {
@@ -29,7 +30,10 @@ it("displays email information", async () => {
 
 it("displays ProductList", async () => {
   render(<ThankYou />);
-  expect(screen.getByText("productList:static")).toBeInTheDocument();
+  expect(ProductListProps).toHaveBeenCalledWith({
+    cartType: "static",
+    customList: productList,
+  });
 });
 
 it("displays grand total price", async () => {

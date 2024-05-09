@@ -3,7 +3,7 @@ import { Form } from "./index";
 import { render } from "@tests/render";
 
 jest.mock("../PaymentDetails", () => ({
-  PaymentDetails: jest.fn(() => <h1>PaymentDetails</h1>),
+  PaymentDetails: jest.fn(() => <div data-testId="PaymentDetails"></div>),
 }));
 
 it("displays checkout heading", async () => {
@@ -41,5 +41,5 @@ it("displays Shipping Info section", async () => {
 it("displays Payment Details section", async () => {
   render(<Form register={jest.fn()} />);
   expect(screen.getByRole("heading", { level: 2, name: "Payment Details" }));
-  expect(screen.getByText("PaymentDetails"));
+  expect(screen.getByTestId("PaymentDetails"));
 });

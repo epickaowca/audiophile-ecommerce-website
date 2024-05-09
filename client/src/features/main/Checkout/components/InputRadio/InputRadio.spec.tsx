@@ -1,4 +1,4 @@
-import { fireEvent, screen } from "@testing-library/react";
+import { screen } from "@testing-library/react";
 import { InputRadio } from "./index";
 import { render } from "@tests/render";
 
@@ -36,7 +36,6 @@ it("displays radio input", async () => {
       name="address"
     />
   );
-
   const input = screen.getByRole("radio");
   expect(input).toBeInTheDocument();
   expect(input).toHaveAttribute("value", value);
@@ -44,7 +43,6 @@ it("displays radio input", async () => {
 
 it("input1 checked by default", async () => {
   render(fieldset);
-
   const input1 = screen.getByRole("radio", { name: "radioInput1" });
   const input2 = screen.getByRole("radio", { name: "radioInput2" });
   expect(input1).toBeChecked();
@@ -53,7 +51,6 @@ it("input1 checked by default", async () => {
 
 it("fires onChange event", async () => {
   render(fieldset);
-
   const input1 = screen.getByRole("radio", { name: "radioInput1" });
   const input2 = screen.getByRole("radio", { name: "radioInput2" });
   expect(input1).toBeChecked();
