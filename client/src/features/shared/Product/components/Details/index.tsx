@@ -21,7 +21,11 @@ export const Details: FC<DetailsProps> = ({ price, cartImg, name, tag }) => {
     <StyledDetails $className={Details}>
       <p className={`${Details}_price`}>$ {priceWithComma(price * quantity)}</p>
       <div className={`${Details}_btnsContainer`}>
-        <QuantitySelector setValue={setQuantity} value={quantity} />
+        <QuantitySelector
+          setValue={setQuantity}
+          value={quantity}
+          ariaLabel={`${name} quantity`}
+        />
         <Button
           as="button"
           text="ADD TO CART"
