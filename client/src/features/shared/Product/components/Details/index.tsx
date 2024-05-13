@@ -22,7 +22,7 @@ export const Details: FC<DetailsProps> = ({ price, cartImg, name, tag }) => {
       <p className={`${Details}_price`}>$ {priceWithComma(price * quantity)}</p>
       <div className={`${Details}_btnsContainer`}>
         <QuantitySelector
-          setValue={setQuantity}
+          setValue={(val) => val > 0 && setQuantity(val)}
           value={quantity}
           ariaLabel={`${name} quantity`}
         />
