@@ -37,22 +37,22 @@ export const ProductDetails: FC<ProductDetailsProps> = ({ dataLoaded }) => {
         <SpinLoader height="450px" />
       ) : error ? (
         <ErrorPage message="error loading product" />
-      ) : resData ? (
-        <>
-          <Product
-            initialImg={resData.imgProductMicro}
-            largeImg={resData.imgProductLarge}
-            detailCase={{
-              price: resData.price,
-              maxQuantity: 999,
-              cartImg: resData.imgCart,
-            }}
-            {...resData}
-          />
-          <Info {...resData} />
-        </>
       ) : (
-        <h1>Error - there is no data on response</h1>
+        resData && (
+          <>
+            <Product
+              initialImg={resData.imgProductMicro}
+              largeImg={resData.imgProductLarge}
+              detailCase={{
+                price: resData.price,
+                maxQuantity: 999,
+                cartImg: resData.imgCart,
+              }}
+              {...resData}
+            />
+            <Info {...resData} />
+          </>
+        )
       )}
     </Section>
   );
