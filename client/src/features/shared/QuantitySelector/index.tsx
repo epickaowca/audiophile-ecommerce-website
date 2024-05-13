@@ -33,8 +33,7 @@ export const QuantitySelector: FC<QuantitySelectorProps> = ({
         min={1}
         value={value}
         onChange={(e) => setValue(+e.target.value)}
-        type="text"
-        inputMode="numeric"
+        type="number"
       />
       <button
         className={`${QuantitySelector}_button`}

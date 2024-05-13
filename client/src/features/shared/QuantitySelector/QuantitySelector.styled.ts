@@ -20,6 +20,14 @@ export const StyledQuantitySelector = styled.div<{
         border: none;
         text-align: center;
         font-weight: bold;
+        &::-webkit-outer-spin-button,
+        &::-webkit-inner-spin-button {
+          -webkit-appearance: none;
+          margin: 0;
+        }
+        &::-moz-appearance {
+          -moz-appearance: textfield;
+        }
       }
 
       &_button {
