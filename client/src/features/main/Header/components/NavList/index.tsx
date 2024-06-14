@@ -2,6 +2,7 @@ import { FC } from "react";
 import { useLocation, Link } from "react-router-dom";
 import { StyledNavList } from "./NavList.styled";
 import { modifiers } from "@root/utils";
+import { useEvent } from "@owcaofficial/web-analytics";
 
 export { StyledNavList };
 
@@ -13,6 +14,7 @@ export const menuItems = [
 ];
 
 export const NavList: FC = () => {
+  const sendEvent = useEvent();
   const { pathname } = useLocation();
   const { styledComponentId: NavList } = StyledNavList;
   return (
@@ -30,7 +32,12 @@ export const NavList: FC = () => {
 
         return (
           <li key={label} role="menuitem" className={`${NavList}_li`}>
-            <Link {...attrs}>{label}</Link>
+            <Link
+              onClick={() => sendEvent("navigation_action ", attrs.to)}
+              {...attrs}
+            >
+              {label}
+            </Link>
           </li>
         );
       })}

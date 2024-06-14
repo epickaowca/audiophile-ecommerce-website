@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 import { getTotal, useCart } from "../../context";
 import { CloseBtn } from "./components/CloseBtn";
 import { useEscapeHandler } from "@root/hooks/useEscape";
+import { useEvent } from "@owcaofficial/web-analytics";
 
 export const CartStatic: FC = () => {
   const { productList } = useCart();
@@ -33,6 +34,7 @@ export const CartStatic: FC = () => {
 export const cartId = "main-cart";
 
 export const CartModal: FC = () => {
+  const sendEvent = useEvent();
   const ref = useRef<HTMLDivElement>(null);
   const { removeAll, toggleCart, productList } = useCart();
   const total = getTotal(productList);
@@ -60,6 +62,7 @@ export const CartModal: FC = () => {
         onClick={() => {
           navigate("/checkout");
           toggleCart("close");
+          sendEvent("checkout_action", "CHECKOUT_button_click");
         }}
       />
     </StyledCart>

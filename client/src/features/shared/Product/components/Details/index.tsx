@@ -4,6 +4,7 @@ import { QuantitySelector } from "@root/features/shared/QuantitySelector";
 import { Button } from "@root/features/shared/Button";
 import { priceWithComma } from "@root/utils";
 import { useCart } from "@root/features/main/Cart";
+import { useEvent } from "@owcaofficial/web-analytics";
 
 type DetailsProps = {
   cartImg: string;
@@ -13,6 +14,7 @@ type DetailsProps = {
 };
 
 export const Details: FC<DetailsProps> = ({ price, cartImg, name, tag }) => {
+  const sendEvent = useEvent();
   const [quantity, setQuantity] = useState(1);
   const { addProduct } = useCart();
 
@@ -31,15 +33,16 @@ export const Details: FC<DetailsProps> = ({ price, cartImg, name, tag }) => {
           text="ADD TO CART"
           variant="primary"
           ariaLabel={`ADD ${name} TO CART`}
-          onClick={() =>
+          onClick={() => {
             addProduct({
               imgSrc: cartImg,
               price,
               name,
               tag,
               quantity,
-            })
-          }
+            });
+            sendEvent("ADD_TO_CART_button_click", name);
+          }}
         />
       </div>
     </StyledDetails>

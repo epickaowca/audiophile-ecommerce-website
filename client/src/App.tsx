@@ -2,6 +2,7 @@ import { FC, Suspense, lazy, useEffect } from "react";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 import { Cart } from "./features/main/Cart";
 import { SpinLoader } from "./features/shared/SpinLoader";
+import { useAnalytics } from "@owcaofficial/web-analytics";
 
 const Home = lazy(() =>
   import("./pages/Home").then((module) => {
@@ -34,6 +35,7 @@ const ErrorPage = lazy(() =>
 );
 
 const App: FC = () => {
+  useAnalytics();
   useEffect(() => {
     document.getElementById("loader")?.remove();
   }, []);

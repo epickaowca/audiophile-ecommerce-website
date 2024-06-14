@@ -3,6 +3,7 @@ import { reducer, ActionType } from "./reducer";
 import { getProductListFromLocalStorage, getTotal } from "./utils";
 import { Product, ContextType, UpdateQuantityProps } from "./types";
 import { LOCAL_STORAGE_PRODUCT_LIST } from "../constants";
+import { useEvent } from "@owcaofficial/web-analytics";
 
 type CartProviderProps = {
   children?: ReactNode;
@@ -26,6 +27,7 @@ export const useCart = () => {
 };
 
 export const CartProvider: FC<CartProviderProps> = ({ children }) => {
+  const sendEvent = useEvent();
   const [{ isCartOpen, productList }, dispatch] = useReducer(reducer, {
     isCartOpen: false,
     productList: getProductListFromLocalStorage(),
@@ -42,6 +44,7 @@ export const CartProvider: FC<CartProviderProps> = ({ children }) => {
   );
 
   const toggleCart = (props: "open" | "close") => {
+    sendEvent("cart_action ", props);
     const isOpen = props === "open";
 
     dispatch({

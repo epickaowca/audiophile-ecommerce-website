@@ -2,6 +2,7 @@ import { FC } from "react";
 import { Button, Variant } from "@root/features/shared/Button";
 import { StyledProductDescription } from "./ProductDescription.styled";
 import { ProductCategory } from "@root/types";
+import { useEvent } from "@owcaofficial/web-analytics";
 export { StyledProductDescription };
 
 type ButtonProps = {
@@ -26,6 +27,7 @@ export const ProductDescription: FC<ProductDescriptionProps & ButtonProps> = ({
   withoutBr,
   ...btnProps
 }) => {
+  const sendEvent = useEvent();
   const { styledComponentId: Product } = StyledProductDescription;
   return (
     <StyledProductDescription $className={Product}>
@@ -36,7 +38,14 @@ export const ProductDescription: FC<ProductDescriptionProps & ButtonProps> = ({
         {category}
       </h1>
       {description && <p className={`${Product}_description`}>{description}</p>}
-      {btnProps.href && <Button as="link" text="SEE PRODUCT" {...btnProps} />}
+      {btnProps.href && (
+        <Button
+          onClick={() => sendEvent("SEE_PRODUCT_button_click", btnProps.href!)}
+          as="link"
+          text="SEE PRODUCT"
+          {...btnProps}
+        />
+      )}
     </StyledProductDescription>
   );
 };

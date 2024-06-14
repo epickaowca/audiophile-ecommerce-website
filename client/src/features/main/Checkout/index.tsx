@@ -5,6 +5,7 @@ import { Form } from "./components/Form";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { FormInput } from "./types";
 import { ThankYou } from "./components/ThankYou";
+import { useEvent } from "@owcaofficial/web-analytics";
 
 const phrasesArr = [
   "Harmonizing life's journey",
@@ -18,11 +19,13 @@ const phrasesArr = [
 const phrase = phrasesArr[Math.floor(Math.random() * phrasesArr.length)];
 
 export const Checkout: FC = () => {
+  const sendEvent = useEvent();
   const [isSubmitted, setIsSubmitted] = useState(false);
   const { register, handleSubmit } = useForm<FormInput>();
   const onSubmit: SubmitHandler<FormInput> = (data) => {
     console.log(data);
     setIsSubmitted(true);
+    sendEvent("checkout_action", "submit_form");
   };
 
   const { styledComponentId: Checkout } = StyledCheckout;
